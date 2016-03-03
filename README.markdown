@@ -1,0 +1,14 @@
+
+Feeder Importer
+----------
+
+
+Feeder Importer adalah tool yang digunakan untuk import data ke feeder dikti. Format data yang bisa di import adalah file excel. 
+
+[Baca Selengkapnya disini](http://wildantea.com/feeder-importer-web-service-untuk-import-data-feeder/)
+
+Tutrial Video di channel youtube
+----
+
+[demo](https://www.youtube.com/user/unyilpapang)
+
