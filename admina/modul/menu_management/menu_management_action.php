@@ -15,7 +15,9 @@ switch ($_GET["act"]) {
 	case 'change_update':
 		$db->update('sys_menu_role',array('update_act'=>$_POST['data_act']),'id',$_POST['role_id']);
 		break;
-
+	case 'change_push':
+		$db->update('sys_menu_role',array('push_act'=>$_POST['data_act']),'id',$_POST['role_id']);
+		break;
 	case 'change_delete':
 		$db->update('sys_menu_role',array('delete_act'=>$_POST['data_act']),'id',$_POST['role_id']);
 		break;

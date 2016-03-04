@@ -117,6 +117,8 @@ $i=1;
 			$temp_key = array('id_kls' => $id_kls,
 								'id_reg_pd' => $id_reg_pd
 						);
+
+
 			$temp_data = array(
 								'nilai_huruf' => $value->nilai_huruf,
 								'nilai_indeks' => $value->nilai_indek

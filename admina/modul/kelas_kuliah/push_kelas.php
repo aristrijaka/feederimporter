@@ -31,14 +31,14 @@ $token = $result;
 //$token = 'acdbbc82c3b29f99e9096dab1d5eafb4';
 
 
-	$id_sms = '';
-	$id_mk = '';
-	$id_kls = '';
-	$sks_mk = '';
-	$sks_tm = '';
-	$sks_prak = '';
-	$sks_prak_lap = '';
-	$sks_sim = '';
+	$id_sms = "";
+	$id_mk = "";
+	$id_kls = "";
+	$sks_mk = 0;
+	$sks_tm = 0;
+	$sks_prak = 0;
+	$sks_prak_lap = 0;
+	$sks_sim = 0;
 	$temp_data = array();
 	$sukses_count = 0;
 	$sukses_msg = '';
@@ -120,9 +120,25 @@ $token = $result;
 			$id_mk = $temp_mk['result']['id_mk'];
 			$sks_mk = $temp_mk['result']['sks_mk'];
 			$sks_tm = $temp_mk['result']['sks_tm'];
-			$sks_prak = $temp_mk['result']['sks_prak'];
-			$sks_prak_lap = $temp_mk['result']['sks_prak_lap'];
-			$sks_sim = $temp_mk['result']['sks_sim'];
+			if ($temp_mk['result']['sks_prak']=="") {
+				$sks_prak = 0;
+			} else {
+				$sks_prak = $temp_mk['result']['sks_prak'];
+			}
+
+			if ($temp_mk['result']['sks_prak_lap']=="") {
+				$sks_prak_lap = 0;
+			} else {
+				$sks_prak_lap = $temp_mk['result']['sks_prak_lap'];
+			}
+
+			if ($temp_mk['result']['sks_sim']=="") {
+				$sks_sim = 0;
+			} else {
+				$sks_sim = $temp_mk['result']['sks_sim'];
+			}
+
+			
 		}
 		$temp_data = array(
 				'id_sms' => $id_sms,
@@ -135,6 +151,7 @@ $token = $result;
 		   		'sks_prak_lap' => $sks_prak_lap,
 				'sks_sim' => $sks_sim
 				);
+
 $temp_result = $proxy->InsertRecord($token, $table1, json_encode($temp_data));
 
 		

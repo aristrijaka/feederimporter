@@ -9857,12 +9857,6 @@ CREATE TABLE IF NOT EXISTS `mahasiswa` (
   PRIMARY KEY (`id_pd`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table feederimporter.mahasiswa: ~1 rows (approximately)
-/*!40000 ALTER TABLE `mahasiswa` DISABLE KEYS */;
-INSERT INTO `mahasiswa` (`id_pd`, `angkatan`, `id_reg_pd`, `nipd`, `id_sp`, `id_sms`, `kode_prodi`, `nm_pd`, `jk`, `nik`, `tmpt_lahir`, `tgl_lahir`, `id_agama`, `id_kk`, `jln`, `rt`, `rw`, `nm_dsn`, `ds_kel`, `id_wil`, `kode_pos`, `id_jns_tinggal`, `id_alat_transport`, `telepon_rumah`, `telepon_seluler`, `email`, `a_terima_kps`, `no_kps`, `stat_pd`, `nm_ayah`, `tgl_lahir_ayah`, `id_jenjang_pendidikan_ayah`, `id_pekerjaan_ayah`, `id_penghasilan_ayah`, `id_kebutuhan_khusus_ayah`, `nm_ibu_kandung`, `tgl_lahir_ibu`, `id_jenjang_pendidikan_ibu`, `id_penghasilan_ibu`, `id_pekerjaan_ibu`, `id_kebutuhan_khusus_ibu`, `nm_wali`, `tgl_lahir_wali`, `id_jenjang_pendidikan_wali`, `id_pekerjaan_wali`, `id_penghasilan_wali`, `tgl_masuk_sp`, `id_jns_daftar`, `id_jns_keluar`, `tgl_keluar`, `ket`, `a_pernah_paud`, `a_pernah_tk`, `skhun`, `mulai_smt`, `kewarganegaraan`, `nm_pt_asal`, `nm_prodi_asal`, `smt_kum`, `sks_diakui`, `jalur_skripsi`, `judul_skripsi`, `bln_awal_bimbingan`, `bln_akhir_bimbingan`, `sk_yudisium`, `tgl_sk_yudisium`, `ipk`, `no_seri_ijazah`, `sert_prof`, `a_pindah_mhs_asing`, `status`, `nim`) VALUES
-	('123456', '2015', '', '', '', '', '55201', 'Muhammad Deden Firdaus', 'L', '', 'Subang', '2033-07-04', '1', 0, 'Nanggela', 21, 5, 'Nanggela', 'Sindanglaya', '000000', '41284', 1, 0, '', '85220795671', 'deden@uinsgd.ac.id', 0, NULL, 'L', 'Jamad Edi Suhendi', '0000-00-00', 6, 5, 14, 0, 'Imas Amaliah', '0000-00-00', 6, 0, 0, 0, '0', '0000-00-00', 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL, 'ID', '0', '0', 0, 0, 0, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'L', NULL);
-/*!40000 ALTER TABLE `mahasiswa` ENABLE KEYS */;
-
 
 -- Dumping structure for table feederimporter.mat_kurikulum
 CREATE TABLE IF NOT EXISTS `mat_kurikulum` (
@@ -12461,7 +12455,6 @@ INSERT INTO `sys_menu` (`id`, `nav_act`, `page_name`, `url`, `main_table`, `icon
 	(19, 'jurusan', 'jurusan', 'jurusan', 'jurusan', '', 2, 17, 'Y', 'Y', 'page'),
 	(20, NULL, 'tool', '', NULL, '', 3, 0, 'Y', 'Y', 'main'),
 	(21, 'kurikulum_feeder', 'kurikulum feeder', 'kurikulum-feeder', 'kurikulum', '', 1, 20, 'Y', 'Y', 'page'),
-	(23, 'yudisium', 'yudisium', 'yudisium', 'mahasiswa', '', 9, 1, 'Y', 'Y', 'page'),
 	(24, 'hapus_kelas', 'hapus kelas feeder', 'hapus-kelas', 'kelas_kuliah', '', 1, 20, 'Y', 'Y', 'page'),
 	(26, 'config_akun_feeder', 'config akun feeder', 'config-akun-feeder', 'config_user', '', 1, 17, 'Y', 'Y', 'page'),
 	(27, 'hapus_akm_feeder', 'hapus akm feeder', 'hapus-akm-feeder', 'config_user', '', 3, 20, 'Y', 'Y', 'page'),
@@ -12514,8 +12507,6 @@ INSERT INTO `sys_menu_role` (`id`, `id_menu`, `group_id`, `read_act`, `insert_ac
 	(42, 20, 2, 'Y', 'N', 'N', 'N'),
 	(43, 21, 1, 'N', 'N', 'N', 'N'),
 	(44, 21, 2, 'N', 'N', 'N', 'N'),
-	(47, 23, 1, 'Y', 'Y', 'Y', 'Y'),
-	(48, 23, 2, 'N', 'N', 'N', 'N'),
 	(49, 24, 1, 'Y', 'Y', 'Y', 'Y'),
 	(50, 24, 2, 'Y', 'Y', 'Y', 'Y'),
 	(53, 26, 1, 'Y', 'Y', 'Y', 'Y'),
