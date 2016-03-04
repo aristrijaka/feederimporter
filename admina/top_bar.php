@@ -53,7 +53,4 @@
 
 </p> </div> <div class="modal-footer"> <button type="button" id="ok_info" class="btn btn-outline pull-left">Close</button> </div> </div><!-- /.modal-content --> </div><!-- /.modal-dialog --> </div><!-- /.modal -->
 
-<div class="modal modal-warning" id="informasi2" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog"> <div class="modal-content"><div class="modal-header"> <h4 class="modal-title">Informasi</h4> </div> <div class="modal-body"> <p id="isi_informasi2">
-
-</p> </div> <div class="modal-footer"> <button type="button" id="ok_info2" class="btn btn-outline pull-left">Close</button> </div> </div><!-- /.modal-content --> </div><!-- /.modal-dialog --> </div><!-- /.modal -->
 

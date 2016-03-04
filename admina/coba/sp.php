@@ -121,12 +121,18 @@ $i=1;
 foreach ($resultrecordset['result'] as $isi) {*/
 
 	
-	$filter_nim = "p.id_pd='1a7732db-e0b5-47c9-aa8a-cdc9a392bf49'";
+	$filter_nim = "";
 
 
 
 //	$data_kuliah = $proxy->GetRecord($token,'kuliah_mahasiswa',$filter_nim);
-	$data_kuliah = $proxy->GetRecordset($token,'mahasiswa', $filter_nim,$order,$limit,$offset);
+	$data_kuliah = $proxy->GetRecordset($token,'jenis_keluar', $filter_nim,$order,$limit,$offset);
 
-print_r($data_kuliah);
+	foreach ($data_kuliah['result'] as $isi) {
+		$data = array(
+			'id_jns_keluar' => $isi['id_jns_keluar'],
+			'ket_keluar' => $isi['ket_keluar']
+			);
+		$db->insert('jenis_keluar',$data);
+	}
 ?>

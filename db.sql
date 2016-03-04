@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `config_user` (
 -- Dumping data for table feederimporter.config_user: ~1 rows (approximately)
 /*!40000 ALTER TABLE `config_user` DISABLE KEYS */;
 INSERT INTO `config_user` (`id`, `username`, `password`, `url`, `port`, `id_sp`, `live`) VALUES
-	(1, 'usernamefeeder', 'passwordfeeder', 'localhost', '8082', 'kodept', 'N');
+	(1, 'usern', 'pass', 'localhost', '8082', 'kodept', 'Y');
 /*!40000 ALTER TABLE `config_user` ENABLE KEYS */;
 
 
@@ -279,6 +279,27 @@ INSERT INTO `fakultas` (`id`, `nama_fakultas`) VALUES
 	(8, 'Ilmu Sosial dan Imu Politik'),
 	(9, 'Pascasarjana');
 /*!40000 ALTER TABLE `fakultas` ENABLE KEYS */;
+
+
+-- Dumping structure for table feederimporter.jenis_keluar
+CREATE TABLE IF NOT EXISTS `jenis_keluar` (
+  `id_jns_keluar` varchar(1) NOT NULL,
+  `ket_keluar` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_jns_keluar`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table feederimporter.jenis_keluar: ~9 rows (approximately)
+/*!40000 ALTER TABLE `jenis_keluar` DISABLE KEYS */;
+INSERT INTO `jenis_keluar` (`id_jns_keluar`, `ket_keluar`) VALUES
+	('	', 'Lainnya'),
+	('1', 'Lulus'),
+	('2', 'Mutasi'),
+	('3', 'Dikeluarkan'),
+	('4', 'Mengundurkan diri'),
+	('5', 'Putus Sekolah'),
+	('6', 'Wafat'),
+	('7', 'Hilang');
+/*!40000 ALTER TABLE `jenis_keluar` ENABLE KEYS */;
 
 
 -- Dumping structure for table feederimporter.jenjang_pendidikan
@@ -326,11 +347,75 @@ CREATE TABLE IF NOT EXISTS `jurusan` (
   `nama_jurusan` varchar(150) DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL,
   `jenjang` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `kode_jurusan` (`kode_jurusan`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
--- Dumping data for table feederimporter.jurusan: ~0 rows (approximately)
+-- Dumping data for table feederimporter.jurusan: ~62 rows (approximately)
 /*!40000 ALTER TABLE `jurusan` DISABLE KEYS */;
+INSERT INTO `jurusan` (`id`, `kode_jurusan`, `nama_jurusan`, `status`, `jenjang`) VALUES
+	(1, '70230', 'Manajemen Dakwah ', 'A', 'S1'),
+	(2, '74230', 'Hukum Keluarga (Akhwal Syaksiyah) ', 'A', 'S1'),
+	(3, '76037', 'Filsafat Agama ', 'A', 'S3'),
+	(4, '76135', 'Ilmu Hadits', 'A', 'S2'),
+	(5, '79203', 'Sastra Arab ', 'A', 'S1'),
+	(6, '76234', 'Perbandingan Agama (Ilmu Religi) ', 'A', 'S1'),
+	(7, '86108', 'Pendidikan Agama Islam ', 'A', 'S2'),
+	(8, '44201', 'Matematika ', 'A', 'S1'),
+	(9, '86231', 'Manajemen Pendidikan Islam ', 'A', 'S1'),
+	(10, '84202', 'Pendidikan Matematika ', 'A', 'S1'),
+	(11, '70201', 'Ilmu Komunikasi ', 'A', 'S1'),
+	(12, '47201', 'Kimia ', 'A', 'S1'),
+	(13, '79402', 'Bahasa Inggris ', 'A', 'D3'),
+	(14, '70133', 'Komunikasi dan Penyiaran Islam', 'A', 'S2'),
+	(15, '20201', 'Teknik Elektro ', 'A', 'S1'),
+	(16, '80230', 'Sejarah dan Kebudayaan Islam ', 'A', 'S1'),
+	(17, '70232', 'Bimbingan dan Konseling Islam ', 'A', 'S1'),
+	(18, '76232', 'Filsafat Agama ', 'A', 'S1'),
+	(19, '74134', 'Hukum Ekonomi Syariah (Muamalah)', 'A', 'S2'),
+	(20, '76103     ', 'Ilmu Agama Islam', 'A', 'S2'),
+	(21, '74001', 'Hukum Islam ', 'A', 'S3'),
+	(22, '88203', 'Pendidikan Bahasa Inggris ', 'A', 'S1'),
+	(23, '63201', 'Administrasi Negara ', 'A', 'S1'),
+	(24, '80130', 'Sejarah dan Kebudayaan Islam', 'A', 'S2'),
+	(25, '61201', 'Manajemen ', 'A', 'S1'),
+	(26, '84205', 'Pendidikan Biologi ', 'A', 'S1'),
+	(27, '76134', 'Perbandingan Agama ', 'A', 'S2'),
+	(28, '76131', 'Ilmu Al-Qur\'an dan Tafsir', 'A', 'S2'),
+	(29, '86216', 'DMS Pendidikan Agama islam', 'A', 'S1'),
+	(30, '84203', 'Pendidikan Fisika ', 'A', 'S1'),
+	(31, '76231', 'Ilmu Alquran dan tafsir ', 'A', 'S1'),
+	(32, '76236', 'Tasawuf Psikoterapi ', 'A', 'S1'),
+	(33, '84204', 'Pendidikan Kimia ', 'A', 'S1'),
+	(34, '76235     ', 'Ilmu Hadis', 'A', 'S1'),
+	(35, '54211', 'Agroteknologi ', 'A', 'S1'),
+	(36, '55201', 'Teknik Informatika ', 'A', 'S1'),
+	(37, '61406', 'Keuangan dan Perbankan Syariah ', 'N', 'S1'),
+	(38, '76034', 'Perbandingan Agama (Ilmu Religi) ', 'A', 'S3'),
+	(39, '74101', 'Ilmu Hukum ', 'A', 'S2'),
+	(40, '88204', 'Pendidikan Bahasa Arab ', 'A', 'S1'),
+	(41, '74234', 'Hukum Ekonomi Syariah (Muamalah) ', 'A', 'S1'),
+	(42, '74231', 'Hukum Pidana Islam (Jinayah) ', 'A', 'S1'),
+	(43, '70231', 'Pengembangan Masyarakat Islam ', 'A', 'S1'),
+	(44, '86232', 'Pendidikan Guru Madrasah Ibtidaiyah ', 'A', 'S1'),
+	(45, '74233', 'Perbandingan Mazhab ', 'A', 'S1'),
+	(46, '86030', 'Pendidikan Islam ', 'A', 'S3'),
+	(47, '46201', 'Biologi ', 'A', 'S1'),
+	(48, '88104', 'Pendidikan Bahasa Arab', 'A', 'S2'),
+	(49, '73201', 'Psikologi ', 'A', 'S1'),
+	(50, '86208', 'Pendidikan Agama Islam ', 'A', 'S1'),
+	(51, '60102', 'Ekonomi Islam ', 'A', 'S2'),
+	(52, '86207     ', 'Pendidikan Guru Raudhatul Athfal', 'A', 'S1'),
+	(53, '86131', 'Manajemen Pendidikan Islam', 'A', 'S2'),
+	(54, '74201', 'Ilmu Hukum ', 'A', 'S1'),
+	(55, '45201', 'Fisika ', 'A', 'S1'),
+	(56, '70233', 'Komunikasi dan Penyiaran Islam ', 'A', 'S1'),
+	(57, '74235', 'Hukum Tatanegara (Siyasah) ', 'A', 'S1'),
+	(58, '69201', 'Sosiologi ', 'A', 'S1'),
+	(59, '74130', 'Hukum Keluarga (Akhwal Syaksiyah) ', 'A', 'S2'),
+	(60, '79202', 'Sastra Inggris ', 'A', 'S1'),
+	(61, '86235', 'DMS Pendidikan Guru Madrasah Ibtidaiyah', 'A', 'S1'),
+	(62, '61211', 'Manajemen Keuangan Syariah ', 'A', 'S1');
 /*!40000 ALTER TABLE `jurusan` ENABLE KEYS */;
 
 
@@ -346,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `kelas_kuliah` (
   `keterangan` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `kode_jurusan` (`kode_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=5981 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5997 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table feederimporter.kelas_kuliah: ~194 rows (approximately)
 /*!40000 ALTER TABLE `kelas_kuliah` DISABLE KEYS */;
@@ -544,8 +629,53 @@ INSERT INTO `kelas_kuliah` (`id`, `semester`, `kode_mk`, `nama_mk`, `nama_kelas`
 	(5977, '20142', 'UN8208', 'Ilmu Tauhid/Aqidah', '02', '705', 2, 'Data kelas ini sudah ada'),
 	(5978, '20142', 'UN8208', 'Ilmu Tauhid/Aqidah', '03', '705', 2, 'Data kelas ini sudah ada'),
 	(5979, '20142', 'UN8208', 'Ilmu Tauhid/Aqidah', '04', '705', 2, 'Data kelas ini sudah ada'),
-	(5980, '20142', 'UN8208', 'Ilmu Tauhid/Aqidah', '05', '705', 2, 'Data kelas ini sudah ada');
+	(5980, '20142', 'UN8208', 'Ilmu Tauhid/Aqidah', '05', '705', 2, 'Data kelas ini sudah ada'),
+	(5981, '20152', 'EKT8801', 'Ekonomi Teknik', '1', '55201', 1, ''),
+	(5982, '20152', 'EKT8801', 'Ekonomi Teknik', '2', '55201', 0, ''),
+	(5983, '20152', 'EKT8801', 'Ekonomi Teknik', '3', '55201', 0, ''),
+	(5984, '20152', 'EKT8801', 'Ekonomi Teknik', '4', '55201', 0, ''),
+	(5985, '20152', 'EKT8801', 'Ekonomi Teknik', '5', '55201', 0, ''),
+	(5986, '20152', 'IF15201', 'Algoritma dan Pemrograman\n', '1', '55201', 1, ''),
+	(5987, '20152', 'IF15201', 'Algoritma dan Pemrograman\n', '2', '55201', 1, ''),
+	(5988, '20152', 'IF15201', 'Algoritma dan Pemrograman\n', '3', '55201', 2, 'ERROR SQL ERROR:  invalid input syntax for type numeric: ""\nLINE 1: ...6410-53e3-49b5-9315-d1a9be87e387\', \'3\', \'2\', \'2\', \'\', \'\', \'\'...\n               '),
+	(5989, '20152', 'IF15201', 'Algoritma dan Pemrograman\n', '4', '55201', 2, 'ERROR SQL ERROR:  invalid input syntax for type numeric: ""\nLINE 1: ...6410-53e3-49b5-9315-d1a9be87e387\', \'4\', \'2\', \'2\', \'\', \'\', \'\'...\n               '),
+	(5990, '20152', 'IF15201', 'Algoritma dan Pemrograman\n', '5', '55201', 2, 'ERROR SQL ERROR:  invalid input syntax for type numeric: ""\nLINE 1: ...6410-53e3-49b5-9315-d1a9be87e387\', \'5\', \'2\', \'2\', \'\', \'\', \'\'...\n               '),
+	(5991, '20152', 'IF15201L', 'Praktikum Algoritma dan Pemrograman\n', '1', '55201', 0, ''),
+	(5992, '20152', 'IF15201L', 'Praktikum Algoritma dan Pemrograman\n', '2', '55201', 0, ''),
+	(5993, '20152', 'IF15201L', 'Praktikum Algoritma dan Pemrograman\n', '3', '55201', 0, ''),
+	(5994, '20152', 'IF15201L', 'Praktikum Algoritma dan Pemrograman\n', '4', '55201', 0, ''),
+	(5995, '20152', 'IF15201L', 'Praktikum Algoritma dan Pemrograman\n', '5', '55201', 0, ''),
+	(5996, '20152', 'IF15201L', 'Praktikum Algoritma dan Pemrograman\n', '6', '55201', 0, '');
 /*!40000 ALTER TABLE `kelas_kuliah` ENABLE KEYS */;
+
+
+-- Dumping structure for table feederimporter.kelulusan
+CREATE TABLE IF NOT EXISTS `kelulusan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nim` varchar(50) NOT NULL,
+  `kode_jurusan` varchar(50) NOT NULL,
+  `nama` varchar(250) NOT NULL,
+  `id_jenis_keluar` int(11) NOT NULL,
+  `tanggal_keluar` date NOT NULL,
+  `sk_yudisium` varchar(150) NOT NULL,
+  `tgl_sk_yudisium` date NOT NULL,
+  `ipk` varchar(50) NOT NULL,
+  `no_seri_ijasah` varchar(150) NOT NULL,
+  `jalur_skripsi` enum('1','0') NOT NULL,
+  `judul_skripsi` tinytext NOT NULL,
+  `bulan_awal_bimbingan` date NOT NULL,
+  `bulan_akhir_bimbingan` date NOT NULL,
+  `status_error` int(11) NOT NULL DEFAULT '0',
+  `keterangan` varchar(150) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `kode_jurusan` (`kode_jurusan`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table feederimporter.kelulusan: ~1 rows (approximately)
+/*!40000 ALTER TABLE `kelulusan` DISABLE KEYS */;
+INSERT INTO `kelulusan` (`id`, `nim`, `kode_jurusan`, `nama`, `id_jenis_keluar`, `tanggal_keluar`, `sk_yudisium`, `tgl_sk_yudisium`, `ipk`, `no_seri_ijasah`, `jalur_skripsi`, `judul_skripsi`, `bulan_awal_bimbingan`, `bulan_akhir_bimbingan`, `status_error`, `keterangan`) VALUES
+	(10, '1210705086', '55201', 'MUHAMAD RAHMAT SETIAWAN', 1, '2015-08-28', 'UN.05/III.7/PP.00.09/260/2013', '2015-08-28', '3.09', 'FST/S1/260/2013', '1', 'tes judul skripsi', '2015-08-28', '2015-08-28', 2, 'Tidak bisa menambah/mengubah data. Periode data di luar periode aktif kecuali (id_jns_keluar, tgl_keluar, ket, skhun, judul_skripsi, bln_awal_bimbinga');
+/*!40000 ALTER TABLE `kelulusan` ENABLE KEYS */;
 
 
 -- Dumping structure for table feederimporter.krs
@@ -562,9 +692,9 @@ CREATE TABLE IF NOT EXISTS `krs` (
   `keterangan` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `kode_jurusan` (`kode_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=46482 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46483 DEFAULT CHARSET=latin1;
 
--- Dumping data for table feederimporter.krs: ~6,122 rows (approximately)
+-- Dumping data for table feederimporter.krs: ~6,012 rows (approximately)
 /*!40000 ALTER TABLE `krs` DISABLE KEYS */;
 INSERT INTO `krs` (`id`, `nim`, `nama`, `kode_mk`, `nama_mk`, `nama_kelas`, `semester`, `kode_jurusan`, `status_error`, `keterangan`) VALUES
 	(40360, '1127050001', 'ACHMAD ALFIAN R', 'EKT8801', 'Ekonomi Teknik', '04', '20142', '705', 2, 'Pastikan Kelas EKT8801 Sudah DibuatData nilai dari id_kls dan id_reg_pd ini sudah ada'),
@@ -6688,7 +6818,8 @@ INSERT INTO `krs` (`id`, `nim`, `nama`, `kode_mk`, `nama_mk`, `nama_kelas`, `sem
 	(46478, '208700919', 'RIKI RAMLI PUTRA', 'TA8800', 'Tugas Akhir/Skripsi', '01', '20142', '705', 0, ''),
 	(46479, '208700929', 'RIZKY MOCHAMMAD FAUZI', 'TA8800', 'Tugas Akhir/Skripsi', '01', '20142', '705', 0, ''),
 	(46480, '208700933', 'SALMAN AL-FATH', 'KM8800', 'Komprehensif', '01', '20142', '705', 0, ''),
-	(46481, '208700933', 'SALMAN AL-FATH', 'TA8800', 'Tugas Akhir/Skripsi', '01', '20142', '705', 0, '');
+	(46481, '208700933', 'SALMAN AL-FATH', 'TA8800', 'Tugas Akhir/Skripsi', '01', '20142', '705', 0, ''),
+	(46482, '1127050003', 'AGUNG RAMADHAN', 'EKT8801', '', '1', '20152', '55201', 1, '');
 /*!40000 ALTER TABLE `krs` ENABLE KEYS */;
 
 
@@ -9771,12 +9902,12 @@ CREATE TABLE IF NOT EXISTS `kurikulum` (
   `status_error` int(1) NOT NULL,
   `keterangan` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table feederimporter.kurikulum: ~1 rows (approximately)
 /*!40000 ALTER TABLE `kurikulum` DISABLE KEYS */;
 INSERT INTO `kurikulum` (`id`, `nama_kur`, `mulai_berlaku`, `kode_jurusan`, `jml_sks_wajib`, `jml_sks_pilihan`, `total_sks`, `status_error`, `keterangan`) VALUES
-	(11, 'kurikulum IF tahun 2008', '20081', '55201', 40, 22, 62, 0, '');
+	(13, 'kurikulum IF tahun 2016', '20161', '55201', 40, 22, 62, 0, '');
 /*!40000 ALTER TABLE `kurikulum` ENABLE KEYS */;
 
 
@@ -9857,13 +9988,19 @@ CREATE TABLE IF NOT EXISTS `mahasiswa` (
   PRIMARY KEY (`id_pd`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Dumping data for table feederimporter.mahasiswa: ~1 rows (approximately)
+/*!40000 ALTER TABLE `mahasiswa` DISABLE KEYS */;
+INSERT INTO `mahasiswa` (`id_pd`, `angkatan`, `id_reg_pd`, `nipd`, `id_sp`, `id_sms`, `kode_prodi`, `nm_pd`, `jk`, `nik`, `tmpt_lahir`, `tgl_lahir`, `id_agama`, `id_kk`, `jln`, `rt`, `rw`, `nm_dsn`, `ds_kel`, `id_wil`, `kode_pos`, `id_jns_tinggal`, `id_alat_transport`, `telepon_rumah`, `telepon_seluler`, `email`, `a_terima_kps`, `no_kps`, `stat_pd`, `nm_ayah`, `tgl_lahir_ayah`, `id_jenjang_pendidikan_ayah`, `id_pekerjaan_ayah`, `id_penghasilan_ayah`, `id_kebutuhan_khusus_ayah`, `nm_ibu_kandung`, `tgl_lahir_ibu`, `id_jenjang_pendidikan_ibu`, `id_penghasilan_ibu`, `id_pekerjaan_ibu`, `id_kebutuhan_khusus_ibu`, `nm_wali`, `tgl_lahir_wali`, `id_jenjang_pendidikan_wali`, `id_pekerjaan_wali`, `id_penghasilan_wali`, `tgl_masuk_sp`, `id_jns_daftar`, `id_jns_keluar`, `tgl_keluar`, `ket`, `a_pernah_paud`, `a_pernah_tk`, `skhun`, `mulai_smt`, `kewarganegaraan`, `nm_pt_asal`, `nm_prodi_asal`, `smt_kum`, `sks_diakui`, `jalur_skripsi`, `judul_skripsi`, `bln_awal_bimbingan`, `bln_akhir_bimbingan`, `sk_yudisium`, `tgl_sk_yudisium`, `ipk`, `no_seri_ijazah`, `sert_prof`, `a_pindah_mhs_asing`, `status`, `nim`) VALUES
+	('123456', '2015', '', '', '', '', '55201', 'Muhammad Deden Firdaus', 'L', '', 'Subang', '2033-07-04', '1', 0, 'Nanggela', 21, 5, 'Nanggela', 'Sindanglaya', '000000', '41284', 1, 0, '', '85220795671', 'deden@uinsgd.ac.id', 0, NULL, 'L', 'Jamad Edi Suhendi', '0000-00-00', 6, 5, 14, 0, 'Imas Amaliah', '0000-00-00', 6, 0, 0, 0, '0', '0000-00-00', 0, 0, 0, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL, 'ID', '0', '0', 0, 0, 0, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'L', NULL);
+/*!40000 ALTER TABLE `mahasiswa` ENABLE KEYS */;
+
 
 -- Dumping structure for table feederimporter.mat_kurikulum
 CREATE TABLE IF NOT EXISTS `mat_kurikulum` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_kurikulum` int(11) NOT NULL DEFAULT '0',
   `kode_mk` varchar(50) NOT NULL,
-  `tahun` varchar(4) NOT NULL,
+  `tahun` varchar(5) NOT NULL,
   `nama_mk` varchar(150) NOT NULL,
   `id_jenj_didik` int(11) NOT NULL,
   `jns_mk` varchar(50) NOT NULL,
@@ -9882,16 +10019,16 @@ CREATE TABLE IF NOT EXISTS `mat_kurikulum` (
   PRIMARY KEY (`id`),
   KEY `FK_mat_kurikulum_kurikulum` (`id_kurikulum`),
   CONSTRAINT `FK_mat_kurikulum_kurikulum` FOREIGN KEY (`id_kurikulum`) REFERENCES `kurikulum` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=724 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table feederimporter.mat_kurikulum: ~5 rows (approximately)
 /*!40000 ALTER TABLE `mat_kurikulum` DISABLE KEYS */;
 INSERT INTO `mat_kurikulum` (`id`, `id_kurikulum`, `kode_mk`, `tahun`, `nama_mk`, `id_jenj_didik`, `jns_mk`, `sks_tm`, `sks_prak`, `sks_prak_lap`, `sks_sim`, `a_sap`, `s_silabus`, `a_bahan_ajar`, `acara_prakata_dikdat`, `semester`, `kode_jurusan`, `status_error`, `keterangan`) VALUES
-	(719, 11, 'aaa_smpl1', '2014', 'Sampe Makul 1', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 1, '55201', 1, ''),
-	(720, 11, 'aaa_smpl2', '2014', 'Sampe Makul 2', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 2, '55201', 1, ''),
-	(721, 11, 'aaa_smpl3', '2014', 'Sampe Makul 3', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 4, '55201', 1, ''),
-	(722, 11, 'aaa_smpl4', '2014', 'Sampe Makul 4', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 5, '55201', 1, ''),
-	(723, 11, 'aaa_smpl5', '2014', 'Sampel Makul', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 8, '55201', 1, '');
+	(6, 13, 'aaa_smpl1', '20161', 'Sampe Makul 1', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 1, '55201', 1, ''),
+	(7, 13, 'aaa_smpl2', '20161', 'Sampe Makul 2', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 2, '55201', 1, ''),
+	(8, 13, 'aaa_smpl3', '20161', 'Sampe Makul 3', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 4, '55201', 1, ''),
+	(9, 13, 'aaa_smpl4', '20161', 'Sampe Makul 4', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 5, '55201', 1, ''),
+	(10, 13, 'aaa_smpl5', '20161', 'Sampel Makul', 30, 'A', 2, 2, 0, 0, 1, 1, 1, 1, 8, '55201', 1, '');
 /*!40000 ALTER TABLE `mat_kurikulum` ENABLE KEYS */;
 
 
@@ -9911,10 +10048,12 @@ CREATE TABLE IF NOT EXISTS `nilai` (
   `nilai_indek` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `kode_jurusan` (`kode_jurusan`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table feederimporter.nilai: ~0 rows (approximately)
 /*!40000 ALTER TABLE `nilai` DISABLE KEYS */;
+INSERT INTO `nilai` (`id`, `nim`, `nama`, `kode_mk`, `nama_mk`, `nama_kelas`, `semester`, `kode_jurusan`, `status_error`, `keterangan`, `nilai_huruf`, `nilai_indek`) VALUES
+	(2, '1127050003', 'AGUNG RAMADHAN', 'EKT8801', 'EKONOMI TEKNIK', '1', '20152', '55201', 1, '', 'A', 4);
 /*!40000 ALTER TABLE `nilai` ENABLE KEYS */;
 
 
@@ -9940,7 +10079,7 @@ CREATE TABLE IF NOT EXISTS `nilai_akm` (
   `keterangan` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `kode_jurusan` (`kode_jurusan`)
-) ENGINE=InnoDB AUTO_INCREMENT=9159 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=9160 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table feederimporter.nilai_akm: ~1,424 rows (approximately)
 /*!40000 ALTER TABLE `nilai_akm` DISABLE KEYS */;
@@ -11368,7 +11507,8 @@ INSERT INTO `nilai_akm` (`id`, `semester`, `nim`, `nama`, `ips`, `ipk`, `sks_smt
 	(9155, '20151', '208700919', 'RIKI RAMLI PUTRA', 3.00, 3.00, 4, 160, '705', 'A', 0, 0, NULL, NULL, NULL, NULL, NULL, NULL),
 	(9156, '20151', '208700920', 'RIMA NURYANI', 0.00, 3.04, 0, 158, '705', 'C', 0, 0, NULL, NULL, NULL, NULL, NULL, NULL),
 	(9157, '20151', '208700933', 'SALMAN AL-FATH', 0.00, 2.61, 0, 163, '705', 'C', 0, 0, NULL, NULL, NULL, NULL, NULL, NULL),
-	(9158, '20151', '208700968', 'ZEID NOOR YASYA', 0.00, 3.35, 0, 156, '705', 'C', 0, 0, NULL, NULL, NULL, NULL, NULL, NULL);
+	(9158, '20151', '208700968', 'ZEID NOOR YASYA', 0.00, 3.35, 0, 156, '705', 'C', 0, 0, NULL, NULL, NULL, NULL, NULL, NULL),
+	(9159, '20152', '1127050003', 'AGUNG RAMADHAN', 3.00, 3.50, 20, 20, '55201', 'A', 1, 1, NULL, NULL, NULL, NULL, NULL, '');
 /*!40000 ALTER TABLE `nilai_akm` ENABLE KEYS */;
 
 
@@ -12437,9 +12577,9 @@ CREATE TABLE IF NOT EXISTS `sys_menu` (
   `tampil` enum('Y','N') NOT NULL,
   `type_menu` enum('main','page') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
--- Dumping data for table feederimporter.sys_menu: ~18 rows (approximately)
+-- Dumping data for table feederimporter.sys_menu: ~17 rows (approximately)
 /*!40000 ALTER TABLE `sys_menu` DISABLE KEYS */;
 INSERT INTO `sys_menu` (`id`, `nav_act`, `page_name`, `url`, `main_table`, `icon`, `urutan_menu`, `parent`, `dt_table`, `tampil`, `type_menu`) VALUES
 	(1, NULL, 'import', '', NULL, 'fa-cloud-upload', 2, 0, 'Y', 'Y', 'main'),
@@ -12458,7 +12598,8 @@ INSERT INTO `sys_menu` (`id`, `nav_act`, `page_name`, `url`, `main_table`, `icon
 	(24, 'hapus_kelas', 'hapus kelas feeder', 'hapus-kelas', 'kelas_kuliah', '', 1, 20, 'Y', 'Y', 'page'),
 	(26, 'config_akun_feeder', 'config akun feeder', 'config-akun-feeder', 'config_user', '', 1, 17, 'Y', 'Y', 'page'),
 	(27, 'hapus_akm_feeder', 'hapus akm feeder', 'hapus-akm-feeder', 'config_user', '', 3, 20, 'Y', 'Y', 'page'),
-	(28, 'about', 'about', 'about', 'agama', '', 8, 0, 'Y', 'Y', 'page');
+	(28, 'about', 'about', 'about', 'agama', '', 8, 0, 'Y', 'Y', 'page'),
+	(29, 'kelulusan', 'kelulusan', 'kelulusan', 'kelulusan', '', 9, 1, 'Y', 'Y', 'page');
 /*!40000 ALTER TABLE `sys_menu` ENABLE KEYS */;
 
 
@@ -12471,50 +12612,53 @@ CREATE TABLE IF NOT EXISTS `sys_menu_role` (
   `insert_act` enum('Y','N') DEFAULT NULL,
   `update_act` enum('Y','N') DEFAULT NULL,
   `delete_act` enum('Y','N') DEFAULT NULL,
+  `push_act` enum('Y','N') DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_sys_menu_role_sys_menu` (`id_menu`),
   KEY `FK_sys_menu_role_sys_users` (`group_id`),
   CONSTRAINT `FK_sys_menu_role_sys_group_users` FOREIGN KEY (`group_id`) REFERENCES `sys_group_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_sys_menu_role_sys_menu` FOREIGN KEY (`id_menu`) REFERENCES `sys_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
--- Dumping data for table feederimporter.sys_menu_role: ~36 rows (approximately)
+-- Dumping data for table feederimporter.sys_menu_role: ~34 rows (approximately)
 /*!40000 ALTER TABLE `sys_menu_role` DISABLE KEYS */;
-INSERT INTO `sys_menu_role` (`id`, `id_menu`, `group_id`, `read_act`, `insert_act`, `update_act`, `delete_act`) VALUES
-	(1, 1, 1, 'Y', 'Y', 'Y', 'Y'),
-	(5, 1, 2, 'Y', 'N', 'N', 'N'),
-	(13, 7, 1, 'Y', 'Y', 'Y', 'Y'),
-	(14, 7, 2, 'Y', 'Y', 'Y', 'Y'),
-	(15, 8, 1, 'Y', 'Y', 'Y', 'Y'),
-	(16, 8, 2, 'Y', 'Y', 'Y', 'Y'),
-	(17, 9, 1, 'Y', 'Y', 'Y', 'Y'),
-	(18, 9, 2, 'Y', 'N', 'N', 'N'),
-	(19, 10, 1, 'Y', 'Y', 'Y', 'Y'),
-	(20, 10, 2, 'Y', 'Y', 'Y', 'Y'),
-	(21, 11, 1, 'Y', 'Y', 'Y', 'Y'),
-	(22, 11, 2, 'Y', 'Y', 'Y', 'Y'),
-	(25, 13, 1, 'Y', 'Y', 'Y', 'Y'),
-	(26, 13, 2, 'Y', 'Y', 'Y', 'Y'),
-	(29, 15, 1, 'Y', 'Y', 'Y', 'Y'),
-	(30, 15, 2, 'Y', 'Y', 'Y', 'Y'),
-	(33, 16, 1, 'Y', 'Y', 'Y', 'Y'),
-	(34, 16, 2, 'Y', 'Y', 'Y', 'Y'),
-	(35, 17, 1, 'Y', 'Y', 'Y', 'Y'),
-	(36, 17, 2, 'Y', 'N', 'N', 'N'),
-	(39, 19, 1, 'Y', 'Y', 'Y', 'Y'),
-	(40, 19, 2, 'Y', 'Y', 'Y', 'Y'),
-	(41, 20, 1, 'Y', 'Y', 'Y', 'Y'),
-	(42, 20, 2, 'Y', 'N', 'N', 'N'),
-	(43, 21, 1, 'N', 'N', 'N', 'N'),
-	(44, 21, 2, 'N', 'N', 'N', 'N'),
-	(49, 24, 1, 'Y', 'Y', 'Y', 'Y'),
-	(50, 24, 2, 'Y', 'Y', 'Y', 'Y'),
-	(53, 26, 1, 'Y', 'Y', 'Y', 'Y'),
-	(54, 26, 2, 'N', 'N', 'N', 'N'),
-	(55, 27, 1, 'Y', 'Y', 'Y', 'Y'),
-	(56, 27, 2, 'N', 'N', 'N', 'N'),
-	(57, 28, 1, 'Y', 'Y', 'Y', 'Y'),
-	(58, 28, 2, 'N', 'N', 'N', 'N');
+INSERT INTO `sys_menu_role` (`id`, `id_menu`, `group_id`, `read_act`, `insert_act`, `update_act`, `delete_act`, `push_act`) VALUES
+	(1, 1, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(5, 1, 2, 'Y', 'N', 'N', 'N', 'Y'),
+	(13, 7, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(14, 7, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(15, 8, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(16, 8, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(17, 9, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(18, 9, 2, 'Y', 'N', 'N', 'N', 'Y'),
+	(19, 10, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(20, 10, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(21, 11, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(22, 11, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(25, 13, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(26, 13, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(29, 15, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(30, 15, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(33, 16, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(34, 16, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(35, 17, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(36, 17, 2, 'Y', 'N', 'N', 'N', 'Y'),
+	(39, 19, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(40, 19, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(41, 20, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(42, 20, 2, 'Y', 'N', 'N', 'N', 'Y'),
+	(43, 21, 1, 'N', 'N', 'N', 'N', 'N'),
+	(44, 21, 2, 'N', 'N', 'N', 'N', 'Y'),
+	(49, 24, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(50, 24, 2, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(53, 26, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(54, 26, 2, 'N', 'N', 'N', 'N', 'Y'),
+	(55, 27, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(56, 27, 2, 'N', 'N', 'N', 'N', 'Y'),
+	(57, 28, 1, 'Y', 'Y', 'Y', 'Y', 'Y'),
+	(58, 28, 2, 'Y', 'N', 'N', 'N', 'Y'),
+	(60, 29, 1, 'Y', 'Y', 'Y', 'Y', NULL),
+	(61, 29, 2, 'N', 'N', 'N', 'N', NULL);
 /*!40000 ALTER TABLE `sys_menu_role` ENABLE KEYS */;
 
 
@@ -12536,7 +12680,7 @@ CREATE TABLE IF NOT EXISTS `sys_users` (
   CONSTRAINT `FK_sys_users_sys_group_users` FOREIGN KEY (`id_group`) REFERENCES `sys_group_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table feederimporter.sys_users: ~2 rows (approximately)
+-- Dumping data for table feederimporter.sys_users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `sys_users` DISABLE KEYS */;
 INSERT INTO `sys_users` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `date_created`, `foto_user`, `id_group`, `kode_jurusan`, `aktif`) VALUES
 	(1, 'super', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'wildannudin@gmail.com', '2015-01-26', '10965740_10206190197982755_22114424_n.jpg', 1, NULL, 'Y'),
