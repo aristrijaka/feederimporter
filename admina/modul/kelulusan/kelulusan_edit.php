@@ -112,7 +112,7 @@
                         </div>
                       </div><!-- /.form-group -->
                     </form>
-                    <a href="<?=base_index();?>kelulusan" class="btn btn-success btn-flat"><i class="fa fa-step-backward"></i> Kembali</a>
+                    <a onclick="window.history.back(-1)" class="btn btn-success btn-flat"><i class="fa fa-step-backward"></i> Kembali</a>
           
                   </div>
                   </div>
