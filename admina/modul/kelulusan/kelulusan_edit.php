@@ -84,12 +84,7 @@
                           <input type="text" name="no_seri_ijasah" value="<?=$data_edit->no_seri_ijasah;?>" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
-<div class="form-group">
-                        <label for="Jalur Skripsi" class="control-label col-lg-2">Jalur Skripsi</label>
-                        <div class="col-lg-10">
-                          <input type="text" name="jalur_skripsi" value="<?=$data_edit->jalur_skripsi;?>" class="form-control" > 
-                        </div>
-                      </div><!-- /.form-group -->
+
 <div class="form-group">
                         <label for="Judul Skripsi" class="control-label col-lg-2">Judul Skripsi</label>
                         <div class="col-lg-10">

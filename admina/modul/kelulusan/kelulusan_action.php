@@ -62,21 +62,21 @@ if ($val[1]!='') {
           $tanggal_yudisium = $val[6];
         }
 
-        if ($val[11]!='') {
+        if ($val[10]!='') {
           $date2 = date_create('30-12-1899');
-          date_add($date2, date_interval_create_from_date_string($val[6].' days'));
+          date_add($date2, date_interval_create_from_date_string($val[10].' days'));
           $tgl_awal = date_format($date2, 'Y-m-d');
         } else {
-          $tgl_awal = $val[11];
+          $tgl_awal = $val[10];
         }
 
 
-        if ($val[12]!='') {
+        if ($val[11]!='') {
           $date3 = date_create('30-12-1899');
-          date_add($date3, date_interval_create_from_date_string($val[6].' days'));
+          date_add($date3, date_interval_create_from_date_string($val[11].' days'));
           $tgl_akhir = date_format($date3, 'Y-m-d');
         } else {
-          $tgl_akhir = $val[12];
+          $tgl_akhir = $val[11];
         }
       
 
@@ -91,8 +91,7 @@ if ($val[1]!='') {
             'tgl_sk_yudisium'=>$tanggal_yudisium,
             'ipk' => $val[7],
             'no_seri_ijasah'=>$val[8],
-            'jalur_skripsi'=>$val[9],
-            'judul_skripsi'=>$val[10],
+            'judul_skripsi'=>$val[9],
             'bulan_awal_bimbingan' => $tgl_awal,
             'bulan_akhir_bimbingan' => $tgl_akhir,
             'kode_jurusan' => $_POST['jurusan']
@@ -141,7 +140,7 @@ if (($sukses>0) || ($error_count>0)) {
     "tanggal_keluar" => $_POST["tanggal_keluar"],
     "id_jenis_keluar"=>$_POST["id_jenis_keluar"],
     "sk_yudisium"=>$_POST["sk_yudisium"],
-    "tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"jalur_skripsi"=>$_POST["jalur_skripsi"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
+    "tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
   
   
   
@@ -177,7 +176,7 @@ if (($sukses>0) || ($error_count>0)) {
     "nama"=>$_POST["nama"],
     "id_jenis_keluar"=>$_POST["id_jenis_keluar"],
      "tanggal_keluar" => $_POST["tanggal_keluar"],
-     "sk_yudisium"=>$_POST["sk_yudisium"],"tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"jalur_skripsi"=>$_POST["jalur_skripsi"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
+     "sk_yudisium"=>$_POST["sk_yudisium"],"tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
    
    
    

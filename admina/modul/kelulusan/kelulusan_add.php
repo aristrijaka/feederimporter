@@ -81,12 +81,6 @@
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
-                        <label for="Jalur Skripsi" class="control-label col-lg-2">Jalur Skripsi</label>
-                        <div class="col-lg-10">
-                          <input type="text" name="jalur_skripsi" placeholder="Jalur Skripsi" class="form-control" > 
-                        </div>
-                      </div><!-- /.form-group -->
-<div class="form-group">
                         <label for="Judul Skripsi" class="control-label col-lg-2">Judul Skripsi</label>
                         <div class="col-lg-10">
                           <input type="text" name="judul_skripsi" placeholder="Judul Skripsi" class="form-control" > 

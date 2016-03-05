@@ -89,7 +89,6 @@ $i=1;
       $array_data = array(
         'id_jns_keluar' => $value->id_jenis_keluar,
         'tgl_keluar' => $value->tanggal_keluar,
-        'jalur_skripsi' => $value->jalur_skripsi,
         'judul_skripsi' => $value->judul_skripsi,
         'bln_awal_bimbingan' => $value->bulan_awal_bimbingan,
         'bln_akhir_bimbingan' => $value->bulan_akhir_bimbingan,
