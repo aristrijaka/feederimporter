@@ -121,7 +121,7 @@ $i=1;
 $msg = '';
 if ((!$sukses_count==0) || (!$error_count==0)) {
   $msg =  "<div class=\"alert alert-warning \" role=\"alert\">
-      <font color=\"#3c763d\">".$sukses_count." data Akm baru berhasil di Upload</font><br />
+      <font color=\"#3c763d\">".$sukses_count." data Kelulusan baru berhasil di Upload</font><br />
       <font color=\"#ce4844\" >".$error_count." data tidak bisa diupload </font>";
       
       if (!$error_count==0) {
