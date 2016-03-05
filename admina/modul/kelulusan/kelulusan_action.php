@@ -96,7 +96,7 @@ if ($val[1]!='') {
             'bulan_awal_bimbingan' => $tgl_awal,
             'bulan_akhir_bimbingan' => $tgl_akhir,
             'kode_jurusan' => $_POST['jurusan']
-                );
+              );
 
       $in = $db->insert("kelulusan",$data);
   }
@@ -135,7 +135,13 @@ if (($sukses>0) || ($error_count>0)) {
   
   
   
-  $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"id_jenis_keluar"=>$_POST["id_jenis_keluar"],"sk_yudisium"=>$_POST["sk_yudisium"],"tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"jalur_skripsi"=>$_POST["jalur_skripsi"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
+  $data = array(
+    "nim"=>$_POST["nim"],
+    "nama"=>$_POST["nama"],
+    "tanggal_keluar" => $_POST["tanggal_keluar"],
+    "id_jenis_keluar"=>$_POST["id_jenis_keluar"],
+    "sk_yudisium"=>$_POST["sk_yudisium"],
+    "tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"jalur_skripsi"=>$_POST["jalur_skripsi"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
   
   
   
@@ -154,8 +160,24 @@ if (($sukses>0) || ($error_count>0)) {
     
     $db->delete("kelulusan","id",$_GET["id"]);
     break;
+
+        case 'del_massal':
+    $data_ids = $_REQUEST['data_ids'];
+    $data_id_array = explode(",", $data_ids);
+    if(!empty($data_id_array)) {
+        foreach($data_id_array as $id) {
+          $db->delete("kelulusan","id",$id);
+         }
+    }
+    break;
+
   case "up":
-   $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"id_jenis_keluar"=>$_POST["id_jenis_keluar"],"sk_yudisium"=>$_POST["sk_yudisium"],"tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"jalur_skripsi"=>$_POST["jalur_skripsi"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
+   $data = array(
+    "nim"=>$_POST["nim"],
+    "nama"=>$_POST["nama"],
+    "id_jenis_keluar"=>$_POST["id_jenis_keluar"],
+     "tanggal_keluar" => $_POST["tanggal_keluar"],
+     "sk_yudisium"=>$_POST["sk_yudisium"],"tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"jalur_skripsi"=>$_POST["jalur_skripsi"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
    
    
    

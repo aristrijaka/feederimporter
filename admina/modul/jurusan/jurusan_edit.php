@@ -27,38 +27,29 @@
 
                   <div class="box-body">
                      <form id="update" method="post" class="form-horizontal" action="<?=base_admin();?>modul/jurusan/jurusan_action.php?act=up">
-                      <div class="form-group">
-                        <label for="Fakultas" class="control-label col-lg-2">Fakultas</label>
+<div class="form-group">
+                        <label for="Kode jurusan lokal" class="control-label col-lg-2"> Kode Jurusan</label>
                         <div class="col-lg-10">
-                          <select name="id_fakultas" data-placeholder="Pilih Fakultas..." class="form-control chzn-select" tabindex="2" required>
-               <option value=""></option>
-               <?php foreach ($db->fetch_all("fakultas") as $isi) {
+                          <input type="text" data-rule-number="true" name="kode_jurusan" value="<?=$data_edit->kode_jurusan;?>" class="form-control" required> 
+                        </div>
+                      </div><!-- /.form-group -->
 
-                  if ($data_edit->id_fakultas==$isi->id) {
-                    echo "<option value='$isi->id' selected>$isi->nama_fakultas</option>";
-                  } else {
-                  echo "<option value='$isi->id'>$isi->nama_fakultas</option>";
-                    }
-               } ?>
-              </select>
-                        </div>
-                      </div><!-- /.form-group -->
-<div class="form-group">
-                        <label for="Kode jurusan lokal" class="control-label col-lg-2">Kode jurusan lokal</label>
-                        <div class="col-lg-10">
-                          <input type="text" data-rule-number="true" name="kode_jurusan" value="<?=$data_edit->kode_jurusan;?>" class="form-control" required> 
-                        </div>
-                      </div><!-- /.form-group -->
-<div class="form-group">
-                        <label for="Kode jurusan Dikti" class="control-label col-lg-2">Kode jurusan Dikti</label>
-                        <div class="col-lg-10">
-                          <input type="text" data-rule-number="true" name="kode_jurusan" value="<?=$data_edit->kode_jurusan;?>" class="form-control" required> 
-                        </div>
-                      </div><!-- /.form-group -->
 <div class="form-group">
                         <label for="Nama Jurusan" class="control-label col-lg-2">Nama Jurusan</label>
                         <div class="col-lg-10">
                           <input type="text" name="nama_jurusan" value="<?=$data_edit->nama_jurusan;?>" class="form-control" required> 
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
+                        <label for="Kode jurusan Dikti" class="control-label col-lg-2">Status</label>
+                        <div class="col-lg-10">
+                          <input type="text"  name="status" value="<?=$data_edit->status;?>" class="form-control" required> 
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
+                        <label for="Kode jurusan Dikti" class="control-label col-lg-2">Jenjang</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="jenjang" value="<?=$data_edit->jenjang;?>" class="form-control" required> 
                         </div>
                       </div><!-- /.form-group -->
 

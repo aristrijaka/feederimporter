@@ -7,7 +7,12 @@ switch ($_GET["act"]) {
   
   
   
-  $data = array("id_fakultas"=>$_POST["id_fakultas"],"kode_jurusan"=>$_POST["kode_jurusan"],"kode_jurusan"=>$_POST["kode_jurusan"],"nama_jurusan"=>$_POST["nama_jurusan"],);
+  $data = array(
+    "kode_jurusan"=>$_POST["kode_jurusan"],
+    "status"=>$_POST["status"],
+    "jenjang"=>$_POST["jenjang"],
+    "nama_jurusan"=>$_POST["nama_jurusan"]
+    );
   
   
   
@@ -27,7 +32,12 @@ switch ($_GET["act"]) {
     $db->delete("jurusan","id",$_GET["id"]);
     break;
   case "up":
-   $data = array("id_fakultas"=>$_POST["id_fakultas"],"kode_jurusan"=>$_POST["kode_jurusan"],"kode_jurusan"=>$_POST["kode_jurusan"],"nama_jurusan"=>$_POST["nama_jurusan"],);
+   $data = array(
+    "kode_jurusan"=>$_POST["kode_jurusan"],
+    "status"=>$_POST["status"],
+    "jenjang"=>$_POST["jenjang"],
+    "nama_jurusan"=>$_POST["nama_jurusan"]
+    );
    
    
    

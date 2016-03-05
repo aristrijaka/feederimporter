@@ -43,16 +43,21 @@
                         <label for="Jenis Keluar" class="control-label col-lg-2">Jenis Keluar</label>
                         <div class="col-lg-10">
                           <select name="id_jenis_keluar" data-placeholder="Pilih Jenis Keluar..." class="form-control chzn-select" tabindex="2" required>
-               <option value=""></option>
-               <?php foreach ($db->fetch_all("agama") as $isi) {
+               <?php foreach ($db->fetch_all("jenis_keluar") as $isi) {
 
-                  if ($data_edit->id_jenis_keluar==$isi->id_agama) {
-                    echo "<option value='$isi->id_agama' selected>$isi->id_agama</option>";
+                  if ($data_edit->id_jenis_keluar==$isi->id_jns_keluar) {
+                    echo "<option value='$isi->id_jns_keluar' selected>$isi->ket_keluar</option>";
                   } else {
-                  echo "<option value='$isi->id_agama'>$isi->id_agama</option>";
+                  echo "<option value='$isi->id_jns_keluar'>$isi->ket_keluar</option>";
                     }
                } ?>
               </select>
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
+                        <label for="Tanggal SK Yudisium" class="control-label col-lg-2">Tanggal Keluar</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="tanggal_keluar" id="tgl" required="" value="<?=$data_edit->tanggal_keluar;?>" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
@@ -64,7 +69,7 @@
 <div class="form-group">
                         <label for="Tanggal SK Yudisium" class="control-label col-lg-2">Tanggal SK Yudisium</label>
                         <div class="col-lg-10">
-                          <input type="text" name="tgl_sk_yudisium" value="<?=$data_edit->tgl_sk_yudisium;?>" class="form-control" > 
+                          <input type="text" id="tgl1" name="tgl_sk_yudisium" value="<?=$data_edit->tgl_sk_yudisium;?>" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
@@ -94,13 +99,13 @@
 <div class="form-group">
                         <label for="Bulan Awal Bimbingan" class="control-label col-lg-2">Bulan Awal Bimbingan</label>
                         <div class="col-lg-10">
-                          <input type="text" name="bulan_awal_bimbingan" value="<?=$data_edit->bulan_awal_bimbingan;?>" class="form-control" > 
+                          <input type="text" name="bulan_awal_bimbingan" id="tgl2" value="<?=$data_edit->bulan_awal_bimbingan;?>" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
                         <label for="Bulan Akhir Bimbingan" class="control-label col-lg-2">Bulan Akhir Bimbingan</label>
                         <div class="col-lg-10">
-                          <input type="text" name="bulan_akhir_bimbingan" value="<?=$data_edit->bulan_akhir_bimbingan;?>" class="form-control" > 
+                          <input type="text" name="bulan_akhir_bimbingan" id="tgl3" value="<?=$data_edit->bulan_akhir_bimbingan;?>" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
 

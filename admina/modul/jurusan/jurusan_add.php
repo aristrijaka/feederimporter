@@ -27,36 +27,30 @@
 
                   <div class="box-body">
                      <form id="input" method="post" class="form-horizontal foto_banyak" action="<?=base_admin();?>modul/jurusan/jurusan_action.php?act=in">
-                      <div class="form-group">
-                        <label for="Fakultas" class="control-label col-lg-2">Fakultas</label>
+<div class="form-group">
+                        <label for="Kode jurusan lokal" class="control-label col-lg-2">Kode Jurusan</label>
                         <div class="col-lg-10">
-                          <select name="id_fakultas" data-placeholder="Pilih Fakultas ..." class="form-control chzn-select" tabindex="2" required>
-               <option value=""></option>
-               <?php foreach ($db->fetch_all("fakultas") as $isi) {
-                  echo "<option value='$isi->id'>$isi->nama_fakultas</option>";
-               } ?>
-              </select>
+                          <input type="text" data-rule-number="true" name="kode_jurusan" placeholder="Kode jurusan" class="form-control" required> 
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
-                        <label for="Kode jurusan lokal" class="control-label col-lg-2">Kode jurusan lokal</label>
+                        <label for="Kode jurusan Dikti" class="control-label col-lg-2">Nama Jurusan</label>
                         <div class="col-lg-10">
-                          <input type="text" data-rule-number="true" name="kode_jurusan" placeholder="Kode jurusan lokal" class="form-control" required> 
+                          <input type="text"  name="nama_jurusan" placeholder="Nama Jurusan" class="form-control" required> 
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
-                        <label for="Kode jurusan Dikti" class="control-label col-lg-2">Kode jurusan Dikti</label>
+                        <label for="Nama Jurusan" class="control-label col-lg-2">Status</label>
                         <div class="col-lg-10">
-                          <input type="text" data-rule-number="true" name="kode_jurusan" placeholder="Kode jurusan Dikti" class="form-control" required> 
+                          <input type="text" name="status" placeholder="Status" class="form-control" required> 
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
-                        <label for="Nama Jurusan" class="control-label col-lg-2">Nama Jurusan</label>
+                        <label for="Nama Jurusan" class="control-label col-lg-2">Jenjang</label>
                         <div class="col-lg-10">
-                          <input type="text" name="nama_jurusan" placeholder="Nama Jurusan" class="form-control" required> 
+                          <input type="text" name="jenjang" placeholder="Jenjang" class="form-control" required> 
                         </div>
                       </div><!-- /.form-group -->
-
                       
                       <div class="form-group">
                         <label for="tags" class="control-label col-lg-2">&nbsp;</label>

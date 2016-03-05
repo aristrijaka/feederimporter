@@ -232,7 +232,7 @@ $('#deleteTriger').on("click", function(event){
 
           $.ajax({
               type: "POST",
-              url: "<?=base_admin();?>modul/krs/krs_action.php?act=del_massal",
+              url: "<?=base_admin();?>modul/kelulusan/kelulusan_action.php?act=del_massal",
               data: {data_ids:ids_string},
               success: function(result) {
                 window.location.reload();
