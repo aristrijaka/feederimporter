@@ -48,7 +48,13 @@ foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
    $val[] = $cell->getValue();
 
   }
-if ($val[0]!='') {
+  if ($val[0]!='') {
+        $check = $db->check_exist('ajar_dosen',array('semester'=>$val[0],'nidn' => $val[1],'kode_mk'=>$val[3],'nama_kelas'=>$val[4]));
+    if ($check==true) {
+      $error_count++;
+      $error[] = $val[1]." ".$val[3]." Sudah Ada";
+    } else {
+        $sukses++;
   $data = array(
             'semester'=>$val[0],
             'nidn'=>$val[1],
@@ -63,6 +69,8 @@ if ($val[0]!='') {
  $in = $db->insert("ajar_dosen",$data);
 }
 
+}
+
 
 }
 
@@ -70,11 +78,27 @@ if ($val[0]!='') {
 
 
     unlink("../../../upload/dosen_ajar/".$_FILES['semester']['name']);
-    if ($in=true) {
-      echo "good";
-    } else {
-      return false;
-    }
+        $msg = '';
+if (($sukses>0) || ($error_count>0)) {
+  $msg =  "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\" >
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
+      <font color=\"#3c763d\">".$sukses." Data Ajar Dosen berhasil di import</font><br />
+      <font color=\"#ce4844\" >".$error_count." data tidak bisa ditambahkan </font>";
+      if (!$error_count==0) {
+        $msg .= "<a data-toggle=\"collapse\" href=\"#collapseExample\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Detail error</a>";
+      }
+      //echo "<br />Total: ".$i." baris data";
+      $msg .= "<div class=\"collapse\" id=\"collapseExample\">";
+          $i=1;
+          foreach ($error as $pesan) {
+              $msg .= "<div class=\"bs-callout bs-callout-danger\">".$i.". ".$pesan."</div><br />";
+            $i++;
+            }
+      $msg .= "</div>
+    </div>";
+}
+  echo $msg;
+  
     break;
   case 'del_massal':
     $data_ids = $_REQUEST['data_ids'];

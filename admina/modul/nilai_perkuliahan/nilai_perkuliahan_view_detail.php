@@ -132,6 +132,7 @@
                           <th>Kelas</th>
                           <th>Nilai Huruf</th>
                           <th>Nilai Indeks</th>
+                          <th>Nilai Angka</th>
                           <th>Status</th>
                           
                           <th>Action</th>

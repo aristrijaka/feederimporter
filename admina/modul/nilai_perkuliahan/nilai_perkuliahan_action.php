@@ -77,6 +77,7 @@ if ($val[1]!='') {
       'nama_kelas' => $nama_kelas,
       'nilai_huruf' =>$val[7],
       'nilai_indek' => $val[8],
+      'nilai_angka' => $val[9],
       'kode_jurusan' => $_POST['jurusan']
       );
       $in = $db->insert('nilai',$data);
@@ -120,7 +121,7 @@ if (($sukses>0) || ($error_count>0)) {
   
   
   
-  $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"kode_mk"=>$_POST["kode_mk"],"nama_mk"=>$_POST["nama_mk"],"nama_kelas"=>$_POST["nama_kelas"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],"nilai_huruf"=>$_POST["nilai_huruf"],"nilai_indek"=>$_POST["nilai_indek"],);
+  $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"kode_mk"=>$_POST["kode_mk"],"nama_mk"=>$_POST["nama_mk"],"nama_kelas"=>$_POST["nama_kelas"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],"nilai_huruf"=>$_POST["nilai_huruf"],"nilai_indek"=>$_POST["nilai_indek"],"nilai_angka"=>$_POST["nilai_angka"]);
   
   
   
@@ -140,7 +141,7 @@ if (($sukses>0) || ($error_count>0)) {
     $db->delete("nilai","id",$_GET["id"]);
     break;
   case "up":
-   $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"kode_mk"=>$_POST["kode_mk"],"nama_mk"=>$_POST["nama_mk"],"nama_kelas"=>$_POST["nama_kelas"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],"nilai_huruf"=>$_POST["nilai_huruf"],"nilai_indek"=>$_POST["nilai_indek"],);
+   $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"kode_mk"=>$_POST["kode_mk"],"nama_mk"=>$_POST["nama_mk"],"nama_kelas"=>$_POST["nama_kelas"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],"nilai_huruf"=>$_POST["nilai_huruf"],"nilai_indek"=>$_POST["nilai_indek"],"nilai_angka"=>$_POST["nilai_angka"]);
    
    
    

@@ -88,7 +88,12 @@
                           <input type="text" name="nilai_indek" placeholder="Nilai Index" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
-
+<div class="form-group">
+                        <label for="Nilai Index" class="control-label col-lg-2">Nilai Angka</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="nilai_angka" placeholder="Nilai Angka" class="form-control" > 
+                        </div>
+                      </div><!-- /.form-group -->
                       
                       <div class="form-group">
                         <label for="tags" class="control-label col-lg-2">&nbsp;</label>

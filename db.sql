@@ -393,17 +393,9 @@ CREATE TABLE `nilai` (
   `status_error` int(11) NOT NULL DEFAULT '0',
   `keterangan` varchar(250) NOT NULL,
   `nilai_huruf` varchar(10) DEFAULT NULL,
-  `nilai_indek` int(10) DEFAULT NULL
+  `nilai_indek` varchar(10) DEFAULT NULL,
+  `nilai_angka` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-
---
--- Dumping data for table `nilai`
---
-
-INSERT INTO `nilai` (`id`, `nim`, `nama`, `kode_mk`, `nama_mk`, `nama_kelas`, `semester`, `kode_jurusan`, `status_error`, `keterangan`, `nilai_huruf`, `nilai_indek`) VALUES
-(2, '1127050003', 'AGUNG RAMADHAN', 'EKT8801', 'EKONOMI TEKNIK', '1', '20152', '55201', 1, '', 'A', 4);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `nilai_akm`

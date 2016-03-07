@@ -120,8 +120,11 @@ $i=1;
 
 
 			$temp_data = array(
+								'nilai_angka' => $value->nilai_angka,
 								'nilai_huruf' => $value->nilai_huruf,
-								'nilai_indeks' => $value->nilai_indek
+								'nilai_indeks' => $value->nilai_indek,
+
+
 						);
 			$array_nilai = array('key'=>$temp_key,'data'=>$temp_data);
 		} else {

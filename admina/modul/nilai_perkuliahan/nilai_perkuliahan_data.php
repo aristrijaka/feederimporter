@@ -12,6 +12,7 @@ $columns = array(
 	'nama_kelas',
 	'nilai_huruf',
 	'nilai_indek',
+	'nilai_angka',
 	'status_error',
 	'id'
 	);
@@ -47,8 +48,11 @@ foreach ($query	as $value) {
 	$ResultData[] = $value->nama_mk;
 	$ResultData[] = $value->nama_kelas;
 	
+	
 		$ResultData[] = $value->nilai_huruf;
+
 	$ResultData[] = $value->nilai_indek;
+	$ResultData[] = $value->nilai_angka;
 	if ($value->status_error==1) {
 		$ResultData[] = '<button rel="tooltip" type="button" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="left" title="" data-original-title="Sukses"><i class="fa fa-info-circle"></i></button> '.$value->status_error;
 	} elseif ($value->status_error==0) {
