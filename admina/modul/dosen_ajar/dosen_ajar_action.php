@@ -56,7 +56,7 @@ if ($val[0]!='') {
             'kode_mk'=>$val[3],
             'nama_kelas'=>$val[4],
             'rencana_tatap_muka'=>$val[5],
-            "tatap_muka_real" => $val[6],
+            "tatap_muka_real" => $val[5],
             'kode_jurusan' => $_POST['jurusan']
                 );
 
