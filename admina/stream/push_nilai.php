@@ -40,6 +40,7 @@ $token = $result;
 	$sks_sim = '';
 	$temp_data = array();
 	$sukses_count = 0;
+	$temp_result=array();
 	$sukses_msg = '';
 	$error_count = 0;
 	$error_msg = array();
@@ -131,16 +132,10 @@ $i=1;
 			$id_kls = '';
 		}
 
-		if ($id_kls) { 
+		if ($id_kls!='') { 
 		//Jika Kelas kuliah terdaftar.
 			$temp_result = $proxy->UpdateRecord($token,'nilai',json_encode($array_nilai));
-		} else { 
-		//Jika kelas kuliah belum terdaftar
-			$error_msg[] = "<h4>Error</h4>Mata kuliah tidak terdaftar";
-		}
-
-
-		if ($temp_result['result']['error_desc']==NULL) {
+				if ( $temp_result['result']['error_desc']==NULL) {
 									++$sukses_count;
 								
 									$db->update('nilai',array('status_error'=>1,'keterangan'=>''),'id',$value->id_nilai);
@@ -149,6 +144,15 @@ $i=1;
 									$error_msg[] = "<h4>Error $kode_mk</h4>".$temp_result['result']['error_desc'];
 									$db->update('nilai',array('status_error' => 2, 'keterangan'=>$temp_result['result']['error_desc']),'id',$value->id_nilai);
 								}
+		} else { 
+		//Jika kelas kuliah belum terdaftar
+			$error_msg[] = "Error Matkul $value->nama_mk Kelas $value->nama_kelas Belum Ada di Feeder";
+			++$error_count;
+			$db->update('nilai',array('status_error' => 2, 'keterangan'=>"Error Matkul $value->nama_mk Kelas $value->nama_kelas Belum Ada di Feeder"),'id',$value->id_nilai);
+		}
+
+
+	
 	$i++;
 	 $pu->incrementStageItems(1, true);
 
@@ -156,14 +160,11 @@ $i=1;
 	}
 
 $msg = '';
-if ((!$sukses_count==0) || (!$error_count==0)) {
-	$msg =  "<div class=\"alert alert-warning \" role=\"alert\">
+		$msg =  "<div class=\"alert alert-warning \" role=\"alert\">
 			<font color=\"#3c763d\">".$sukses_count." data Nilai berhasil ditambah</font><br />
 			<font color=\"#ce4844\" >".$error_count." data tidak bisa ditambahkan </font>";
 			
-			if (!$error_count==0) {
 				$msg .= "<a data-toggle=\"collapse\" href=\"#collapseExample\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Detail error</a>";
-			}
 			//echo "<br />Total: ".$i." baris data";
 			$msg .= "<div class=\"collapse\" id=\"collapseExample\">";
 					$i=1;
@@ -173,7 +174,6 @@ if ((!$sukses_count==0) || (!$error_count==0)) {
 						}
 			$msg .= "</div>
 		</div>";
-}
 
 $pu->totallyComplete($msg);
 

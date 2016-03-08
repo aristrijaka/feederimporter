@@ -402,7 +402,7 @@ $('.up_feeder_now').on('click', function() {
 //$("#loadnya").show();
 //$(".text-wait-up").show();
 // $("#isi_drop_up").hide();
-
+ 
 window.finished = false;
         $.getJSON('<?=base_admin();?>stream/push_dosen_ajar.php?sem='+$("#semester_up").val()+"&jurusan="+<?=$id_jur;?>,
             function(data){

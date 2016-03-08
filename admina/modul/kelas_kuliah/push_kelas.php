@@ -104,6 +104,7 @@ $token = $result;
 
 		$semester = $value->semester;
 		$kelas = $value->nama_kelas;
+		$nama_mk = $value->nama_mk;
 		$kode_prodi = trim($value->kode_jurusan);
 
 		$filter_sms = "id_sp='".$id_sp."' and kode_prodi ilike '%".$kode_prodi."%'";
@@ -158,13 +159,12 @@ $temp_result = $proxy->InsertRecord($token, $table1, json_encode($temp_data));
 
 
 	if ($temp_result['result']['error_desc']==NULL) {
-							++$sukses_count;
+							$sukses_count++;
 									$db->update('kelas_kuliah',array('status_error'=>1,'keterangan'=>''),'id',$value->id_kelas);
 											} else {
-									++$error_count;
 										++$error_count;
 									$db->update('kelas_kuliah',array('status_error' => 2, 'keterangan'=>$temp_result['result']['error_desc']),'id',$value->id_kelas);
-									$error_msg[] = "<h4>Error $kode_mk</h4>".$temp_result['result']['error_desc'];
+									$error_msg[] = "Error $kode_mk $nama_mk ".$temp_result['result']['error_desc'];
 								}
 				$new_pu->incrementStageItems(1, true);
 

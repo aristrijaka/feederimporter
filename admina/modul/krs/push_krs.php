@@ -151,7 +151,7 @@ $token = $result;
 									$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
 								} else {
 									++$error_count;
-									$error_msg[] = "<h4>Pastikan Kelas $kode_mk Sudah Dibuat</h4>".$temp_result['result']['error_desc'];
+									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
 									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
 								}
 				$pu->incrementStageItems(1, true);
@@ -213,7 +213,7 @@ $token = $result;
 									$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
 								} else {
 									++$error_count;
-									$error_msg[] = "<h4>Pastikan Kelas $kode_mk Sudah Dibuat</h4>".$temp_result['result']['error_desc'];
+									$error_msg[] = "<b>Pastikan $kode_mk kelas $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
 									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
 								}
 				$pu->incrementStageItems(1, true);
@@ -279,7 +279,7 @@ $token = $result;
 									$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
 								} else {
 									++$error_count;
-									$error_msg[] = "<h4>Pastikan Kelas $kode_mk Sudah Dibuat</h4>".$temp_result['result']['error_desc'];
+									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
 									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
 								}
 				$pu->incrementStageItems(1, true);
@@ -388,8 +388,8 @@ $token = $result;
 									$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
 								} else {
 									++$error_count;
-									$error_msg[] = "<h4>Pastikan Kelas $kode_mk Sudah Dibuat </h4>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
+									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat </b>".$temp_result['result']['error_desc'];
+									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
 								}
 				$new_pu->incrementStageItems(1, true);
 

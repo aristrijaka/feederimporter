@@ -46,6 +46,7 @@ $token = $result;
 	$sukses_msg = '';
 	$error_count = 0;
 	$error_msg = array();
+	$temp_result = array();
 
 	//get id npsn
 	$filter_sp = "npsn='".$config->id_sp."'";
@@ -124,11 +125,12 @@ $i=1;
 
 		}
 
-		
+	
 
 		//Filter kelas kuliah
 		$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
 		$temp_kls = $proxy->GetRecord($token,$table1,$filter_kls);
+
 		if ($temp_kls['result']) {
 			$id_kls = $temp_kls['result']['id_kls'];
 
@@ -147,16 +149,17 @@ $i=1;
 
 $temp_result = $proxy->InsertRecord($token, "ajar_dosen", json_encode($temp_data));
 
-	if ($temp_result['result']['error_desc']==NULL) {
+
+
+		if ($temp_result['result']['error_desc']==NULL) {
 									++$sukses_count;
 									$db->update('ajar_dosen',array('status_error'=>1,'keterangan'=>''),'id',$value->id_dosen_ajar);
 								} else {
 									++$error_count;
-									$db->update('ajar_dosen',array('status_error' => 2, 'keterangan'=>$temp_result['result']['error_desc']),'id',$value->id_dosen_ajar);
-									$error_msg[] = "<h4>Error $kode_mk</h4>".$temp_result['result']['error_desc'];
+									$db->update('ajar_dosen',array('status_error' => 2, 'keterangan'=>"Error Kelas $kode_mk $kelas belum ada ".$temp_result['result']['error_desc']),'id',$value->id_dosen_ajar);
+									$error_msg[] = "<b>Error Kelas $kode_mk $kelas belum ada </b>".$temp_result['result']['error_desc'];
 								}
 		}
-
 	
 
 		
@@ -169,14 +172,8 @@ $i++;
 
 	}
 
-/*if ($error_count>0) {
-	foreach ($error_msg as $pesan) {
-		$msg = "<div class=\"bs-callout bs-callout-danger\">".$pesan."</div><br />";
-	}
-}*/
 
 $msg = '';
-if ((!$sukses_count==0) || (!$error_count==0)) {
 	$msg =  "<div class=\"alert alert-warning\" role=\"alert\">
 			<font color=\"#3c763d\">".$sukses_count." data Kelas baru berhasil ditambah</font><br />
 			<font color=\"#ce4844\" >".$error_count." data tidak bisa ditambahkan </font>";
@@ -192,7 +189,7 @@ if ((!$sukses_count==0) || (!$error_count==0)) {
 						}
 			$msg .= "</div>
 		</div>";
-}
+
 
 //echo $msg;
 
