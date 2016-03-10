@@ -99,7 +99,7 @@ $i=1;
 		if ($_GET['method']=='up') {
 			$filter_akm = "id_reg_pd='".$id_reg_pd."' and id_smt='".$value->semester."'";
 			$temp_akm = $proxy->GetRecord($token,'kuliah_mahasiswa',$filter_akm);
-			$array_key = array('id_reg_pd' => $temp_akm['result']['id_reg_pd']);
+			$array_key = array('id_smt' => $value->semester, 'id_reg_pd' => $temp_akm['result']['id_reg_pd']);
 			$array_data = array('id_smt' => $value->semester,
 						  'id_reg_pd' => $id_reg_pd,
 						  		'ips' => $value->ips,
