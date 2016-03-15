@@ -146,9 +146,9 @@ $i=1;
 								}
 		} else { 
 		//Jika kelas kuliah belum terdaftar
-			$error_msg[] = "Error Matkul $value->nama_mk Kelas $value->nama_kelas Belum Ada di Feeder";
+			$error_msg[] = "Error $nim Pada Matkul $value->nama_mk Kelas $value->nama_kelas Belum Ada di Feeder";
 			++$error_count;
-			$db->update('nilai',array('status_error' => 2, 'keterangan'=>"Error Matkul $value->nama_mk Kelas $value->nama_kelas Belum Ada di Feeder"),'id',$value->id_nilai);
+			$db->update('nilai',array('status_error' => 2, 'keterangan'=>"Error $nim pada Matkul $value->nama_mk Kelas $value->nama_kelas Belum Ada di Feeder"),'id',$value->id_nilai);
 		}
 
 
