@@ -65,15 +65,6 @@ CREATE TABLE `ajar_dosen` (
   `keterangan` tinytext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `ajar_dosen`
---
-
-INSERT INTO `ajar_dosen` (`id`, `semester`, `nidn`, `nama_dosen`, `kode_mk`, `nama_mk`, `nama_kelas`, `rencana_tatap_muka`, `tatap_muka_real`, `kode_jurusan`, `status_error`, `keterangan`) VALUES
-(6, '20151', '431057301', 'Agung Wahana', 'EKM8701', '', 'A', 16, 16, '55201', 0, NULL),
-(7, '20152', '2031057301', 'sdf', 'EKT8801', '', '1', 3, 5, '55201', 0, NULL);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `config_user`
