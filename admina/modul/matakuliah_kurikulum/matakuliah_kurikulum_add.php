@@ -37,8 +37,11 @@
                   if ($id_kur==$isi->id) {
                     echo "<option value='$isi->id' selected>$isi->nama_kur</option>";
                   } 
-               } ?>
+               }
+$tahun = $db->fetch_single_row("kurikulum",'id',$id_kur)->mulai_berlaku;
+                ?>
               </select>
+              <input type="hidden" name="tahun" value="<?=$tahun;?>">
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">

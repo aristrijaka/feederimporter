@@ -1,4 +1,4 @@
-
+ 
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
@@ -24,7 +24,6 @@
                       if ($path_url==$isi->url) {
                           if ($role_act["insert_act"]=="Y") {
                     ?>
-
           <a href="<?=base_index();?>nilai-perkuliahan/import/<?=$id_jur;?>" class="btn btn-primary btn-flat"><i class="fa fa-cloud-upload"></i> Upload Data Excel</a>
    <button class="btn btn-info btn-flat up_feeder"><i class="fa fa-mail-forward"></i> Impor ke PDDIKTI feeder</button>
                           <?php
@@ -34,50 +33,85 @@
 ?>
 
 <div id="hasil_up" style="display:none"></div>
+
 <div id="isi_drop_up" style="display:none">
 <p>&nbsp;</p>
+  <form id="push_krs_now">
 <div class="row">
 <div class="form-group">
                         <label for="Jurusan" class="control-label col-lg-1">Semester</label>
                         <div class="col-lg-3">
                           <select id="semester_up" name="semester_up" data-placeholder="Pilih Jurusan ..." class="form-control chzn-select" tabindex="2" required>
-               <?php foreach ($db->fetch_custom("select nilai.semester,nama_semester from nilai inner join semester on
+                           <option value="">Pilih Semester</option>
+              <?php foreach ($db->fetch_custom("select nilai.semester,nama_semester from nilai inner join semester on
  nilai.semester=semester.semester where kode_jurusan='".$id_jur."' group by nilai.semester order by nilai.semester desc") as $isi) {
                   echo "<option value='$isi->semester'>$isi->semester $isi->nama_semester</option>";
                } ?>
               </select>
+               <div id="error_sem"></div>
+                        </div>
+                      </div><!-- /.form-group -->
+</div>
+<p>
+<div id="isi_chain_drop">
+<div class="row">
+<div class="form-group">
+                        <label for="Jurusan" class="control-label col-lg-1">Matakuliah</label>
+                        <div class="col-lg-3">
+                          <select id="matkul" name="matkul" data-placeholder="Pilih Jurusan ..." class="form-control chzn-select" tabindex="2" required>
+                          <option value="all">Semua</option>
+               <?php foreach ($db->fetch_custom("select * from nilai where kode_jurusan='".$id_jur."' and semester='$semester' group by nilai.kode_mk order by nilai.nama_mk asc") as $isi) {
+                  echo "<option value='$isi->kode_mk'>$isi->kode_mk $isi->nama_mk </option>";
+               } ?>
+              </select>
+
                         </div>
                       </div><!-- /.form-group -->
 </div>
 <p>
 <div class="row">
 <div class="form-group">
+                        <label for="Jurusan" class="control-label col-lg-1">Kelas</label>
+                        <div class="col-lg-3">
+                          <select id="pilih_kelas" name="pilih_kelas" data-placeholder="Pilih Jurusan ..." class="form-control chzn-select" tabindex="2" required>
+                          <option value="all">Semua</option>
+               <?php foreach ($db->fetch_custom("select * from nilai where kode_jurusan='".$id_jur."' and semester='$semester' and kode_mk='$kode_mk' group by nilai.nama_kelas order by nilai.nama_kelas asc") as $isi) {
+                  echo "<option value='$isi->nama_kelas'>$isi->nama_kelas</option>";
+               } ?>
+              </select>
+                        </div>
+                      </div><!-- /.form-group -->
+</div>
+</div>
+<p>
+<div class="row">
+<div class="form-group">
            <label for="Jurusan" class="control-label col-lg-1">&nbsp;</label>
             <div class="col-lg-3">
-            <button class="btn btn-success btn-flat up_feeder_now">
+            <button class="btn btn-success btn-flat">
 <i class="fa fa-cloud-download"></i> Upload Data</button>
             </div>
 </div>
 
 
 </div>
+</form>
 </div>
 
 
 
-<div class="row" id="progress_nya">
-<br>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-               
-                        <div class="progress hidden" id="script-progress">
-                          <div class="progress-bar progress-bar-striped active" id="progress-bar-start" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: ">
 
+  <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <br>
+                        <div class="progress hidden" id="script-progress">
+                          <div class="progress-bar progress-bar-striped active" id="progress-bar-start" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                            <span class="sr-only">0% Complete</span>
                           </div>
                         </div>
                     <div id="script-output"><em></em></div>
                 </div>
             </div>
-
 <br>
 <div class="box box-danger">
             <div class="box-header with-border">
@@ -90,7 +124,7 @@
                         <div class="col-lg-3">
                         <select id="sem_filter" data-placeholder="Pilih Semester ..." class="form-control chzn-select" tabindex="2">
                         <option value="all">Semua</option>
-                  <?php foreach ($db->fetch_custom("select nilai.semester,nama_semester from nilai inner join semester on
+               <?php foreach ($db->fetch_custom("select nilai.semester,nama_semester from nilai inner join semester on
  nilai.semester=semester.semester where kode_jurusan='".$id_jur."' group by nilai.semester order by nilai.semester desc") as $isi) {
                   echo "<option value='$isi->semester'>$isi->semester $isi->nama_semester</option>";
                } ?>
@@ -98,6 +132,27 @@
 
  </div>
                       </div><!-- /.form-group -->
+<div class="form-group">
+                        <label for="Jurusan" class="control-label col-lg-2">Matakuliah</label>
+                        <div class="col-lg-3">
+                          <select id="filter_matkul" data-placeholder="Pilih Jurusan ..." class="form-control chzn-select" tabindex="2" required>
+                          <option value="all">Semua</option>
+         
+              </select>
+
+                        </div>
+                      </div><!-- /.form-group -->
+
+<div class="form-group">
+                        <label for="Jurusan" class="control-label col-lg-2">Kelas</label>
+                        <div class="col-lg-3">
+                          <select id="filter_kelas"  data-placeholder="Pilih Jurusan ..." class="form-control chzn-select" tabindex="2" required>
+                          <option value="all">Semua</option>
+         
+              </select>
+                        </div>
+                      </div><!-- /.form-group -->
+
 <div class="form-group">
                         <label for="Kode Matakuliah" class="control-label col-lg-2">Status</label>
                         <div class="col-lg-3">
@@ -132,7 +187,6 @@
                           <th>Kelas</th>
                           <th>Nilai Huruf</th>
                           <th>Nilai Indeks</th>
-                          <th>Nilai Angka</th>
                           <th>Status</th>
                           
                           <th>Action</th>
@@ -190,7 +244,7 @@
   if ($path_url==$isi->url) {
     //check edit permission
   if ($role_act["up_act"]=="Y") {
-  $edit = '<a href="'.base_index()."nilai-perkuliahan/edit/'+aData[indek]+'".'" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>';
+  $edit = '<a href="'.base_index()."nilai-perkuliahan/edit/'+aData[indek]+'/$id_jur".'" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>';
   } else {
     $edit ="";
   }
@@ -202,20 +256,15 @@
                    } 
   }
   
-?>  
+?>   
                 </section><!-- /.content -->
         <script type="text/javascript">
 $(document).ready(function() {
   
 
-    $.ajax({
-     url: '<?=base_admin();?>stream/create_json.php?prodi='+<?=$id_jur;?>,
-       async: false,
-      dataType: 'json',
-      success: function(data) {
-        jumlah = data.total;
-      }
-    });
+  $.ajax({
+     url: '<?=base_admin();?>modul/nilai_perkuliahan/create_json.php?jurusan='+<?=$id_jur;?>,
+      });
 
 var dataTable = $("#dtb_nilai_perkuliahan").dataTable({
           "fnCreatedRow": function( nRow, aData, iDataIndex ) {
@@ -255,15 +304,15 @@ var dataTable = $("#dtb_nilai_perkuliahan").dataTable({
 $('#filter').on('click', function() {
   dataTable.fnDestroy();
   $("#dtb_nilai_perkuliahan").dataTable({
-        "fnCreatedRow": function( nRow, aData, iDataIndex ) {
-            var indek = aData.length-1;           
+           "fnCreatedRow": function( nRow, aData, iDataIndex ) {
+            var indek = aData.length-1;
      $('td:eq('+indek+')', nRow).html('<?=$edit;?> <?=$del;?>');
        $(nRow).attr('id', 'line_'+aData[indek]);
    },
            'bProcessing': true,
             'bServerSide': true,
         "columnDefs": [ {
-              "targets": [0,9],
+              "targets": [0,8],
               "orderable": false,
               "searchable": false
 
@@ -274,9 +323,12 @@ $('#filter').on('click', function() {
             data: function ( d ) {
                       d.jurusan = "<?=$id_jur;?>";
                       d.semester = $("#sem_filter").val();
+                      d.matkul = $("#filter_matkul").val();
+                      d.kelas = $("#filter_kelas").val();
                       d.status_filter = $("#status_filter").val();
                   },
           error: function (xhr, error, thrown) {
+            console.log(xhr);
             
               $(".dtb_krs-error").html("");
               $("#dtb_krs").append('<tbody class="dtb_krs-error"><tr><th colspan="7">No data found in the server</th></tr></tbody>');
@@ -292,7 +344,6 @@ $('#filter').on('click', function() {
         });
 
       });
-
 
 $("#bulkDelete").on('click',function() { // bulk checked
           var status = this.checked;
@@ -320,7 +371,7 @@ $('#deleteTriger').on("click", function(event){
         .modal({ keyboard: false })
         .one('click', '#delete', function (e) {
 
- $("#loadnya").show();
+
           $.ajax({
               type: "POST",
               url: "<?=base_admin();?>modul/nilai_perkuliahan/nilai_perkuliahan_action.php?act=del_massal",
@@ -328,7 +379,7 @@ $('#deleteTriger').on("click", function(event){
               success: function(result) {
                 window.location.reload();
               },
-              //async:false
+              async:false
             });
           $('#ucing').modal('hide');
 
@@ -355,6 +406,183 @@ window.lastUpdate;
 
 $(document).ready(function() {
 
+$('.down_akm').on('click', function() {
+
+  if ($('#isi_drop').is(":visible")){
+    $("#isi_drop").hide();
+    $("#isi_drop_up").hide();
+    $("hasil_up").hide();
+  } else {
+    $("#isi_drop").show();
+    $("#isi_drop_up").hide();
+    $("hasil_up").hide();
+  }
+
+
+});
+
+   $('.down_akm_now').click(function(){
+
+      $("#isi_drop").hide();
+
+      $("#loadnya").show();
+      $(".text-wait").show();
+
+        window.finished = false;
+        $.getJSON('<?=base_admin();?>modul/nilai_perkuliahan/nilai_stream.php?sem='+$("#semester").val()+"&jurusan="+<?=$id_jur;?>,
+            function(data){
+                console.log("ALL DONE", data);
+                clearInterval(window.progressInterval);
+                window.finished = true;
+                if(typeof data.error == 'undefined' || data.error === true){
+                   $("#loadnya").hide();
+                  $(".text-wait").hide();
+                    displayError(data);
+                } else {
+                    checkProgress();
+                    $('.tertiary-status').remove();
+                    if(!$('#script-progress').hasClass('hidden')){
+                        $('#script-progress').fadeOut(200,function(){$('#script-progress').addClass('hidden');});
+                    }
+                      $("#loadnya").hide();
+                     $(".text-wait").hide();
+                     alert('Download Data Selesai');
+                    $("#isi_informasi").html(data.message);
+                    $('#informasi').modal('show');
+                }
+            }
+        ).error(function(data){
+            window.hasError = true;
+            console.log("ERROR", data);
+            displayError(data);
+        });
+        window.progressInterval = setInterval(checkProgress, window.updatePeriod);
+    });
+
+//filter 
+$('#sem_filter').on('change', function() {
+    $(this).valid();
+      $("#filter_matkul").chosen();
+      $.ajax({
+          url : "<?=base_admin();?>modul/nilai_perkuliahan/isi_matkul.php",
+          type : "post",
+          data : {jurusan : "<?=$id_jur;?>",semester : $(this).val() },
+          success : function(data) {
+              $("#filter_matkul").html(data);
+              $("#filter_matkul").trigger('chosen:updated');
+
+          }
+
+      });
+});
+
+$('#filter_matkul').on('change', function() {
+    $(this).valid();
+      $("#filter_kelas").chosen();
+      $.ajax({
+          url : "<?=base_admin();?>modul/nilai_perkuliahan/isi_kelas.php",
+          type : "post",
+          data : {jurusan : "<?=$id_jur;?>",semester : $("#sem_filter").val(),kode_mk:$(this).val() },
+          success : function(data) {
+              $("#filter_kelas").html(data);
+              $("#filter_kelas").trigger('chosen:updated');
+
+          }
+
+      });
+});
+
+
+$('#semester_up').on('change', function() {
+    $(this).valid();
+      $("#matkul").chosen();
+      $.ajax({
+          url : "<?=base_admin();?>modul/nilai_perkuliahan/isi_matkul.php",
+          type : "post",
+          data : {jurusan : "<?=$id_jur;?>",semester : $(this).val() },
+          success : function(data) {
+              $("#matkul").html(data);
+              $("#matkul").trigger('chosen:updated');
+
+          }
+
+      });
+});
+
+$('#matkul').on('change', function() {
+    $(this).valid();
+      $("#pilih_kelas").chosen();
+      $.ajax({
+          url : "<?=base_admin();?>modul/nilai_perkuliahan/isi_kelas.php",
+          type : "post",
+          data : {jurusan : "<?=$id_jur;?>",semester : $("#semester_up").val(),kode_mk:$(this).val() },
+          success : function(data) {
+              $("#pilih_kelas").html(data);
+              $("#pilih_kelas").trigger('chosen:updated');
+
+          }
+
+      });
+});
+
+  $("#push_krs_now").validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        ignore: [],
+        highlight: function(element, errorClass, validClass) {
+            $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+        },
+          errorPlacement: function(error, element) {
+        if (element.attr("name") == "semester_up") {
+            error.insertAfter("#error_sem");
+        }else{
+            error.insertAfter(element);
+        }
+      },
+
+            submitHandler: function(form) {
+  $("#isi_drop_up").hide();
+
+      $("#loadnya").show();
+      $(".text-wait-up").show();
+
+        window.finished = false;
+        $.getJSON('<?=base_admin();?>modul/nilai_perkuliahan/push_nilai.php?sem='+$("#semester_up").val()+"&jurusan="+<?=$id_jur;?>+"&matkul="+$("#matkul").val()+"&kelas="+$("#pilih_kelas").val(),
+            function(data){
+                console.log("ALL DONE", data);
+                clearInterval(window.progressInterval);
+                window.finished = true;
+                if(typeof data.error == 'undefined' || data.error === true){
+                   $("#loadnya").hide();
+                  $(".text-wait-up").hide();
+                    displayError(data);
+                } else {
+                    checkProgress();
+                    $('.tertiary-status').remove();
+                    if(!$('#script-progress').hasClass('hidden')){
+                        $('#script-progress').fadeOut(200,function(){$('#script-progress').addClass('hidden');});
+                    }
+                      $("#loadnya").hide();
+                     $(".text-wait-up").hide();
+                     alert('Upload Data Selesai');
+                    $("#isi_informasi").html(data.message);
+                    $('#informasi').modal('show');
+                }
+            }
+        ).error(function(data){
+            window.hasError = true;
+            console.log("ERROR", data);
+            displayError(data);
+        });
+        window.progressInterval = setInterval(checkProgress, window.updatePeriod);
+
+            }
+
+        });  
+
 
 $('.up_feeder').on('click', function() {
 
@@ -373,7 +601,7 @@ $('.up_feeder').on('click', function() {
 
 
 
-$('.up_feeder_now').on('click', function() {
+/*$('.up_feeder_now').on('click', function() {
  $("#progress_nya").show();  
 $("#loadnya").show();
 $(".text-wait-up").show();
@@ -416,7 +644,7 @@ window.finished = false;
         window.progressInterval = setInterval(checkProgress, window.updatePeriod);
 
 
-});
+});*/
 
 
 });
@@ -441,10 +669,10 @@ function createAndInsertStatusBars(num){
         'progress-bar-danger'
     ];
     for(i=0; i<num; i++){
-        var newStatus = statuses[i%4];
+       // var newStatus = statuses[i%4];
         var $bar = $('#progress-bar-start').clone();
         $bar.addClass('tertiary-status')
-            .addClass(newStatus)
+          //  .addClass(newStatus)
             .attr('id', 'tertiary-status-' + i)
             .attr('aria-valuenow', 0)
             .attr('aria-valuemin', 0)
@@ -458,7 +686,7 @@ function createAndInsertStatusBars(num){
 function checkProgress(createStatusBars){
     if(typeof createStatusBars === "undefined") createStatusBars = false;
     if(window.finished === true) return;
-    url = "<?=base_admin();?>stream/<?=$id_jur;?>_progress.json";
+    url = "<?=base_admin();?>modul/nilai_perkuliahan/<?=$id_jur;?>_progress.json";
 
     var d = new Date();
     var n = d.getTime();
@@ -475,7 +703,7 @@ function checkProgress(createStatusBars){
             return null;
         }).fail(function(){
             clearInterval(window.progressInterval);
-        });
+        }); 
     } else {
         var data = $.extend({},window.lastData);
         data.stage.completeItems = Math.min((data.stage.completeItems + Math.floor(((new Date().getTime()/1000)-data.stage.curTime)*data.stage.rate*0.5)), data.stage.totalItems);
@@ -509,18 +737,12 @@ function updateDisplay(data){
     }
 
     $output = $('<div>');
-   /* $output.append($('<h4>'+Math.ceil( ( ((data.stage.stageNum-1)*100)/(data.totalStages) ) + (data.stage.pcComplete*100/(data.totalStages)) )+'% complete</h4>'));*/
-    /*if(data.stage.name!==null)
-        $output.append($('<h4>Stage: '+data.stage.name+'</h4>'));*/
-    /*if(data.stage.message!==null)
-        $output.append($('<p>Server message: <pre><code>'+data.stage.message+'</code></pre></p>'));*/
-    if(data.stage.totalItems!==null)
-        $output.append($('<p>' + data.stage.completeItems+ ' of ' + data.stage.totalItems + ' processed.</p>'));
-    if(data.stage.timeRemaining!==null)
-        $output.append($('<p>Remaining time: ' + Math.ceil(data.stage.timeRemaining*10)/10 + ' seconds (est)</p>'));
-    /*if(data.stage.rate!==null)
-        $output.append($('<p>Currently processing at ' + Math.ceil(data.stage.rate*10)/10 + ' /second</p>'));*/
+    $output.append($('<h4>'+Math.ceil( ( ((data.stage.stageNum-1)*100)/(data.totalStages) ) + (data.stage.pcComplete*100/(data.totalStages)) )+'% complete</h4>'));
 
+  /*  if(data.stage.totalItems!==null)
+        $output.append($('<p>' + data.stage.completeItems+ ' of ' + data.stage.totalItems + ' processed.</p>'));
+  */  if(data.stage.timeRemaining!==null)
+        $output.append($('<p>Remaining time: ' + Math.ceil(data.stage.timeRemaining*10)/10 + ' seconds (est)</p>'));
 
 
     for(i = (data.stage.stageNum-1); i > 0; i--){
@@ -530,11 +752,6 @@ function updateDisplay(data){
     }
 
     var percentOfTotal = (((1/(data.totalStages))*data.stage.pcComplete)*100);
-
-    $(".tertiary-status").text(Math.floor(percentOfTotal)+"%");
-
-
-
     $('#tertiary-status-'+(data.stage.stageNum-1))
         .attr('aria-valuenow', percentOfTotal)
         .css('width', percentOfTotal+"%");
@@ -542,8 +759,6 @@ function updateDisplay(data){
 
     $('#script-output').html($output);
 }
-
-
 
 
 </script>

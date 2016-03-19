@@ -5,9 +5,7 @@ session_check();
 switch ($_GET["act"]) {
   case "in":
   
-  $total = $_POST["jml_sks_wajib"]+$_POST["jml_sks_pilihan"];
-  
-  $data = array("nama_kur"=>$_POST["nama_kur"],"mulai_berlaku"=>$_POST["mulai_berlaku"],"jml_sks_wajib"=>$_POST["jml_sks_wajib"],"jml_sks_pilihan"=>$_POST["jml_sks_pilihan"],"kode_jurusan"=>$_POST["kode_jurusan"],'total_sks'=>$total);
+  $data = array("nama_kur"=>$_POST["nama_kur"],"mulai_berlaku"=>$_POST["mulai_berlaku"],"jml_sks_wajib"=>$_POST["jml_sks_wajib"],"jml_sks_pilihan"=>$_POST["jml_sks_pilihan"],"kode_jurusan"=>$_POST["kode_jurusan"],'total_sks'=>$_POST["total_sks"]);
   
   
   
@@ -27,8 +25,7 @@ switch ($_GET["act"]) {
     $db->delete("kurikulum","id",$_GET["id"]);
     break;
   case "up":
-    $total = $_POST["jml_sks_wajib"]+$_POST["jml_sks_pilihan"];
-   $data = array("nama_kur"=>$_POST["nama_kur"],"mulai_berlaku"=>$_POST["mulai_berlaku"],"jml_sks_wajib"=>$_POST["jml_sks_wajib"],"jml_sks_pilihan"=>$_POST["jml_sks_pilihan"],'total_sks'=>$total);
+   $data = array("nama_kur"=>$_POST["nama_kur"],"mulai_berlaku"=>$_POST["mulai_berlaku"],"jml_sks_wajib"=>$_POST["jml_sks_wajib"],"jml_sks_pilihan"=>$_POST["jml_sks_pilihan"],'total_sks'=>$_POST["total_sks"]);
    
    
    

@@ -16,6 +16,9 @@ $("#tgl3").datepicker( {
 $("#tgl4").datepicker( {
     format: "yyyy-mm-dd",
 });
+$("#tgl5").datepicker( {
+    format: "yyyy-mm-dd",
+});
 
  $("#input_import").validate({
         errorClass: 'help-block',

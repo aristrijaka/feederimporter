@@ -90,7 +90,7 @@ if ($val[1]!='') {
 if (($sukses>0) || ($error_count>0)) {
   $msg =  "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\" >
   <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
-      <font color=\"#3c763d\">".$sukses." data Krs baru berhasil di import</font><br />
+      <font color=\"#3c763d\">".$sukses." data Kelas baru berhasil di import</font><br />
       <font color=\"#ce4844\" >".$error_count." data tidak bisa ditambahkan </font>";
       if (!$error_count==0) {
         $msg .= "<a data-toggle=\"collapse\" href=\"#collapseExample\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Detail error</a>";

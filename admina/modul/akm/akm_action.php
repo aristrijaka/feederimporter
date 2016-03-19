@@ -211,7 +211,7 @@ if (($sukses>0) || ($error_count>0)) {
     break;
   case "in":
 
-
+ 
 
   $data = array("semester"=>$_POST["semester"],"nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"ips"=>$_POST["ips"],"ipk"=>$_POST["ipk"],"sks_smt"=>$_POST["sks_smt"],"sks_total"=>$_POST["sks_total"],"kode_jurusan"=>$_POST["kode_jurusan"],"status_error"=>$_POST["status"],);
 

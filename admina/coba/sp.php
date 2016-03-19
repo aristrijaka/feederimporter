@@ -19,16 +19,75 @@ $password = $config->password;
 $result = $proxy->GetToken($username, $password);
 $token = $result;
 
-
-
-
-
+	//get id npsn
 	$filter_sp = "npsn='".$config->id_sp."'";
 	$get_id_sp = $proxy->GetRecord($token,'satuan_pendidikan',$filter_sp);
 
 	$id_sp = $get_id_sp['result']['id_sp'];
 
-	echo "<pre>";
+
+$table = 'mahasiswa';
+$result = $proxy->GetDictionary($token, $table);
+
+
+$limit=10;
+$offset=0;
+$order= "";
+$filter = "";
+
+
+echo "<pre>";
+
+
+	$filter_sms = "id_sp='".$id_sp."' and kode_prodi ilike '%55201%'";
+		$temp_sms = $proxy->GetRecord($token,'sms',$filter_sms);
+		if ($temp_sms['result']) {
+			$id_sms = $temp_sms['result']['id_sms'];
+		}
+		$filter_kelas = "p.id_sms='".$id_sms."' and nipd like '%120970509%'";
+
+//$temp_total = $proxy->GetCountRecordset($token,"mahasiswa_pt",$filter_kelas);
+$order_by = "nipd ASC";
+$temp_data = $proxy->GetRecordset($token,'mahasiswa_pt',$filter_kelas,$order_by,$limit,$offset);
+
+
+print_r($temp_data);
+
+
+echo "create table mhs_pt (";
+foreach ($result['result'] as $isi) {
+	if ($isi['type']=='uuid') {
+		$type = "varchar(50)";
+	} elseif($isi['type'] == 'smallint')
+	{
+		$type = "int(10)";
+	} elseif ($isi['type'] == 'numeric(2,0)') {
+		$type = "int(10)";
+	}elseif ($isi['type'] == 'character(1)') {
+		$type = "varchar(10)";
+	}elseif ($isi['type'] == 'date') {
+		$type = "date";
+	}elseif ($isi['type'] == 'integer') {
+		$type = "int(10)";
+	} else {
+		$type = "varchar(50)";
+	}
+	if (array_key_exists('not_null', $isi)) {
+		$not_null = "not null";
+	} else {
+		$not_null = "";
+	}
+	echo $isi['column_name']." $type ".$not_null." comment '".$isi['desc']."', "."<br>";
+}
+echo ")";
+
+
+/*	$filter_sp = "npsn='".$config->id_sp."'";
+	$get_id_sp = $proxy->GetRecord($token,'satuan_pendidikan',$filter_sp);
+
+	$id_sp = $get_id_sp['result']['id_sp'];
+
+	echo "<pre>";*/
 
 
 
@@ -121,7 +180,7 @@ $i=1;
 foreach ($resultrecordset['result'] as $isi) {*/
 
 	
-	$filter_nim = "";
+/*	$filter_nim = "";
 
 
 
@@ -134,5 +193,5 @@ foreach ($resultrecordset['result'] as $isi) {*/
 			'ket_keluar' => $isi['ket_keluar']
 			);
 		$db->insert('jenis_keluar',$data);
-	}
+	}*/
 ?>

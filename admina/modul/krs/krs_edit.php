@@ -46,6 +46,12 @@
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
+                        <label for="Kode Matakuliah" class="control-label col-lg-2">Nama Matakuliah</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="nama_mk" value="<?=$data_edit->nama_mk;?>" class="form-control" > 
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
                         <label for="Nama Kelas" class="control-label col-lg-2">Nama Kelas</label>
                         <div class="col-lg-10">
                           <input type="text" name="nama_kelas" value="<?=$data_edit->nama_kelas;?>" class="form-control" > 
@@ -77,7 +83,7 @@ foreach ($jur as $isi) {
               </select>
                         </div>
                       </div><!-- /.form-group -->
-
+  <input type="hidden" name="jurusan" value="<?=$id_jur;?>">
                       <input type="hidden" name="id" value="<?=$data_edit->id;?>">
                       <div class="form-group">
                         <label for="tags" class="control-label col-lg-2">&nbsp;</label>

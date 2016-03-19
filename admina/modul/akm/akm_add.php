@@ -75,7 +75,7 @@
                           <select name="kode_jurusan" data-placeholder="Pilih Jurusan ..." class="form-control chzn-select" tabindex="2" required>
                <?php foreach ($db->fetch_all("jurusan") as $isi) {
                 if ($id_jur==$isi->kode_jurusan) {
-                  echo "<option value='$isi->id'>$isi->nama_jurusan</option>";
+                  echo "<option value='$isi->kode_jurusan'>$isi->nama_jurusan</option>";
                 }
                   
                } ?>

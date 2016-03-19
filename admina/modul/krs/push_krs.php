@@ -47,14 +47,14 @@ $token = $result;
 	$data_id = array();
 	$error_id = array();
 
-	$matkul = '';
-	$kelas = '';
+	$query_matkul = '';
+	$query_kelas = '';
 
 	if ($_GET['matkul']!='all') {
-		$matkul = "and kode_mk='".$_GET['matkul']."'";
+		$query_matkul = "and kode_mk='".$_GET['matkul']."'";
 	}
 	if ($_GET['kelas']!='all') {
-		$kelas  = "and nama_kelas='".$_GET['kelas']."'";
+		$query_kelas  = "and nama_kelas='".$_GET['kelas']."'";
 	}
 	
 	
@@ -65,7 +65,7 @@ $token = $result;
 	$id_sp = $get_id_sp['result']['id_sp'];
 
 
-	$count = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $matkul $kelas");
+	$count = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $query_matkul $query_kelas");
 	$jumlah = $count->rowCount();
 
 
@@ -98,7 +98,7 @@ $token = $result;
 		for ($i=0; $i <$total ; $i++) { 
 		if ($i==0) {
 
-			$data = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $matkul $kelas limit $i,500");
+			$data = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $query_matkul $query_kelas limit $i,500");
 
 			//let's push first page
 			$stageOptions = array(
@@ -152,7 +152,7 @@ $token = $result;
 								} else {
 									++$error_count;
 									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
+									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
 								}
 				$pu->incrementStageItems(1, true);
 
@@ -162,7 +162,7 @@ $token = $result;
 		} else if ($i == $total - 1) {
 		
       
-	 		$data = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $matkul $kelas limit ".($i*500).",$bagi");
+	 		$data = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $query_matkul $query_kelas limit ".($i*500).",$bagi");
 			//let's push first page
 			$stageOptions = array(
 			    'name' => 'Page $i',
@@ -214,7 +214,7 @@ $token = $result;
 								} else {
 									++$error_count;
 									$error_msg[] = "<b>Pastikan $kode_mk kelas $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
+									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat ".$temp_result['result']['error_desc']),'id',$value->id_krs);
 								}
 				$pu->incrementStageItems(1, true);
 				
@@ -227,7 +227,7 @@ $token = $result;
   	  else if($i != $total - 1 && $i!=0) {
 			
 		
-	 		$data = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $matkul $kelas limit ".($i*500).",500");
+	 		$data = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $query_matkul $query_kelas limit ".($i*500).",500");
 			//let's push first page
 			$stageOptions = array(
 			    'name' => 'Page $i',
@@ -280,7 +280,7 @@ $token = $result;
 								} else {
 									++$error_count;
 									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
+									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat ".$temp_result['result']['error_desc']),'id',$value->id_krs);
 								}
 				$pu->incrementStageItems(1, true);
 
@@ -322,7 +322,7 @@ $token = $result;
 		$new_pu = new Manticorp\ProgressUpdater($options);
 
 	
-	 	$data = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $matkul $kelas limit 0,$jumlah");
+	 	$data = $db->fetch_custom("select *,krs.id as id_krs from krs inner join jurusan on krs.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and krs.semester='".$_GET['sem']."' and status_error!=1 $query_matkul $query_kelas limit 0,$jumlah");
 			//let's push first page
 
 			$stageOptions = array(
@@ -389,7 +389,7 @@ $token = $result;
 								} else {
 									++$error_count;
 									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat </b>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
+									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat ".$temp_result['result']['error_desc']),'id',$value->id_krs);
 								}
 				$new_pu->incrementStageItems(1, true);
 

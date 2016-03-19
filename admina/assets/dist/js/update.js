@@ -35,6 +35,37 @@ $(document).ready(function(){
             }
 
         });  
+
+
+ $("#up_feeder_mhs").validate({
+        errorClass: 'help-block',
+        errorElement: 'span',
+        highlight: function(element, errorClass, validClass) {
+            $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+        },
+
+            submitHandler: function(form) {
+               $('#loadnya').show();
+                   $(form).ajaxSubmit({
+                          type: "post",
+                          url: $(this).attr('action'),
+                          data: $(this).serialize(),
+                       //  enctype:  'multipart/form-data'
+                        success: function(data){
+                          $("#isi_informasi").html(data);
+                          $('#informasi').modal('show');
+                          
+                          $('#loadnya').hide();
+                     
+                      }
+                    });
+            }
+
+        });  
+
   
    $("form#update_mahasiswa").validate({
         errorClass: 'help-block',

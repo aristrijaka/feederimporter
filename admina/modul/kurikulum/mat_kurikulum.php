@@ -295,7 +295,7 @@ window.lastUpdate;
 $(document).ready(function() {
 
     $.ajax({
-     url: '<?=base_admin();?>stream/create_json.php?prodi='+<?=$id_jur;?>,
+     url: '<?=base_admin();?>modul/kurikulum/create_json.php?jurusan='+<?=$id_jur;?>,
       });
 
 
@@ -307,7 +307,7 @@ $("#loadnya").show();
 $(".text-wait-up").show();
 
 window.finished = false;
-       $.getJSON('<?=base_admin();?>stream/push_kur.php?tahun='+<?=$tahun;?>+"&jurusan="+<?=$id_jur;?>,
+       $.getJSON('<?=base_admin();?>modul/kurikulum/push_kur.php?tahun='+<?=$tahun;?>+"&jurusan="+<?=$id_jur;?>,
             function(data){
                 console.log("ALL DONE", data);
                 clearInterval(window.progressInterval);
@@ -380,7 +380,7 @@ function createAndInsertStatusBars(num){
 function checkProgress(createStatusBars){
     if(typeof createStatusBars === "undefined") createStatusBars = false;
     if(window.finished === true) return;
-    url = "<?=base_admin();?>stream/<?=$id_jur;?>_progress.json";
+    url = "<?=base_admin();?>modul/kurikulum/<?=$id_jur;?>_progress.json";
 
     var d = new Date();
     var n = d.getTime();

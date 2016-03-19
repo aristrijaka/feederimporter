@@ -253,7 +253,7 @@
   if ($path_url==$isi->url) {
     //check edit permission
   if ($role_act["up_act"]=="Y") {
-  $edit = '<a href="'.base_index()."krs/edit/'+aData[indek]+'".'" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>';
+  $edit = '<a href="'.base_index()."krs/edit/'+aData[indek]+'/$id_jur".'" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>';
   } else {
     $edit ="";
   }

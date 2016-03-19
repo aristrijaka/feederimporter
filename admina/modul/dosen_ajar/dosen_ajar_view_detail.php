@@ -206,7 +206,7 @@
   if ($path_url==$isi->url) {
     //check edit permission
   if ($role_act["up_act"]=="Y") {
-  $edit = '<a href="'.base_index()."dosen-ajar/edit/'+aData[indek]+'".'" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>';
+  $edit = '<a href="'.base_index()."dosen-ajar/edit/'+aData[indek]+'/$id_jur".'" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>';
   } else {
     $edit ="";
   }
@@ -275,6 +275,9 @@ $(document).ready(function() {
 
         });
 
+   $.ajax({
+     url: '<?=base_admin();?>modul/dosen_ajar/create_json.php?jurusan='+<?=$id_jur;?>,
+      });
 
 $('#filter').on('click', function() {
   dataTable.fnDestroy();
@@ -404,7 +407,7 @@ $('.up_feeder_now').on('click', function() {
 // $("#isi_drop_up").hide();
  
 window.finished = false;
-        $.getJSON('<?=base_admin();?>stream/push_dosen_ajar.php?sem='+$("#semester_up").val()+"&jurusan="+<?=$id_jur;?>,
+        $.getJSON('<?=base_admin();?>modul/dosen_ajar/push_dosen_ajar.php?sem='+$("#semester_up").val()+"&jurusan="+<?=$id_jur;?>,
             function(data){
              //   console.log("ALL DONE", data);
                 clearInterval(window.progressInterval);
@@ -478,7 +481,7 @@ function createAndInsertStatusBars(num){
 function checkProgress(createStatusBars){
     if(typeof createStatusBars === "undefined") createStatusBars = false;
     if(window.finished === true) return;
-    url = "<?=base_admin();?>stream/<?=$id_jur;?>_progress.json";
+    url = "<?=base_admin();?>modul/dosen_ajar/<?=$id_jur;?>_progress.json";
 
     var d = new Date();
     var n = d.getTime();

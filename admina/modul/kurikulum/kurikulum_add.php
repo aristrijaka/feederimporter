@@ -51,6 +51,12 @@
                           <input type="text" data-rule-number="true" name="jml_sks_pilihan" placeholder="Jumlah SKS Pilihan" class="form-control" required> 
                         </div>
                       </div><!-- /.form-group -->
+<div class="form-group">
+                        <label for="Jumlah SKS Pilihan" class="control-label col-lg-2">Total SKS</label>
+                        <div class="col-lg-10">
+                          <input type="text" data-rule-number="true" name="total_sks" placeholder="Total SKS" class="form-control" required> 
+                        </div>
+                      </div><!-- /.form-group -->
 
  <input type="hidden" name="kode_jurusan" value="<?=$id_jur;?>">                   
                       <div class="form-group">

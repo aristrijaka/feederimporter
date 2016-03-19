@@ -138,6 +138,7 @@ if (($sukses>0) || ($error_count>0)) {
     "nim"=>$_POST["nim"],
     "nama"=>$_POST["nama"],
     "tanggal_keluar" => $_POST["tanggal_keluar"],
+    "kode_jurusan" => $_POST["jurusan"],
     "id_jenis_keluar"=>$_POST["id_jenis_keluar"],
     "sk_yudisium"=>$_POST["sk_yudisium"],
     "tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
@@ -175,6 +176,7 @@ if (($sukses>0) || ($error_count>0)) {
     "nim"=>$_POST["nim"],
     "nama"=>$_POST["nama"],
     "id_jenis_keluar"=>$_POST["id_jenis_keluar"],
+    "kode_jurusan" => $_POST["jurusan"],
      "tanggal_keluar" => $_POST["tanggal_keluar"],
      "sk_yudisium"=>$_POST["sk_yudisium"],"tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
    

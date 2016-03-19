@@ -115,7 +115,8 @@ var dataTable = $("#dtb_kurikulum").dataTable({
         });
 
     $.ajax({
-     url: '<?=base_admin();?>stream/create_json.php?prodi='+<?=$id_jur;?>,
+     url: '<?=base_admin();?>modul/kurikulum/create_json.php?jurusan='+<?=$id_jur;?>,
       });
+
 </script>  
             

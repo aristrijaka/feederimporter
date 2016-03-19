@@ -52,6 +52,12 @@
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
+                        <label for="Total SKS" class="control-label col-lg-2">Total SKS</label>
+                        <div class="col-lg-10">
+                          <input type="text" data-rule-number="true" name="total_sks" value="<?=$data_edit->total_sks;?>" class="form-control" required> 
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
                         <label for="Jurusan" class="control-label col-lg-2">Jurusan</label>
                         <div class="col-lg-10">
                           <select name="kode_jurusan" data-placeholder="Pilih Jurusan..." class="form-control chzn-select" tabindex="2" >

@@ -71,7 +71,8 @@ if ($val[1]!='') {
             'nama' => $val[2],
             'semester'=>$val[3],
             'kode_mk'=>$val[4],
-            'nama_kelas'=>$val[5],
+            'nama_mk' => $val[5],
+            'nama_kelas'=>$val[6],
             'kode_jurusan' => $_POST['jurusan']
                 );
 
@@ -111,7 +112,7 @@ if (($sukses>0) || ($error_count>0)) {
 
 
 
-  $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"kode_mk"=>$_POST["kode_mk"],"nama_kelas"=>$_POST["nama_kelas"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],);
+  $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"kode_mk"=>$_POST["kode_mk"],"nama_mk"=>$_POST["nama_mk"],"nama_kelas"=>$_POST["nama_kelas"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],);
 
 
 
@@ -140,7 +141,7 @@ if (($sukses>0) || ($error_count>0)) {
     $db->delete("krs","id",$_GET["id"]);
     break;
   case "up":
-   $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"kode_mk"=>$_POST["kode_mk"],"nama_kelas"=>$_POST["nama_kelas"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],);
+   $data = array("nim"=>$_POST["nim"],"nama"=>$_POST["nama"],"kode_mk"=>$_POST["kode_mk"],"nama_mk"=>$_POST["nama_mk"],"nama_kelas"=>$_POST["nama_kelas"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],);
 
 
 

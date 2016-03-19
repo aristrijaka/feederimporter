@@ -15,7 +15,7 @@
 
         <div class="row">
         <div class="col-lg-3 col-xs-6">
-        <img src="<?=base_url();?>upload/upe.png" style="margin-left: 38px;">
+        <img src="<?=base_url();?>upload/upe.png" style="margin-left: 88px;width: 95px;">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
@@ -120,6 +120,21 @@
           </div>
         </div>
 
+     <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+               <h3>&nbsp;</h3>
+
+              <p>Mahasiswa</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-user-plus"></i>
+            </div>
+            <a href="<?=base_index();?>mahasiswa" class="small-box-footer">View Detail <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
 
              <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
@@ -153,6 +168,23 @@
             <a href="<?=base_index();?>hapus-akm-feeder" class="small-box-footer">View Detail <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+
+                     <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>&nbsp;</h3>
+
+              <p>Hapus Mahasiswa Feeder</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-user-times"></i>
+            </div>
+            <a href="<?=base_index();?>hapus-mahasiswa" class="small-box-footer">View Detail <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
 
         <!-- ./col -->
       </div>

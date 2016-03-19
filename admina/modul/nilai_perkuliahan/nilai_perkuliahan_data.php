@@ -12,17 +12,29 @@ $columns = array(
 	'nama_kelas',
 	'nilai_huruf',
 	'nilai_indek',
-	'nilai_angka',
 	'status_error',
 	'id'
 	);
 
 if (isset($_POST['semester'])) {
 	
+	
 	if ($_POST['semester']=='all') {
 		$semester = '';
 	} else {
 		$semester = "and semester='".$_POST['semester']."'";
+	}
+
+	if ($_POST['matkul']=='all') {
+		$matkul = '';
+	} else {
+		$matkul = "and kode_mk='".$_POST['matkul']."'";
+	}
+
+	if ($_POST['kelas']=='all') {
+		$kelas = '';
+	} else {
+		$kelas = "and nama_kelas='".$_POST['kelas']."'";
 	}
 	
 	if ($_POST['status_filter']=='all') {
@@ -30,7 +42,7 @@ if (isset($_POST['semester'])) {
 	} else {
 		$status = " and status_error='".$_POST['status_filter']."'";
 	}
-	$query = $new_table->get_custom("select * from nilai where kode_jurusan='".$_POST['jurusan']."' $semester $status ",$columns);
+	$query = $new_table->get_custom("select * from nilai where kode_jurusan='".$_POST['jurusan']."'  $semester $status $matkul $kelas ",$columns);
 } else {
 
 $query = $new_table->get_custom("select * from nilai where kode_jurusan='".$_POST['jurusan']."'",$columns);
@@ -48,11 +60,8 @@ foreach ($query	as $value) {
 	$ResultData[] = $value->nama_mk;
 	$ResultData[] = $value->nama_kelas;
 	
-	
 		$ResultData[] = $value->nilai_huruf;
-
 	$ResultData[] = $value->nilai_indek;
-	$ResultData[] = $value->nilai_angka;
 	if ($value->status_error==1) {
 		$ResultData[] = '<button rel="tooltip" type="button" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="left" title="" data-original-title="Sukses"><i class="fa fa-info-circle"></i></button> '.$value->status_error;
 	} elseif ($value->status_error==0) {

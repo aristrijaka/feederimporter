@@ -95,6 +95,7 @@
                           <input type="text" name="nilai_angka" value="<?=$data_edit->nilai_angka;?>" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
+                      <input type="hidden" name="jurusan" value="<?=$id_jur;?>">
                       <input type="hidden" name="id" value="<?=$data_edit->id;?>">
                       <div class="form-group">
                         <label for="tags" class="control-label col-lg-2">&nbsp;</label>

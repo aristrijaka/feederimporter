@@ -99,7 +99,7 @@
                       if ($path_url==$isi->url) {
                           if ($role_act["insert_act"]=="Y") {
                     ?>
-          <a href="<?=base_index();?>kelulusan/tambah" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Tambah</a>
+          <a href="<?=base_index();?>kelulusan/tambah/<?=$id_jur;?>" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Tambah</a>
                           <?php
                           } 
                        } 
@@ -111,7 +111,7 @@
   if ($path_url==$isi->url) {
     //check edit permission
   if ($role_act["up_act"]=="Y") {
-  $edit = '<a href="'.base_index()."kelulusan/edit/'+aData[indek]+'".'" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>';
+  $edit = '<a href="'.base_index()."kelulusan/edit/'+aData[indek]+'/$id_jur".'" class="btn btn-primary btn-flat"><i class="fa fa-pencil"></i></a>';
   } else {
     $edit ="";
   }
@@ -126,6 +126,11 @@
 ?>  
                 </section><!-- /.content -->
         <script type="text/javascript">
+
+    $.ajax({
+     url: '<?=base_admin();?>modul/kelulusan/create_json.php?jurusan='+<?=$id_jur;?>,
+      });
+
   var table =  $("#dtb_kelulusan").dataTable({
            "fnCreatedRow": function( nRow, aData, iDataIndex ) {
            // console.log(aData);
@@ -287,7 +292,7 @@ $("#loadnya").show();
 $(".text-wait-up").show();
 
 window.finished = false;
-        $.getJSON('<?=base_admin();?>stream/push_kelulusan.php?jurusan='+<?=$id_jur;?>,
+        $.getJSON('<?=base_admin();?>modul/kelulusan/push_kelulusan.php?jurusan='+<?=$id_jur;?>,
              function(data){
                 console.log("ALL DONE", data);
                 clearInterval(window.progressInterval);
@@ -360,7 +365,7 @@ function createAndInsertStatusBars(num){
 function checkProgress(createStatusBars){
     if(typeof createStatusBars === "undefined") createStatusBars = false;
     if(window.finished === true) return;
-    url = "<?=base_admin();?>modul/kelas_kuliah/<?=$id_jur;?>_progress.json";
+    url = "<?=base_admin();?>modul/kelulusan/<?=$id_jur;?>_progress.json";
 
     var d = new Date();
     var n = d.getTime();

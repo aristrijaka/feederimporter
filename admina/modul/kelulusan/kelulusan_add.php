@@ -98,7 +98,8 @@
                           <input type="text" id="tgl3" name="bulan_akhir_bimbingan" placeholder="Bulan Akhir Bimbingan" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
-
+                      
+  <input type="hidden" name="jurusan" value="<?=$id_jur;?>">
                       
                       <div class="form-group">
                         <label for="tags" class="control-label col-lg-2">&nbsp;</label>

@@ -46,6 +46,12 @@
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
+                        <label for="Kode Matakuliah" class="control-label col-lg-2">Nama Matakuliah</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="nama_mk" placeholder="Nama Matakuliah" class="form-control" required >
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
                         <label for="Nama Kelas" class="control-label col-lg-2">Nama Kelas</label>
                         <div class="col-lg-10">
                           <input type="text" name="nama_kelas" placeholder="01" class="form-control" required >

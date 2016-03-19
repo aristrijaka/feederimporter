@@ -119,7 +119,7 @@ switch ($_GET["act"]) {
   
   
   
-  $data = array("id_kurikulum"=>$_POST["id_kurikulum"],"kode_mk"=>$_POST["kode_mk"],"nama_mk"=>$_POST["nama_mk"],"id_jenj_didik"=>$_POST["id_jenj_didik"],"jns_mk"=>$_POST["jns_mk"],"sks_tm"=>$_POST["sks_tm"],"sks_prak"=>$_POST["sks_prak"],"sks_prak_lap"=>$_POST["sks_prak_lap"],"sks_sim"=>$_POST["sks_sim"],"a_sap"=>$_POST["a_sap"],"s_silabus"=>$_POST["s_silabus"],"a_bahan_ajar"=>$_POST["a_bahan_ajar"],"acara_prakata_dikdat"=>$_POST["acara_prakata_dikdat"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],);
+  $data = array("id_kurikulum"=>$_POST["id_kurikulum"],"kode_mk"=>$_POST["kode_mk"],"tahun"=>$_POST["tahun"],"nama_mk"=>$_POST["nama_mk"],"id_jenj_didik"=>$_POST["id_jenj_didik"],"jns_mk"=>$_POST["jns_mk"],"sks_tm"=>$_POST["sks_tm"],"sks_prak"=>$_POST["sks_prak"],"sks_prak_lap"=>$_POST["sks_prak_lap"],"sks_sim"=>$_POST["sks_sim"],"a_sap"=>$_POST["a_sap"],"s_silabus"=>$_POST["s_silabus"],"a_bahan_ajar"=>$_POST["a_bahan_ajar"],"acara_prakata_dikdat"=>$_POST["acara_prakata_dikdat"],"semester"=>$_POST["semester"],"kode_jurusan"=>$_POST["kode_jurusan"],);
   
   
   

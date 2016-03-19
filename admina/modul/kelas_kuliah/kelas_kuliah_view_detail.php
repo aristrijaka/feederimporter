@@ -511,49 +511,6 @@ $('.up_feeder').on('click', function() {
 
         });  
 
-
-/*$('.up_feeder_now').on('click', function() {
-
-$("#loadnya").show();
-$(".text-wait-up").show();
- $("#isi_drop_up").hide();
-
-window.finished = false;
-        $.getJSON('<?=base_admin();?>stream/push_kelas.php?sem='+$("#semester_up").val()+"&jurusan="+<?=$id_jur;?>,
-            function(data){
-             //   console.log("ALL DONE", data);
-                clearInterval(window.progressInterval);
-                window.finished = true;
-                if(typeof data.error == 'undefined' || data.error === true){
-                    displayError(data);
-                } else {
-                    checkProgress();
-                    $('.tertiary-status').remove();
-                    if(!$('#script-progress').hasClass('hidden')){
-                        $('#script-progress').fadeOut(200,function(){$('#script-progress').addClass('hidden');});
-                    }
-                    alert('Upload Data Selesai');
-                    $(".notif").hide();
-                    $("#isi_drop_up").hide();
-                    $("#hasil_up").show();
-                    $("#progress_nya").hide();
-                    $("#isi_informasi").html(data.message);
-                    $('#informasi').modal('show');
-                    
-                   // window.location.reload();
-                }
-            }
-        ).error(function(data){
-            window.hasError = true;
-            console.log("ERROR", data);
-            displayError(data);
-        });
-        window.progressInterval = setInterval(checkProgress, window.updatePeriod);
-
-
-});*/
-
-
 });
 
 function displayError(data){

@@ -19,8 +19,10 @@
                  
                     Feeder Importer adalah tool gratis untuk import data ke feeder dikti. 
                   </p>
-                  Kami juga bisa membantu jika sistem akademik mau di integrasikan ke feeder. Kami telah mengerjakan feeder integrator UIN Bandung untuk mempermudah pengambilan data dari Sistem akademik untuk kemudian di teruskan ke feeder. 
-                  <p>Jika Punya pertanyaan ataupun saran silakan hubungi saya</p>
+                   Perkenalkan nama saya wildan. Saya bisa membantu Bapa - bapa jika sistem akademik mau di integrasikan ke feeder. 
+                   Sudah banyak aplikasi yang saya buat mulai dari instansi pemerintah sampai swasta. Khusus untuk feeder, saya telah mengerjakan feeder integrator UIN Bandung untuk mempermudah pengambilan data dari Sistem Akademik. Jika ada teman - teman atau instansi bapa perlu pengadaan atau pembuatan Web Aplikasi, bisa langsung hubungi saya. 
+                   <br>Terakhir, Semoga tool ini bermanfaat</br> 
+                  <p>Jika Punya pertanyaan Bisa Langsung hubungi saya</p>
                   Email : wildannudin@gmail.com<br>
                   HP : 085720081081<br>
                   Blog : wildantea.com<br>

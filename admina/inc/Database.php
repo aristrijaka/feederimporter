@@ -488,6 +488,22 @@ $html .= "</ul></li>";
       return $search_condition;
     }
 
+      //obj to array
+      function convert_obj_to_array($obj)
+      {
+          if (is_object($obj)) $obj = (array)$obj;
+          if (is_array($obj)) {
+              $new = array();
+              foreach ($obj as $key => $val) {
+                  $new[$key] = $this->convert_obj_to_array($val);
+              }
+          } else {
+              $new = $obj;
+          }
+
+          return $new;
+      }
+
 
     function compressImage($ext,$uploadedfile,$path,$actual_image_name,$newwidth,$tinggi=null)
         {

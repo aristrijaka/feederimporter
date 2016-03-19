@@ -133,6 +133,13 @@ $token = $result;
 				$sks_prak_lap = $temp_mk['result']['sks_prak_lap'];
 			}
 
+			if ($temp_mk['result']['sks_tm']=="") {
+				$sks_tm = 0;
+			} else {
+				$sks_tm = $temp_mk['result']['sks_tm'];
+			}
+
+
 			if ($temp_mk['result']['sks_sim']=="") {
 				$sks_sim = 0;
 			} else {
@@ -163,8 +170,8 @@ $temp_result = $proxy->InsertRecord($token, $table1, json_encode($temp_data));
 									$db->update('kelas_kuliah',array('status_error'=>1,'keterangan'=>''),'id',$value->id_kelas);
 											} else {
 										++$error_count;
-									$db->update('kelas_kuliah',array('status_error' => 2, 'keterangan'=>$temp_result['result']['error_desc']),'id',$value->id_kelas);
-									$error_msg[] = "Error $kode_mk $nama_mk ".$temp_result['result']['error_desc'];
+									$db->update('kelas_kuliah',array('status_error' => 2, 'keterangan'=>"Error Pastikan Kode MK $kode_mk Matkul $nama_mk Sudah Ada di Feeder ".$temp_result['result']['error_desc']),'id',$value->id_kelas);
+									$error_msg[] = "Error Pastikan Kode MK $kode_mk Matkul $nama_mk Sudah Ada di Feeder ".$temp_result['result']['error_desc'];
 								}
 				$new_pu->incrementStageItems(1, true);
 

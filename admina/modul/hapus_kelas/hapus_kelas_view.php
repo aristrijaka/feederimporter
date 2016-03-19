@@ -24,6 +24,7 @@
                                      <tr>
                           <th>No</th>
                           <th>Nama Jurusan</th>
+                          <th>Jenjang</th>
 
 
                         </tr>
@@ -32,9 +33,9 @@
                                         <?php
 $i=1;
 if ($_SESSION['level']==1) {
-$data = $db->fetch_custom("select jurusan.nama_jurusan,jurusan.kode_jurusan from jurusan");
+$data = $db->fetch_custom("select jurusan.nama_jurusan,jurusan.kode_jurusan,jenjang from jurusan");
 } else {
-    $data = $db->fetch_custom("select jurusan.nama_jurusan,jurusan.kode_jurusan from jurusan where jurusan.kode_jurusan='".$_SESSION['jurusan']."' group by jurusan.kode_jurusan");
+    $data = $db->fetch_custom("select jurusan.nama_jurusan,jurusan.kode_jurusan,jenjang from jurusan where jurusan.kode_jurusan='".$_SESSION['jurusan']."' group by jurusan.kode_jurusan");
 }
                                         foreach ($data as $dt) {
                                           ?>
@@ -43,6 +44,7 @@ $data = $db->fetch_custom("select jurusan.nama_jurusan,jurusan.kode_jurusan from
 <td>
 <a href='<?=base_index();?>hapus-kelas/choose/<?=$dt->kode_jurusan;?>'><?=$dt->nama_jurusan;?></a>
 </td>
+<td><?=$dt->jenjang;?></td>
 </tr>
 <?php
 $i++;

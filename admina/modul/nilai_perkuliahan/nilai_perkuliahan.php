@@ -15,6 +15,7 @@ switch ($path_act) {
       }
     break;
   case "edit":
+    $id_jur = $path_four;
     $data_edit = $db->fetch_single_row("nilai","id",$path_id);
         foreach ($db->fetch_all("sys_menu") as $isi) {
                       if ($path_url==$isi->url&&$path_act=="edit") {
