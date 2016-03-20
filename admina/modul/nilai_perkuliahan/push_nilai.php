@@ -56,7 +56,10 @@ $token = $result;
 	
 	
 	//get id npsn
-	$id_sp = $db->fetch_single_row('config_user','username','201004e1')->id_sp;
+	$filter_sp = "npsn='".$config->id_sp."'";
+	$get_id_sp = $proxy->GetRecord($token,'satuan_pendidikan',$filter_sp);
+
+	$id_sp = $get_id_sp['result']['id_sp'];
 
 
 	$count = $db->fetch_custom("select *,nilai.id as id_krs from nilai inner join jurusan on nilai.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and nilai.semester='".$_GET['sem']."' and status_error!=1 $query_matkul $query_kelas");
