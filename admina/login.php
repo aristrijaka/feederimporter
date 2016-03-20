@@ -6,7 +6,7 @@ if (!isset($_SESSION['logins'])) {
 <!DOCTYPE html>
 <!-- saved from url=(0028)http://sukavid.com/adm/login -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-   	<title>Feeder Integrator UIN </title>
+   	<title>Feeder Importer </title>
   <link media="all" type="text/css" rel="stylesheet" href="assets/login/css/m-styles.min.css">
   <link media="all" type="text/css" rel="stylesheet" href="assets/login/css/login.css">
   <script src="assets/login/js/jquery.js"></script>

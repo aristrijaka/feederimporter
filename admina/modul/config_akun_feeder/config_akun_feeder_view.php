@@ -24,7 +24,6 @@
                                    <thead>
                                      <tr>
                           <th>Username Feeder</th>
-													<th>Password Feeder</th>
 													<th>URL Feeder</th>
 													<th>PORT</th>
 													<th>Kode PT</th>
@@ -41,7 +40,6 @@
       foreach ($dtb as $isi) {
         ?><tr id="line_<?=$isi->id;?>">
         <td><?=$isi->username;?></td>
-<td><?=$isi->password;?></td>
 <td><?=$isi->url;?></td>
 <td><?=$isi->port;?></td>
 <td><?=$isi->id_sp;?></td>

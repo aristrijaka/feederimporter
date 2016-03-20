@@ -81,6 +81,10 @@ $pu->nextStage($stageOptions);
 
 $i=1;
 
+		function myFilter($var){
+			  return ($var !== NULL && $var !== FALSE && $var !== '');
+			}
+
 
 
 	foreach ($arr_data as $value) {
@@ -102,10 +106,7 @@ $i=1;
         	unset($data_mhs['id']);
         	unset($data_mhs['nipd']);
 
-			function myFilter($var){
-			  return ($var !== NULL && $var !== FALSE && $var !== '');
-			}
-
+	
 			$data_mhs = array_filter($data_mhs, 'myFilter');
 
 			$sp = array('id_sp' => $id_sp);
