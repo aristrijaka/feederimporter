@@ -38,8 +38,24 @@ $filter = "";
 
 echo "<pre>";
 
+	$nim = "12097050801";
+		$filter_npm = "nipd like '%".$nim."%'";
+		$temp_npm = $proxy->GetRecord($token,'mahasiswa_pt',$filter_npm);
+		//var_dump($temp_npm);
+		if ($temp_npm['result']) {
+			$id_reg_pd = $temp_npm['result']['id_reg_pd'];
+			$stat_reg = TRUE;
+		}
 
-	$filter_sms = "id_sp='".$id_sp."' and kode_prodi ilike '%55201%'";
+
+$filter_sp = "id_reg_pd='".$id_reg_pd."' and id_smt='20151' and soft_delete='1'";
+$get_id_sp = $proxy->GetRecord($token,'kuliah_mahasiswa',$filter_sp);
+
+print_r($get_id_sp);
+
+
+
+/*	$filter_sms = "id_sp='".$id_sp."' and kode_prodi ilike '%55201%'";
 		$temp_sms = $proxy->GetRecord($token,'sms',$filter_sms);
 		if ($temp_sms['result']) {
 			$id_sms = $temp_sms['result']['id_sms'];
@@ -79,7 +95,7 @@ foreach ($result['result'] as $isi) {
 	}
 	echo $isi['column_name']." $type ".$not_null." comment '".$isi['desc']."', "."<br>";
 }
-echo ")";
+echo ")";*/
 
 
 /*	$filter_sp = "npsn='".$config->id_sp."'";

@@ -85,6 +85,8 @@ $pu->nextStage($stageOptions);
 
 $i=1;
 
+$insert_data_akm = array();
+
 	foreach ($arr_data as $value) {
 
 		$nim = $value->nim;
@@ -127,8 +129,16 @@ $i=1;
 		} else {
 
 
+		$filter_nim = "id_reg_pd='".$id_reg_pd."' and id_smt='".$value->semester."' and soft_delete='1'";
+		$check_delete = $proxy->GetRecord($token,'kuliah_mahasiswa',$filter_nim);
 
-		$temp_data = array('id_smt' => $value->semester,
+		if ($check_delete['result']) {
+			$restore_data = array('id_reg_pd' => $check_delete['result']['id_reg_pd']);
+			$restore = $proxy->RestoreRecord($token,'kuliah_mahasiswa',json_encode($restore_data));
+
+
+			$array_key = array('id_smt' => $value->semester, 'id_reg_pd' => $check_delete['result']['id_reg_pd']);
+			$array_data = array('id_smt' => $value->semester,
 						  'id_reg_pd' => $id_reg_pd,
 						  		'ips' => $value->ips,
 						  	'sks_smt' => $value->sks_smt,
@@ -136,7 +146,29 @@ $i=1;
 						  'sks_total' => $value->sks_total,
 						 'id_stat_mhs' => $value->status_kuliah
 						);
-$temp_result = $proxy->InsertRecord($token, 'kuliah_mahasiswa', json_encode($temp_data));
+					$final_up = array('key' => $array_key, 'data' => $array_data
+				);
+			$temp_result = $proxy->UpdateRecord($token, 'kuliah_mahasiswa', json_encode($final_up));
+
+
+		} else {
+
+					$temp_data = array('id_smt' => $value->semester,
+						  'id_reg_pd' => $id_reg_pd,
+						  		'ips' => $value->ips,
+						  	'sks_smt' => $value->sks_smt,
+						  		'ipk' => $value->ipk,
+						  'sks_total' => $value->sks_total,
+						 'id_stat_mhs' => $value->status_kuliah
+						);
+					$temp_result = $proxy->InsertRecord($token, 'kuliah_mahasiswa', json_encode($temp_data));
+
+		}
+
+
+
+
+
 
 	if ($temp_result['result']['error_desc']==NULL) {
 									++$sukses_count;
