@@ -116,7 +116,7 @@ $i=1;
         	  $temp_result = $proxy->InsertRecord($token, 'mahasiswa', json_encode($data_mhs));
 
 
-        	  if ($temp_result['result']) {
+        	  if ($temp_result['result']['error_desc']=="") {
 
         	  	$kode_prodi = trim($data_mhs_pt->kode_jurusan);
 
