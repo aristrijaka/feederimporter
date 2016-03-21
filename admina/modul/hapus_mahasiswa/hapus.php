@@ -2,15 +2,13 @@
 include "../../inc/config.php";
 include "../../lib/nusoap/nusoap.php";
 
- $config = $db->fetch_single_row('config_user','username','201004e1');
-
+$config = $db->fetch_single_row('config_user','id',1);
 
 if ($config->live=='Y') {
   $url = 'http://'.$config->url.':'.$config->port.'/ws/live.php?wsdl'; // gunakan live
 } else {
   $url = 'http://'.$config->url.':'.$config->port.'/ws/sandbox.php?wsdl'; // gunakan sandbox
 }
-
 
   $client = new nusoap_client($url, true);
   $proxy = $client->getProxy();
@@ -29,7 +27,11 @@ if ($config->live=='Y') {
 switch ($_GET["act"]) {
   case 'delete_all':
    $prodi = $db->fetch_single_row('jurusan','kode_jurusan',$_POST['id'])->kode_jurusan_dikti;
-   $id_sp = $db->fetch_single_row('config_user','username','201004e1')->id_sp;
+    //get id npsn
+  $filter_sp = "npsn='".$config->id_sp."'";
+  $get_id_sp = $proxy->GetRecord($token,'satuan_pendidikan',$filter_sp);
+
+  $id_sp = $get_id_sp['result']['id_sp'];
 
   $filter_sms = "id_sp='".$id_sp."' and kode_prodi ilike '%".$prodi."%'";
     $temp_sms = $proxy->GetRecord($token,'sms',$filter_sms);

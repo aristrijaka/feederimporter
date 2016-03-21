@@ -2,13 +2,13 @@
 include "../../inc/config.php";
 include "../../lib/nusoap/nusoap.php";
 
- $config = $db->fetch_single_row('config_user','username','201004e1');
+$config = $db->fetch_single_row('config_user','id',1);
 
-
-  $url = 'http://'.$config->url.':8082/ws/live.php?wsdl'; // gunakan sandbox
-  //untuk coba-coba
-  // $url = 'http://pddikti.uinsgd.ac.id:8082/ws/live.php?wsdl'; // gunakan live bila
-
+if ($config->live=='Y') {
+  $url = 'http://'.$config->url.':'.$config->port.'/ws/live.php?wsdl'; // gunakan live
+} else {
+  $url = 'http://'.$config->url.':'.$config->port.'/ws/sandbox.php?wsdl'; // gunakan sandbox
+}
   $client = new nusoap_client($url, true);
   $proxy = $client->getProxy();
 
@@ -27,10 +27,11 @@ $semester = $_POST['semester'];
  $prodi = $db->fetch_single_row('jurusan','kode_jurusan',$id_jur)->kode_jurusan_dikti;
 
 
-//get id npsn
-$id_sp = $db->fetch_single_row('config_user','username','201004e1')->id_sp;
+  //get id npsn
+  $filter_sp = "npsn='".$config->id_sp."'";
+  $get_id_sp = $proxy->GetRecord($token,'satuan_pendidikan',$filter_sp);
 
- $filter_sms = "id_sp='".$id_sp."' and kode_prodi ilike '%".$prodi."%'";
+  $id_sp = $get_id_sp['result']['id_sp'];
 
     $temp_sms = $proxy->GetRecord($token,'sms',$filter_sms);
 
