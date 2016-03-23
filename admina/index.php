@@ -16,8 +16,8 @@ switch ($path_url) {
 	case 'modul':
 		include "system/modul/modul.php";
 		break;
-	case 'install':
-		include "system/install/install.php";
+	case 'update':
+		include "system/update/update.php";
 		break;
 	case 'page':
 		include "system/page/page.php";

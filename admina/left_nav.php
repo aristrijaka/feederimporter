@@ -36,7 +36,7 @@
               if ($_SESSION['level']==1) {
                 ?>
 
-              <li class="treeview <?=($path_url=='install'||$path_url=='user-management'||$path_url=='page'||$path_url=='modul'||$path_url=='menu-management'||$path_url=='group-user')?'active':'';?>">
+              <li class="treeview <?=($path_url=='install'||$path_url=='user-management'||$path_url=='update'||$path_url=='page'||$path_url=='modul'||$path_url=='menu-management'||$path_url=='group-user')?'active':'';?>">
                         <a href="#">
                         <i class="fa fa-bar-chart-o"></i>
                         <span>System Setting</span>
@@ -57,6 +57,11 @@
                           <li class="<?=($path_url=='user-management')?'active':'';?>">
                             <a href="<?=base_index();?>user-management">
                                 <i class="fa fa-circle-o"></i> <span>User Management</span>
+                            </a>
+                        </li>
+                           <li class="<?=($path_url=='update')?'active':'';?>">
+                            <a href="<?=base_index();?>update">
+                                <i class="fa fa-circle-o"></i> <span>Update Aplikasi</span>
                             </a>
                         </li>
                         </ul>

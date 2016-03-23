@@ -39,49 +39,49 @@ switch ($_GET["act"]) {
 
 
 $objPHPExcel = PHPExcel_IOFactory::load("../../../upload/kelas_kuliah/".$_FILES['semester']['name']);
+
+
+
+$data = $objPHPExcel->getActiveSheet()->toArray();
+
 $error_count = 0;
 $error = array();
 $sukses = 0;
-foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-    $highestRow         = $worksheet->getHighestRow(); // e.g. 10
-    $highestColumn      = $worksheet->getHighestColumn(); // e.g 'F'
-  $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
 
-    for ($row = 2; $row <= $highestRow; ++ $row) {
-    $val=array();
-  for ($col = 0; $col < $highestColumnIndex; ++ $col) {
-   $cell = $worksheet->getCellByColumnAndRow($col, $row);
-   $val[] = $cell->getValue();
 
-  }
-if ($val[1]!='') {
-  if ($val[4]=='') {
-    $nama_kelas = "01";
-  } else {
-    $nama_kelas = $val[4];
-  }
-  $check = $db->check_exist('kelas_kuliah',array('kode_mk' => $val[2],'semester'=>$val[1],'nama_kelas'=>$nama_kelas));
-  if ($check==true) {
-    $error_count++;
-    $error[] = $val[2]." Sudah Ada";
-  } else {
-    $sukses++;
+foreach ($data as $key => $val) {
 
-          $data = array(
-            'semester'=>$val[1],
-            'kode_mk'=>$val[2],
-            'nama_mk'=>$val[3],
-            'nama_kelas'=>$val[4],
-            'kode_jurusan' => $_POST['jurusan']
-          );
+    if ($key>0) {
 
-        $in = $db->insert("kelas_kuliah",$data);
+      if ($val[1]!='') {
+          
+            if ($val[4]=='') {
+              $nama_kelas = "01";
+            } else {
+              $nama_kelas = $val[4];
+            }
+            $check = $db->check_exist('kelas_kuliah',array('kode_mk' => $val[2],'semester'=>$val[1],'nama_kelas'=>$nama_kelas));
+            if ($check==true) {
+              $error_count++;
+              $error[] = $val[2]." Sudah Ada";
+            } else {
+              $sukses++;
+
+                    $data = array(
+                      'semester'=>$val[1],
+                      'kode_mk'=>$val[2],
+                      'nama_mk'=>$val[3],
+                      'nama_kelas'=>$val[4],
+                      'kode_jurusan' => $_POST['jurusan']
+                    );
+
+                  $in = $db->insert("kelas_kuliah",$data);
+              }
+
+      }
+      
     }
-}
-
-
-}
-
+   
 }
 
 
@@ -107,8 +107,6 @@ if (($sukses>0) || ($error_count>0)) {
 }
   echo $msg;
     break;
-
-
   case "in":
   
   $data = array(

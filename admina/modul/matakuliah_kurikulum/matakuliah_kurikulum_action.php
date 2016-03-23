@@ -53,6 +53,7 @@ switch ($_GET["act"]) {
 
         }
 
+        if ($val[0]!='') {
 
           $check = $db->check_exist('mat_kurikulum',array('kode_mk' => $val[0],'tahun'=>$_POST['tahun']));
           if ($check==true) {
@@ -84,6 +85,8 @@ switch ($_GET["act"]) {
         }
 
       }
+
+    }
 
       }
 

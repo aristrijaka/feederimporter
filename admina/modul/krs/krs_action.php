@@ -37,52 +37,51 @@ switch ($_GET["act"]) {
 
 
 $objPHPExcel = PHPExcel_IOFactory::load("../../../upload/krs/".$_FILES['semester']['name']);
+
+$data = $objPHPExcel->getActiveSheet()->toArray();
+
+
+
 $error_count = 0;
 $error = array();
 $sukses = 0;
-foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-    $highestRow         = $worksheet->getHighestRow(); // e.g. 10
-    $highestColumn      = $worksheet->getHighestColumn(); // e.g 'F'
-  $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
 
-    for ($row = 2; $row <= $highestRow; ++ $row) {
-    $val=array();
-  for ($col = 0; $col < $highestColumnIndex; ++ $col) {
-   $cell = $worksheet->getCellByColumnAndRow($col, $row);
-   $val[] = $cell->getValue();
+foreach ($data as $key => $val) {
 
-  }
-if ($val[1]!='') {
-  if ($val[5]=='') {
-    $nama_kelas = "01";
-  } else {
-    $nama_kelas = $val[5];
-  }
+    if ($key>0) {
 
-  $check = $db->check_exist('krs',array('nim'=>$val[1],'kode_mk' => $val[4],'semester'=>$val[3],'nama_kelas'=>$val[5]));
-  if ($check==true) {
-    $error_count++;
-    $error[] = $val[1]." ".$val[4]." Sudah Ada";
-  } else {
-    $sukses++;
+      if ($val[1]!='') {
+          
+               if ($val[5]=='') {
+                $nama_kelas = "01";
+              } else {
+                $nama_kelas = $val[5];
+              }
 
-  $data = array(
-            'nim'=>$val[1],
-            'nama' => $val[2],
-            'semester'=>$val[3],
-            'kode_mk'=>$val[4],
-            'nama_mk' => $val[5],
-            'nama_kelas'=>$val[6],
-            'kode_jurusan' => $_POST['jurusan']
-                );
+              $check = $db->check_exist('krs',array('nim'=>$val[1],'kode_mk' => $val[4],'semester'=>$val[3],'nama_kelas'=>$val[5]));
+              if ($check==true) {
+                $error_count++;
+                $error[] = $val[1]." ".$val[4]." Sudah Ada";
+              } else {
+                $sukses++;
 
-    $in = $db->insert("krs",$data);
-    } 
-}
+              $data = array(
+                        'nim'=>$val[1],
+                        'nama' => $val[2],
+                        'semester'=>$val[3],
+                        'kode_mk'=>$val[4],
+                        'nama_mk' => $val[5],
+                        'nama_kelas'=>$val[6],
+                        'kode_jurusan' => $_POST['jurusan']
+                            );
 
+                $in = $db->insert("krs",$data);
+                } 
 
-}
-
+      }
+      
+    }
+   
 }
 
 

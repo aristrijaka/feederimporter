@@ -313,9 +313,9 @@ $('.up_feeder').on('click', function() {
 
 $('.up_feeder_now').on('click', function() {
 
-//$("#loadnya").show();
-//$(".text-wait-up").show();
-// $("#isi_drop_up").hide();
+$("#loadnya").show();
+$(".text-wait-up").show();
+$("#isi_drop_up").hide();
  
 window.finished = false;
         $.getJSON('<?=base_admin();?>modul/mahasiswa/push_mhs.php?sem='+$("#semester_up").val()+"&jurusan="+<?=$id_jur;?>,
@@ -332,8 +332,8 @@ window.finished = false;
                         $('#script-progress').fadeOut(200,function(){$('#script-progress').addClass('hidden');});
                     }
                     alert('Upload Data Selesai');
-                    //$("#loadnya").hide();
-                   // $(".text-wait-up").hide();
+                    $("#loadnya").hide();
+                   $(".text-wait-up").hide();
                     $("#isi_drop_up").hide();
                     $("#progress_nya").hide();
                     $("#isi_informasi").html(data.message);

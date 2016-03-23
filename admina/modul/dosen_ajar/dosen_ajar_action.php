@@ -33,47 +33,47 @@ switch ($_GET["act"]) {
 
 
 $objPHPExcel = PHPExcel_IOFactory::load("../../../upload/dosen_ajar/".$_FILES['semester']['name']);
+
+
+$data = $objPHPExcel->getActiveSheet()->toArray();
+
+
 $error_count = 0;
 $error = array();
 $sukses = 0;
-foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-    $highestRow         = $worksheet->getHighestRow(); // e.g. 10
-    $highestColumn      = $worksheet->getHighestColumn(); // e.g 'F'
-  $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
-
-    for ($row = 2; $row <= $highestRow; ++ $row) {
-    $val=array();
-  for ($col = 0; $col < $highestColumnIndex; ++ $col) {
-   $cell = $worksheet->getCellByColumnAndRow($col, $row);
-   $val[] = $cell->getValue();
-
-  }
-  if ($val[0]!='') {
-        $check = $db->check_exist('ajar_dosen',array('semester'=>$val[0],'nidn' => $val[1],'kode_mk'=>$val[3],'nama_kelas'=>$val[4]));
-    if ($check==true) {
-      $error_count++;
-      $error[] = $val[1]." ".$val[3]." Sudah Ada";
-    } else {
-        $sukses++;
-  $data = array(
-            'semester'=>$val[0],
-            'nidn'=>$val[1],
-            'nama_dosen'=>$val[2],
-            'kode_mk'=>$val[3],
-            'nama_kelas'=>$val[4],
-            'rencana_tatap_muka'=>$val[5],
-            "tatap_muka_real" => $val[5],
-            'kode_jurusan' => $_POST['jurusan']
-                );
-
- $in = $db->insert("ajar_dosen",$data);
-}
-
-}
 
 
-}
 
+foreach ($data as $key => $val) {
+
+    if ($key>0) {
+
+      if ($val[0]!='') {
+          
+                $check = $db->check_exist('ajar_dosen',array('semester'=>$val[0],'nidn' => $val[1],'kode_mk'=>$val[3],'nama_kelas'=>$val[4]));
+                  if ($check==true) {
+                    $error_count++;
+                    $error[] = $val[1]." ".$val[3]." Sudah Ada";
+                  } else {
+                      $sukses++;
+                $data = array(
+                          'semester'=>$val[0],
+                          'nidn'=>$val[1],
+                          'nama_dosen'=>$val[2],
+                          'kode_mk'=>$val[3],
+                          'nama_kelas'=>$val[4],
+                          'rencana_tatap_muka'=>$val[5],
+                          "tatap_muka_real" => $val[5],
+                          'kode_jurusan' => $_POST['jurusan']
+                              );
+
+               $in = $db->insert("ajar_dosen",$data);
+              }
+
+      }
+      
+    }
+   
 }
 
 

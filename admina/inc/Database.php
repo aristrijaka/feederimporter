@@ -505,6 +505,18 @@ $html .= "</ul></li>";
       }
 
 
+  function get_dir($dir) {
+      $modul_dir = explode(DIRECTORY_SEPARATOR, $dir);
+     array_pop($modul_dir);
+     array_pop($modul_dir);
+
+     $modul_dir = implode(DIRECTORY_SEPARATOR, $modul_dir);
+     return $modul_dir.DIRECTORY_SEPARATOR."modul".DIRECTORY_SEPARATOR;
+  }
+
+
+
+
     function compressImage($ext,$uploadedfile,$path,$actual_image_name,$newwidth,$tinggi=null)
         {
 

@@ -13,6 +13,10 @@
         <!-- Main content -->
         <section class="content">
 
+        <?php
+        
+        ?>
+
         <div class="row">
         <div class="col-lg-3 col-xs-6">
         <img src="<?=base_url();?>upload/upe.png" style="margin-left: 88px;width: 95px;">

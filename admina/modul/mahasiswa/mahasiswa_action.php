@@ -26,132 +26,86 @@ switch ($_GET["act"]) {
 
 
       $objPHPExcel = PHPExcel_IOFactory::load("../../../upload/mahasiswa/".$_FILES['semester']['name']);
+
+  $data = $objPHPExcel->getActiveSheet()->toArray();
       $error_count = 0;
       $error = array();
       $sukses = 0;
-      foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-          $highestRow         = $worksheet->getHighestRow(); // e.g. 10
-          $highestColumn      = $worksheet->getHighestColumn(); // e.g 'F'
-        $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
 
+foreach ($data as $key => $val) {
 
-          for ($row = 2; $row <= $highestRow; ++ $row) {
-          $val=array();
-        for ($col = 0; $col < $highestColumnIndex; ++ $col) {
-         $cell = $worksheet->getCellByColumnAndRow($col, $row);
-         $val[] = $cell->getValue();
+    if ($key>0) {
 
-        }
+      if ($val[0]!='') {
+          
+              $check = $db->check_exist('mhs_pt',array('nipd' => $val[0]));
+                if ($check==true) {
+                  $error_count++;
+                  $error[] = $val[0]." ".$val[1]." Sudah Ada";
+                } else {
+                  $sukses++;
 
+                $data = array(
+                        'nm_pd'      => $val[1],
+                        'tmpt_lahir' => $val[2],
+                        'tgl_lahir'  => $val[3],
+                        'jk'         => $val[4],
+                        'id_agama'   => $val[5],
+                        'id_kk'      => $val[6],
+                        "jln"        => $val[10],
+                        "rt"         => $val[11],
+                        "rw"         => $val[12],
+                        "nm_dsn"     => $val[13],
+                        "ds_kel"     => $val[14],
+                        "kode_pos"   => $val[15],
+                        "id_jns_tinggal"      => $val[16],
+                        "telepon_rumah"       => $val[17],
+                        "telepon_seluler"     => $val[18],
+                        "email"               => $val[19],
+                        "a_terima_kps"        => $val[20],
+                        "no_kps"              => $val[21],
+                        "stat_pd"             => $val[22],
+                        "nm_ayah"             => $val[23],
+                        "tgl_lahir_ayah"      => $val[24],
+                        "id_jenjang_pendidikan_ayah" => $val[25],
+                        "id_pekerjaan_ayah"   => $val[26],
+                        "id_penghasilan_ayah" => $val[27],
+                        "nm_ibu_kandung"      => $val[28],
+                        "tgl_lahir_ibu"       => $val[29],
+                        "id_jenjang_pendidikan_ibu" => $val[30],
+                         "id_pekerjaan_ibu"    => $val[31],
+                        "id_penghasilan_ibu"  => $val[32],
+                        "nm_wali"             => $val[33],
+                        "tgl_lahir_wali"      => $val[34],
+                        "id_jenjang_pendidikan_wali" => $val[35],
+                        "id_pekerjaan_wali"   => $val[36],
+                        "id_penghasilan_wali" => $val[37]
+                       
+                );
 
-          $check = $db->check_exist('mhs_pt',array('nipd' => $val[0]));
-          if ($check==true) {
-            $error_count++;
-            $error[] = $val[0]." ".$val[1]." Sudah Ada";
-          } else {
-            $sukses++;
+               
+                  $in = $db->insert('mhs',$data);
 
-        $date1 = date_create('30-12-1899');
-        date_add($date1, date_interval_create_from_date_string($val[3].' days'));
-        $tgl_lahir = date_format($date1, 'Y-m-d');
+                  $last_id = $db->get_last_id();
 
+                       $data_mhs_pt = array(
+                  'nipd' => $val[0],
+                  'kode_jurusan' => $_POST['jurusan'],
+                  'id_mhs' => $last_id,
+                  'id_jns_daftar' => $val[7],
+                  'tgl_masuk_sp' => $val[8],
+                  'mulai_smt' => $val[9]
+                  );
 
-        if ($val[24]!='') {
-          $date = date_create('30-12-1899');
-          date_add($date, date_interval_create_from_date_string($val[24].' days'));
-          $tgl_lahir_ayah = date_format($date, 'Y-m-d');
-        } else {
-          $tgl_lahir_ayah = $val[24];
-        }
+                  $in = $db->insert('mhs_pt',$data_mhs_pt);
 
-        if ($val[29]!='') {
-          $date2 = date_create('30-12-1899');
-          date_add($date2, date_interval_create_from_date_string($val[29].' days'));
-          $tgl_lahir_ibu = date_format($date2, 'Y-m-d');
-        } else {
-          $tgl_lahir_ibu = $val[29];
-        }
-
-
-        if ($val[34]!='') {
-          $date3 = date_create('30-12-1899');
-          date_add($date3, date_interval_create_from_date_string($val[34].' days'));
-          $tgl_lahir_wali = date_format($date3, 'Y-m-d');
-        } else {
-          $tgl_lahir_wali = $val[34];
-        }
-
-          if ($val[8]!='') {
-          $date3 = date_create('30-12-1899');
-          date_add($date3, date_interval_create_from_date_string($val[8].' days'));
-          $tgl_masuk_sp = date_format($date3, 'Y-m-d');
-        } else {
-          $tgl_masuk_sp = $val[8];
-        }
-
-        
-
-
-          $data = array(
-                  'nm_pd'      => $val[1],
-                  'tmpt_lahir' => $val[2],
-                  'tgl_lahir'  => $tgl_lahir,
-                  'jk'         => $val[4],
-                  'id_agama'   => $val[5],
-                  'id_kk'      => $val[6],
-                  "jln"        => $val[10],
-                  "rt"         => $val[11],
-                  "rw"         => $val[12],
-                  "nm_dsn"     => $val[13],
-                  "ds_kel"     => $val[14],
-                  "kode_pos"   => $val[15],
-                  "id_jns_tinggal"      => $val[16],
-                  "telepon_rumah"       => $val[17],
-                  "telepon_seluler"     => $val[18],
-                  "email"               => $val[19],
-                  "a_terima_kps"        => $val[20],
-                  "no_kps"              => $val[21],
-                  "stat_pd"             => $val[22],
-                  "nm_ayah"             => $val[23],
-                  "tgl_lahir_ayah"      => $tgl_lahir_ayah,
-                  "id_jenjang_pendidikan_ayah" => $val[25],
-                  "id_pekerjaan_ayah"   => $val[26],
-                  "id_penghasilan_ayah" => $val[27],
-                  "nm_ibu_kandung"      => $val[28],
-                  "tgl_lahir_ibu"       => $tgl_lahir_ibu,
-                  "id_jenjang_pendidikan_ibu" => $val[30],
-                   "id_pekerjaan_ibu"    => $val[31],
-                  "id_penghasilan_ibu"  => $val[32],
-                  "nm_wali"             => $val[33],
-                  "tgl_lahir_wali"      => $tgl_lahir_wali,
-                  "id_jenjang_pendidikan_wali" => $val[35],
-                  "id_pekerjaan_wali"   => $val[36],
-                  "id_penghasilan_wali" => $val[37]
-                 
-          );
-
-         
-            $in = $db->insert('mhs',$data);
-
-            $last_id = $db->get_last_id();
-
-                 $data_mhs_pt = array(
-            'nipd' => $val[0],
-            'kode_jurusan' => $_POST['jurusan'],
-            'id_mhs' => $last_id,
-            'id_jns_daftar' => $val[7],
-            'tgl_masuk_sp' => $tgl_masuk_sp,
-            'mulai_smt' => $val[9]
-            );
-
-            $in = $db->insert('mhs_pt',$data_mhs_pt);
-
-        }
+              }
 
       }
-
-      }
-
+      
+    }
+   
+}
 
           unlink("../../../upload/mahasiswa/".$_FILES['semester']['name']);
           $msg = '';

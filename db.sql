@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2016 at 02:01 PM
+-- Generation Time: Mar 23, 2016 at 03:34 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -65,6 +65,7 @@ CREATE TABLE `ajar_dosen` (
   `keterangan` tinytext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `config_user`
@@ -85,7 +86,7 @@ CREATE TABLE `config_user` (
 --
 
 INSERT INTO `config_user` (`id`, `username`, `password`, `url`, `port`, `id_sp`, `live`) VALUES
-(1, 'usernamefeeeder', 'passfeeder', 'localhost', '8082', '234', 'Y');
+(1, 'userfeeder', 'passfeeder', 'localhost', '8082', '234', 'Y');
 
 -- --------------------------------------------------------
 
@@ -680,6 +681,25 @@ INSERT INTO `sys_menu_role` (`id`, `id_menu`, `group_id`, `read_act`, `insert_ac
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sys_update`
+--
+
+CREATE TABLE `sys_update` (
+  `id` int(11) NOT NULL,
+  `version` varchar(50) NOT NULL,
+  `status_complete` enum('Y','N') NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sys_update`
+--
+
+INSERT INTO `sys_update` (`id`, `version`, `status_complete`) VALUES
+(1, '1.0', 'Y');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sys_users`
 --
 
@@ -865,6 +885,12 @@ ALTER TABLE `sys_menu_role`
   ADD KEY `FK_sys_menu_role_sys_users` (`group_id`);
 
 --
+-- Indexes for table `sys_update`
+--
+ALTER TABLE `sys_update`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sys_users`
 --
 ALTER TABLE `sys_users`
@@ -884,7 +910,7 @@ ALTER TABLE `agama`
 -- AUTO_INCREMENT for table `ajar_dosen`
 --
 ALTER TABLE `ajar_dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `config_user`
 --
@@ -924,7 +950,7 @@ ALTER TABLE `krs`
 -- AUTO_INCREMENT for table `kurikulum`
 --
 ALTER TABLE `kurikulum`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mat_kurikulum`
 --
@@ -934,12 +960,12 @@ ALTER TABLE `mat_kurikulum`
 -- AUTO_INCREMENT for table `mhs`
 --
 ALTER TABLE `mhs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `mhs_pt`
 --
 ALTER TABLE `mhs_pt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `nilai`
 --
@@ -975,6 +1001,11 @@ ALTER TABLE `sys_menu`
 --
 ALTER TABLE `sys_menu_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+--
+-- AUTO_INCREMENT for table `sys_update`
+--
+ALTER TABLE `sys_update`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `sys_users`
 --

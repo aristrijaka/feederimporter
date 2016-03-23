@@ -161,9 +161,9 @@ if ($val[1]!='') {
             'nama'=>$val[2],
             'semester'=>$val[3],
             'sks_smt'=>$val[4],
-            'ips'=>$val[5],
+            'ips'=>str_replace(",", ".", $val[5]),
             'sks_total'=>$val[6],
-            'ipk'=>$val[7],
+            'ipk'=>str_replace(",", ".", $val[7]),
             'status_kuliah'=>$val[8],
             'kode_jurusan' => $_POST['jurusan']
                 );

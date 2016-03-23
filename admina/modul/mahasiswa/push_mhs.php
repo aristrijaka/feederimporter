@@ -148,6 +148,10 @@ $i=1;
 									++$sukses_count;
 									$db->update('mhs_pt',array('status_error'=>1,'keterangan'=>''),'id',$data_mhs_pt->id);
 								} else {
+									   $hapus = array(     
+									      'id_pd'=>$id_pd
+									      );
+									  $temp_result = $proxy->DeleteRecord($token, 'mahasiswa', json_encode($hapus));
 									++$error_count;
 									$db->update('mhs_pt',array('status_error' => 2, 'keterangan'=>"Error".$insert_mhs_pt['result']['error_desc']),'id',$data_mhs_pt->id);
 									$error_msg[] = "<b>Error </b>".$insert_mhs_pt['result']['error_desc'];
