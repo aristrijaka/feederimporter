@@ -351,7 +351,7 @@ class Database {
      {
         $fp=fopen($file,'w');
         if(!$fp)return 0;
-        fwrite($fp, stripslashes($isi));
+        fwrite($fp, $isi);
         fclose($fp);return 1;
 
      }
