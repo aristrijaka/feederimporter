@@ -120,40 +120,54 @@ $token = $result;
 		$temp_mk = $proxy->GetRecord($token,'mata_kuliah',$filter_mk);
 		if ($temp_mk['result']) {
 			$id_mk = $temp_mk['result']['id_mk'];
-		}
 
-		$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
-		$temp_kls = $proxy->GetRecord($token,$table1,$filter_kls);
-		if ($temp_kls['result']) {
+			$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
+			$temp_kls = $proxy->GetRecord($token,'kelas_kuliah',$filter_kls);
+
+			if ($temp_kls['result']) {
 			$id_kls = $temp_kls['result']['id_kls'];
+
+			$filter_pd = "nipd LIKE '%".$nim."%'";
+			$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
+			if ($temp_pd['result']) {
+				$id_reg_pd = $temp_pd['result']['id_reg_pd'];
+			} else {
+				$id_reg_pd = "";
+			}
+
+			} else {
+				$id_kls = "";
+			}
+
+		} else {
+			$id_mk = "";
 		}
 
-		$filter_pd = "nipd LIKE '%".$nim."%'";
-		$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
-		if ($temp_pd['result']) {
-			$id_reg_pd = $temp_pd['result']['id_reg_pd'];
 
+		if ($id_mk!="" && $id_kls!="" && $id_reg_pd!="") {
+			
 			$temp_data = array(
 				'id_kls' => $id_kls,
 				'id_reg_pd' => $id_reg_pd,
 				'asal_data' => 9
 				);
-		$temp_result = $proxy->InsertRecord($token, 'nilai', json_encode($temp_data));
 
+				$temp_result = $proxy->InsertRecord($token, 'nilai', json_encode($temp_data));
+					if ($temp_result['result']['error_desc']==NULL) {
+											++$sukses_count;
+										
+											$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
+										} else {
+											++$error_count;
+											$error_msg[] = $temp_result['result']['error_desc'];
+											$db->update('krs',array('status_error' => 2, 'keterangan'=>$temp_result['result']['error_desc']),'id',$value->id_krs);
+										}
+										
+		} else {
+					++$error_count;
+					$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat </b>";
+					$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat "),'id',$value->id_krs);
 		}
-
-		
-
-
-	if ($temp_result['result']['error_desc']==NULL) {
-									++$sukses_count;
-								
-									$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
-								} else {
-									++$error_count;
-									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat".$temp_result['result']['error_desc']),'id',$value->id_krs);
-								}
 				$pu->incrementStageItems(1, true);
 
 
@@ -180,47 +194,67 @@ $token = $result;
 
 		$filter_mk = "kode_mk='".$kode_mk."'";
 		$temp_mk = $proxy->GetRecord($token,'mata_kuliah',$filter_mk);
+		
+
 		if ($temp_mk['result']) {
 			$id_mk = $temp_mk['result']['id_mk'];
-		}
 
-		$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
-		$temp_kls = $proxy->GetRecord($token,$table1,$filter_kls);
-		if ($temp_kls['result']) {
+			$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
+			$temp_kls = $proxy->GetRecord($token,'kelas_kuliah',$filter_kls);
+
+			if ($temp_kls['result']) {
 			$id_kls = $temp_kls['result']['id_kls'];
+
+			$filter_pd = "nipd LIKE '%".$nim."%'";
+			$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
+			if ($temp_pd['result']) {
+				$id_reg_pd = $temp_pd['result']['id_reg_pd'];
+			} else {
+				$id_reg_pd = "";
+			}
+
+			} else {
+				$id_kls = "";
+			}
+
+		} else {
+			$id_mk = "";
 		}
 
-		$filter_pd = "nipd LIKE '%".$nim."%'";
-		$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
-		if ($temp_pd['result']) {
-			$id_reg_pd = $temp_pd['result']['id_reg_pd'];
 
+		if ($id_mk!="" && $id_kls!="" && $id_reg_pd!="") {
+			
 			$temp_data = array(
 				'id_kls' => $id_kls,
 				'id_reg_pd' => $id_reg_pd,
 				'asal_data' => 9
 				);
-		$temp_result = $proxy->InsertRecord($token, 'nilai', json_encode($temp_data));
+
+				$temp_result = $proxy->InsertRecord($token, 'nilai', json_encode($temp_data));
+					if ($temp_result['result']['error_desc']==NULL) {
+											++$sukses_count;
+										
+											$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
+										} else {
+											++$error_count;
+											$error_msg[] = $temp_result['result']['error_desc'];
+											$db->update('krs',array('status_error' => 2, 'keterangan'=>$temp_result['result']['error_desc']),'id',$value->id_krs);
+										}
+										
+		} else {
+					++$error_count;
+					$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat </b>";
+					$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat "),'id',$value->id_krs);
+		}
+				$pu->incrementStageItems(1, true);
 
 		}
 
 		
 
 
-	if ($temp_result['result']['error_desc']==NULL) {
-									++$sukses_count;
-								
-									$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
-								} else {
-									++$error_count;
-									$error_msg[] = "<b>Pastikan $kode_mk kelas $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat ".$temp_result['result']['error_desc']),'id',$value->id_krs);
-								}
-				$pu->incrementStageItems(1, true);
-				
 
-
-		}
+	
 
         	$total_record = ($i*500+$bagi);
     	}
@@ -246,46 +280,66 @@ $token = $result;
 
 		$filter_mk = "kode_mk='".$kode_mk."'";
 		$temp_mk = $proxy->GetRecord($token,'mata_kuliah',$filter_mk);
+		
+
 		if ($temp_mk['result']) {
 			$id_mk = $temp_mk['result']['id_mk'];
-		}
 
-		$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
-		$temp_kls = $proxy->GetRecord($token,$table1,$filter_kls);
-		if ($temp_kls['result']) {
+			$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
+			$temp_kls = $proxy->GetRecord($token,'kelas_kuliah',$filter_kls);
+
+			if ($temp_kls['result']) {
 			$id_kls = $temp_kls['result']['id_kls'];
+
+			$filter_pd = "nipd LIKE '%".$nim."%'";
+			$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
+			if ($temp_pd['result']) {
+				$id_reg_pd = $temp_pd['result']['id_reg_pd'];
+			} else {
+				$id_reg_pd = "";
+			}
+
+			} else {
+				$id_kls = "";
+			}
+
+		} else {
+			$id_mk = "";
 		}
 
-		$filter_pd = "nipd LIKE '%".$nim."%'";
-		$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
-		if ($temp_pd['result']) {
-			$id_reg_pd = $temp_pd['result']['id_reg_pd'];
 
+		if ($id_mk!="" && $id_kls!="" && $id_reg_pd!="") {
+			
 			$temp_data = array(
 				'id_kls' => $id_kls,
 				'id_reg_pd' => $id_reg_pd,
 				'asal_data' => 9
 				);
-		$temp_result = $proxy->InsertRecord($token, 'nilai', json_encode($temp_data));
+
+				$temp_result = $proxy->InsertRecord($token, 'nilai', json_encode($temp_data));
+					if ($temp_result['result']['error_desc']==NULL) {
+											++$sukses_count;
+										
+											$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
+										} else {
+											++$error_count;
+											$error_msg[] = $temp_result['result']['error_desc'];
+											$db->update('krs',array('status_error' => 2, 'keterangan'=>$temp_result['result']['error_desc']),'id',$value->id_krs);
+										}
+										
+		} else {
+					++$error_count;
+					$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat </b>";
+					$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat "),'id',$value->id_krs);
+		}
+
+			
+		$pu->incrementStageItems(1, true);
 
 		}
 
-		
+			
 
-
-	if ($temp_result['result']['error_desc']==NULL) {
-									++$sukses_count;
-								
-									$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
-								} else {
-									++$error_count;
-									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat</b>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk Sudah Dibuat ".$temp_result['result']['error_desc']),'id',$value->id_krs);
-								}
-				$pu->incrementStageItems(1, true);
-
-
-		}
 		}
 		
 		}
@@ -347,50 +401,59 @@ $token = $result;
 
 		if ($temp_mk['result']) {
 			$id_mk = $temp_mk['result']['id_mk'];
-		}
 
+			$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
+			$temp_kls = $proxy->GetRecord($token,'kelas_kuliah',$filter_kls);
 
-
-
-		$filter_kls = "p.id_mk='".$id_mk."' AND nm_kls='".$kelas."' AND p.id_smt='".$semester."'";
-
-		
-		$temp_kls = $proxy->GetRecord($token,'kelas_kuliah',$filter_kls);
-
-
-
-		if ($temp_kls['result']) {
+			if ($temp_kls['result']) {
 			$id_kls = $temp_kls['result']['id_kls'];
+
+			$filter_pd = "nipd LIKE '%".$nim."%'";
+			$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
+			if ($temp_pd['result']) {
+				$id_reg_pd = $temp_pd['result']['id_reg_pd'];
+			} else {
+				$id_reg_pd = "";
+			}
+
+			} else {
+				$id_kls = "";
+			}
+
+		} else {
+			$id_mk = "";
 		}
 
-		$filter_pd = "nipd LIKE '%".$nim."%'";
-		$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
 
-		
-		if ($temp_pd['result']) {
-			$id_reg_pd = $temp_pd['result']['id_reg_pd'];
-		}
-
-		$temp_data = array(
+		if ($id_mk!="" && $id_kls!="" && $id_reg_pd!="") {
+			
+			$temp_data = array(
 				'id_kls' => $id_kls,
 				'id_reg_pd' => $id_reg_pd,
 				'asal_data' => 9
 				);
 
-		$temp_result = $proxy->InsertRecord($token, 'nilai', json_encode($temp_data));
+				$temp_result = $proxy->InsertRecord($token, 'nilai', json_encode($temp_data));
+					if ($temp_result['result']['error_desc']==NULL) {
+											++$sukses_count;
+										
+											$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
+										} else {
+											++$error_count;
+											$error_msg[] = $temp_result['result']['error_desc'];
+											$db->update('krs',array('status_error' => 2, 'keterangan'=>$temp_result['result']['error_desc']),'id',$value->id_krs);
+										}
+										
+		} else {
+					++$error_count;
+					$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat </b>";
+					$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat "),'id',$value->id_krs);
+		}
 
-		
 
 
-	if ($temp_result['result']['error_desc']==NULL) {
-									++$sukses_count;
-								
-									$db->update('krs',array('status_error'=>1,'keterangan'=>''),'id',$value->id_krs);
-								} else {
-									++$error_count;
-									$error_msg[] = "<b>Pastikan Kelas $kode_mk $kelas Sudah Dibuat </b>".$temp_result['result']['error_desc'];
-									$db->update('krs',array('status_error' => 2, 'keterangan'=>"Pastikan Kelas $kode_mk $kelas Sudah Dibuat ".$temp_result['result']['error_desc']),'id',$value->id_krs);
-								}
+
+
 				$new_pu->incrementStageItems(1, true);
 
 
