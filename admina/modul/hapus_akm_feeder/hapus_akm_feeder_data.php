@@ -106,36 +106,39 @@ $id_sms = '';
 				if ($data_mhs['result']) {
 					$nim = $data_mhs['result']['nipd'];
 					$nama = $data_mhs['result']['nm_pd'];
+
+					$filter_sms = "id_sms='".$data_mhs['result']['id_sms']."'";
+	                $dump_sms = $proxy->GetRecord($token,'sms',$filter_sms);
+	                            
+	                $filter_jenjang = "id_jenj_didik='".$dump_sms['result']['id_jenj_didik']."'";
+	                $dump_jenjang = $proxy->GetRecord($token,'jenjang_pendidikan',$filter_jenjang);
+
+	                $filter_smt = "id_smt='".$key['id_smt']."'";
+	                $dump_smt = $proxy->GetRecord($token,'semester',$filter_smt);
+
+	                $filter_stat = "id_stat_mhs='".$key['id_stat_mhs']."'";
+	                $dump_stat = $proxy->GetRecord($token,'status_mahasiswa',$filter_stat);
+
+
+
+					$temps[] = ++$i+$temp_offset." <input type='checkbox'  class='deleteRow' value='".$key['id_smt']."_".$key['id_reg_pd']."'/>";
+					$temps[] = $nim;
+					$temps[] = $nama;
+					$temps[] = $dump_jenjang['result']['nm_jenj_didik']." ".$data_mhs['result']['fk__sms'];
+					$temps[] = $dump_smt['result']['nm_smt'];
+					$temps[] = substr($data_mhs['result']['mulai_smt'],0,-1);
+	                $temps[] = $key['ips'];
+	                $temps[] = $key['ipk'];
+	                $temps[] = $key['sks_smt'];
+	                $temps[] = $key['sks_total'];
+	                $temps[] = $dump_stat['result']['nm_stat_mhs'];
+	                 $temps[] = $key['id_smt']."_". $key['id_reg_pd'];;
+					
+					$temp_data[] = $temps;
+					
 				}
 
-          		$filter_sms = "id_sms='".$data_mhs['result']['id_sms']."'";
-                $dump_sms = $proxy->GetRecord($token,'sms',$filter_sms);
-                            
-                $filter_jenjang = "id_jenj_didik='".$dump_sms['result']['id_jenj_didik']."'";
-                $dump_jenjang = $proxy->GetRecord($token,'jenjang_pendidikan',$filter_jenjang);
-
-                $filter_smt = "id_smt='".$key['id_smt']."'";
-                $dump_smt = $proxy->GetRecord($token,'semester',$filter_smt);
-
-                $filter_stat = "id_stat_mhs='".$key['id_stat_mhs']."'";
-                $dump_stat = $proxy->GetRecord($token,'status_mahasiswa',$filter_stat);
-
-
-
-				$temps[] = ++$i+$temp_offset." <input type='checkbox'  class='deleteRow' value='".$key['id_smt']."_".$key['id_reg_pd']."'/>";
-				$temps[] = $nim;
-				$temps[] = $nama;
-				$temps[] = $dump_jenjang['result']['nm_jenj_didik']." ".$data_mhs['result']['fk__sms'];
-				$temps[] = $dump_smt['result']['nm_smt'];
-				$temps[] = substr($data_mhs['result']['mulai_smt'],0,-1);
-                $temps[] = $key['ips'];
-                $temps[] = $key['ipk'];
-                $temps[] = $key['sks_smt'];
-                $temps[] = $key['sks_total'];
-                $temps[] = $dump_stat['result']['nm_stat_mhs'];
-                 $temps[] = $key['id_smt']."_". $key['id_reg_pd'];;
-				
-				$temp_data[] = $temps;
+          		
 			}
 			$temp_output = array(
 									'draw' => intval($requestData['draw']),

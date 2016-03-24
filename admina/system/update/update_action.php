@@ -21,7 +21,7 @@ $success=array();
 $create = "";
 	foreach ($data_update as $dt) {
 		$file_name = explode(".", $dt->nama_file);
-		$data_file = file_get_contents('http://localhost/update/data/'.$dta->version.'/'.$dt->modul_name.'/'.$file_name[0].'.txt');
+		$data_file = file_get_contents('http://wildantea.com/feeder-update/data/'.$dta->version.'/'.$dt->modul_name.'/'.$file_name[0].'.txt');
 		$create = $db->buat_file('../../modul/'.$dt->modul_name.'/'.$dt->nama_file,$data_file);
 		if ($create==1) {
 			$sukses++;

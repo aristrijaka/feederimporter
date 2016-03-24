@@ -93,7 +93,7 @@ $token = $result;
 		    'autoCalc' => true,
 		    'totalStages' => $total
 		);
-		$pu = new Manticorp\ProgressUpdater($options);
+		$pu = new ManticorpProgressUpdater($options);
 
 		for ($i=0; $i <$total ; $i++) { 
 		if ($i==0) {
@@ -321,18 +321,18 @@ $token = $result;
 
 		$msg = '';
 		if ((!$sukses_count==0) || (!$error_count==0)) {
-			$msg =  "<div class=\"alert alert-warning \" role=\"alert\">
-					<font color=\"#3c763d\">".$sukses_count." data Nilai baru berhasil di kirim ke feeder</font><br />
-					<font color=\"#ce4844\" >".$error_count." data tidak bisa ditambahkan </font>";
+			$msg =  "<div class="alert alert-warning " role="alert">
+					<font color="#3c763d">".$sukses_count." data Nilai baru berhasil di kirim ke feeder</font><br />
+					<font color="#ce4844" >".$error_count." data tidak bisa ditambahkan </font>";
 					
 					if (!$error_count==0) {
-						$msg .= "<a data-toggle=\"collapse\" href=\"#collapseExample\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Detail error</a>";
+						$msg .= "<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Detail error</a>";
 					}
 					//echo "<br />Total: ".$i." baris data";
-					$msg .= "<div class=\"collapse\" id=\"collapseExample\">";
+					$msg .= "<div class="collapse" id="collapseExample">";
 							$i=1;
 							foreach ($error_msg as $pesan) {
-									$msg .= "<div class=\"bs-callout bs-callout-danger\">".$i.". ".$pesan."</div><br />";
+									$msg .= "<div class="bs-callout bs-callout-danger">".$i.". ".$pesan."</div><br />";
 								$i++;
 								}
 					$msg .= "</div>
@@ -348,7 +348,7 @@ $token = $result;
 		    'autoCalc' => true,
 		    'totalStages' => 1
 		);
-		$new_pu = new Manticorp\ProgressUpdater($options);
+		$new_pu = new ManticorpProgressUpdater($options);
 
 	
 	 	$data = $db->fetch_custom("select *,nilai.id as id_krs from nilai inner join jurusan on nilai.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and nilai.semester='".$_GET['sem']."' and status_error!=1 $query_matkul $query_kelas limit 0,$jumlah");
@@ -427,18 +427,18 @@ $token = $result;
 
 		$msg = '';
 		if ((!$sukses_count==0) || (!$error_count==0)) {
-			$msg =  "<div class=\"alert alert-warning \" role=\"alert\">
-					<font color=\"#3c763d\">".$sukses_count." data Nilai baru berhasil di kirim ke feeder</font><br />
-					<font color=\"#ce4844\" >".$error_count." data tidak bisa ditambahkan </font>";
+			$msg =  "<div class="alert alert-warning " role="alert">
+					<font color="#3c763d">".$sukses_count." data Nilai baru berhasil di kirim ke feeder</font><br />
+					<font color="#ce4844" >".$error_count." data tidak bisa ditambahkan </font>";
 					
 					if (!$error_count==0) {
-						$msg .= "<a data-toggle=\"collapse\" href=\"#collapseExample\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Detail error</a>";
+						$msg .= "<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Detail error</a>";
 					}
 					//echo "<br />Total: ".$i." baris data";
-					$msg .= "<div class=\"collapse\" id=\"collapseExample\">";
+					$msg .= "<div class="collapse" id="collapseExample">";
 							$i=1;
 							foreach ($error_msg as $pesan) {
-									$msg .= "<div class=\"bs-callout bs-callout-danger\">".$i.". ".$pesan."</div><br />";
+									$msg .= "<div class="bs-callout bs-callout-danger">".$i.". ".$pesan."</div><br />";
 								$i++;
 								}
 					$msg .= "</div>
