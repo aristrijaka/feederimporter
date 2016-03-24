@@ -55,10 +55,10 @@ foreach ($data as $key => $val) {
                if ($val[5]=='') {
                 $nama_kelas = "01";
               } else {
-                $nama_kelas = $val[5];
+                $nama_kelas = filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
               }
 
-              $check = $db->check_exist('krs',array('nim'=>$val[1],'kode_mk' => $val[4],'semester'=>$val[3],'nama_kelas'=>$val[5]));
+              $check = $db->check_exist('krs',array('nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'kode_mk' => filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'semester'=>filter_var($val[3], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'nama_kelas'=>filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)));
               if ($check==true) {
                 $error_count++;
                 $error[] = $val[1]." ".$val[4]." Sudah Ada";
@@ -66,12 +66,12 @@ foreach ($data as $key => $val) {
                 $sukses++;
 
               $data = array(
-                        'nim'=>$val[1],
-                        'nama' => $val[2],
-                        'semester'=>$val[3],
-                        'kode_mk'=>$val[4],
-                        'nama_mk' => $val[5],
-                        'nama_kelas'=>$val[6],
+                        'nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'nama' => filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'semester'=>filter_var($val[3], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'kode_mk'=>filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'nama_mk' => filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'nama_kelas'=>filter_var($val[6], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
                         'kode_jurusan' => $_POST['jurusan']
                             );
 

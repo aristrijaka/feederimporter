@@ -55,7 +55,7 @@ switch ($_GET["act"]) {
 
         if ($val[0]!='') {
 
-          $check = $db->check_exist('mat_kurikulum',array('kode_mk' => $val[0],'tahun'=>$_POST['tahun']));
+          $check = $db->check_exist('mat_kurikulum',array('kode_mk' => filter_var($val[0], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'tahun'=>$_POST['tahun']));
           if ($check==true) {
             $error_count++;
             $error[] = $val[0]." Sudah Ada";
@@ -64,8 +64,8 @@ switch ($_GET["act"]) {
           $data = array(
           "id_kurikulum"=>$_POST['id_kur'],
           "tahun" => $_POST['tahun'],
-          "kode_mk"=>$val[0],
-          "nama_mk"=>$val[1],
+          "kode_mk"=>filter_var($val[0], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+          "nama_mk"=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
           "id_jenj_didik"=>$val[2],
           "jns_mk"=>$val[3],
           "sks_tm"=>$val[4],

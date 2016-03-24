@@ -58,9 +58,9 @@ foreach ($data as $key => $val) {
             if ($val[4]=='') {
               $nama_kelas = "01";
             } else {
-              $nama_kelas = $val[4];
+              $nama_kelas = filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
             }
-            $check = $db->check_exist('kelas_kuliah',array('kode_mk' => $val[2],'semester'=>$val[1],'nama_kelas'=>$nama_kelas));
+            $check = $db->check_exist('kelas_kuliah',array('kode_mk' => filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'semester'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'nama_kelas'=>$nama_kelas));
             if ($check==true) {
               $error_count++;
               $error[] = $val[2]." Sudah Ada";
@@ -68,10 +68,10 @@ foreach ($data as $key => $val) {
               $sukses++;
 
                     $data = array(
-                      'semester'=>$val[1],
-                      'kode_mk'=>$val[2],
-                      'nama_mk'=>$val[3],
-                      'nama_kelas'=>$val[4],
+                      'semester'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                      'kode_mk'=>filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                      'nama_mk'=>filter_var($val[3], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                      'nama_kelas'=>filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
                       'kode_jurusan' => $_POST['jurusan']
                     );
 

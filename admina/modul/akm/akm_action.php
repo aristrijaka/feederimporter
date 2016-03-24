@@ -150,21 +150,21 @@ foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
 
   }
 if ($val[1]!='') {
-  $check = $db->check_exist('nilai_akm',array('nim'=>$val[1],'semester'=>$val[3]));
+  $check = $db->check_exist('nilai_akm',array('nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'semester'=>filter_var($val[3], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)));
   if ($check==true) {
     $error_count++;
     $error[] = $val[1]." Sudah Ada";
   } else {
     $sukses++;
     $data = array(
-            'nim'=>$val[1],
-            'nama'=>$val[2],
-            'semester'=>$val[3],
-            'sks_smt'=>$val[4],
-            'ips'=>str_replace(",", ".", $val[5]),
-            'sks_total'=>$val[6],
-            'ipk'=>str_replace(",", ".", $val[7]),
-            'status_kuliah'=>$val[8],
+            'nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+            'nama'=>filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+            'semester'=>filter_var($val[3], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+            'sks_smt'=>filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+            'ips'=>str_replace(",", ".", filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)),
+            'sks_total'=>filter_var($val[6], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+            'ipk'=>str_replace(",", ".", filter_var($val[7], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)),
+            'status_kuliah'=>filter_var($val[8], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
             'kode_jurusan' => $_POST['jurusan']
                 );
 

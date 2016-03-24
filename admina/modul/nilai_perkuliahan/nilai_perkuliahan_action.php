@@ -58,26 +58,26 @@ if ($val[1]!='') {
       if ($val[6]=='') {
       $nama_kelas = "01";
     } else {
-      $nama_kelas = $val[6];
+      $nama_kelas =filter_var($val[6], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH);
     }
 
     if ($val[7]!='') {
-        $check = $db->check_exist('nilai',array('nim'=>$val[1],'kode_mk' => $val[3],'semester'=>$val[6],'nama_kelas'=>$nama_kelas));
+        $check = $db->check_exist('nilai',array('nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'kode_mk' => filter_var($val[3], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'semester'=>filter_var($val[6], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),'nama_kelas'=>$nama_kelas));
     if ($check==true) {
       $error_count++;
       $error[] = $val[1]." ".$val[3]." Sudah Ada";
     } else {
       $sukses++;
     $data = array(
-      'semester' => $val[5],
-      'nim' => $val[1],
-      'nama' => $val[2],
-      'kode_mk' => $val[3],
-      'nama_mk' => $val[4],
-      'nama_kelas' => $nama_kelas,
-      'nilai_huruf' =>$val[7],
-      'nilai_indek' => $val[8],
-      'nilai_angka' => $val[9],
+      'semester' => filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+      'nim' => trim(filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)),
+      'nama' => filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+      'kode_mk' =>  filter_var($val[3], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+      'nama_mk' => filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+      'nama_kelas' => trim($nama_kelas),
+      'nilai_huruf' =>filter_var($val[7], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+      'nilai_indek' => filter_var($val[8], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+      'nilai_angka' => filter_var($val[9], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
       'kode_jurusan' => $_POST['jurusan']
       );
       $in = $db->insert('nilai',$data);

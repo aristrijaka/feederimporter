@@ -38,7 +38,7 @@ foreach ($data as $key => $val) {
 
       if ($val[0]!='') {
           
-              $check = $db->check_exist('mhs_pt',array('nipd' => $val[0]));
+              $check = $db->check_exist('mhs_pt',array('nipd' => filter_var($val[0], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)));
                 if ($check==true) {
                   $error_count++;
                   $error[] = $val[0]." ".$val[1]." Sudah Ada";
@@ -46,40 +46,40 @@ foreach ($data as $key => $val) {
                   $sukses++;
 
                 $data = array(
-                        'nm_pd'      => $val[1],
-                        'tmpt_lahir' => $val[2],
-                        'tgl_lahir'  => $val[3],
-                        'jk'         => $val[4],
-                        'id_agama'   => $val[5],
-                        'id_kk'      => $val[6],
-                        "jln"        => $val[10],
-                        "rt"         => $val[11],
-                        "rw"         => $val[12],
-                        "nm_dsn"     => $val[13],
-                        "ds_kel"     => $val[14],
-                        "kode_pos"   => $val[15],
-                        "id_jns_tinggal"      => $val[16],
-                        "telepon_rumah"       => $val[17],
-                        "telepon_seluler"     => $val[18],
-                        "email"               => $val[19],
-                        "a_terima_kps"        => $val[20],
-                        "no_kps"              => $val[21],
-                        "stat_pd"             => $val[22],
-                        "nm_ayah"             => $val[23],
-                        "tgl_lahir_ayah"      => $val[24],
-                        "id_jenjang_pendidikan_ayah" => $val[25],
-                        "id_pekerjaan_ayah"   => $val[26],
-                        "id_penghasilan_ayah" => $val[27],
-                        "nm_ibu_kandung"      => $val[28],
-                        "tgl_lahir_ibu"       => $val[29],
-                        "id_jenjang_pendidikan_ibu" => $val[30],
-                         "id_pekerjaan_ibu"    => $val[31],
-                        "id_penghasilan_ibu"  => $val[32],
-                        "nm_wali"             => $val[33],
-                        "tgl_lahir_wali"      => $val[34],
-                        "id_jenjang_pendidikan_wali" => $val[35],
-                        "id_pekerjaan_wali"   => $val[36],
-                        "id_penghasilan_wali" => $val[37]
+                        'nm_pd'      => filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'tmpt_lahir' => filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'tgl_lahir'  => filter_var($val[3], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'jk'         => filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'id_agama'   => filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        'id_kk'      => filter_var($val[6], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "jln"        => filter_var($val[10], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "rt"         => filter_var($val[11], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "rw"         => filter_var($val[12], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "nm_dsn"     => filter_var($val[13], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "ds_kel"     => filter_var($val[14], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "kode_pos"   => filter_var($val[15], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_jns_tinggal"      => filter_var($val[16], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "telepon_rumah"       => filter_var($val[17], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "telepon_seluler"     => filter_var($val[18], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "email"               => filter_var($val[19], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "a_terima_kps"        => filter_var($val[20], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "no_kps"              => filter_var($val[21], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "stat_pd"             => filter_var($val[22], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "nm_ayah"             => filter_var($val[23], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "tgl_lahir_ayah"      => filter_var($val[24], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_jenjang_pendidikan_ayah" => filter_var($val[25], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_pekerjaan_ayah"   => filter_var($val[26], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_penghasilan_ayah" => filter_var($val[27], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "nm_ibu_kandung"      => filter_var($val[28], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "tgl_lahir_ibu"       => filter_var($val[29], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_jenjang_pendidikan_ibu" => filter_var($val[30], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                         "id_pekerjaan_ibu"    => filter_var($val[31], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_penghasilan_ibu"  => filter_var($val[32], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "nm_wali"             => filter_var($val[33], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "tgl_lahir_wali"      => filter_var($val[34], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_jenjang_pendidikan_wali" => filter_var($val[35], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_pekerjaan_wali"   => filter_var($val[36], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                        "id_penghasilan_wali" => filter_var($val[37], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)
                        
                 );
 
@@ -89,12 +89,12 @@ foreach ($data as $key => $val) {
                   $last_id = $db->get_last_id();
 
                        $data_mhs_pt = array(
-                  'nipd' => $val[0],
+                  'nipd' => filter_var($val[0], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
                   'kode_jurusan' => $_POST['jurusan'],
                   'id_mhs' => $last_id,
-                  'id_jns_daftar' => $val[7],
-                  'tgl_masuk_sp' => $val[8],
-                  'mulai_smt' => $val[9]
+                  'id_jns_daftar' => filter_var($val[7], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                  'tgl_masuk_sp' => filter_var($val[8], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                  'mulai_smt' => filter_var($val[9], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)
                   );
 
                   $in = $db->insert('mhs_pt',$data_mhs_pt);

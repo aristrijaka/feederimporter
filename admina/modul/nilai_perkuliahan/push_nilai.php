@@ -114,6 +114,7 @@ $token = $result;
 			$nim = $value->nim;
 		$kode_mk = $value->kode_mk;
 		$kelas = $value->nama_kelas;
+		$nama_mk = $value->nama_mk; 
 		$semester = $value->semester;
 
 		$filter_mk = "kode_mk='".$kode_mk."'";
@@ -144,7 +145,8 @@ $token = $result;
 								'id_reg_pd' => $id_reg_pd
 						);
 			$temp_data = array(
-								'nilai_huruf' => $value->nilai_huruf,
+									'nilai_angka' => $value->nilai_angka,
+	'nilai_huruf' => $value->nilai_huruf,
 								'nilai_indeks' => $value->nilai_indek
 						);
 			$array_nilai = array('key'=>$temp_key,'data'=>$temp_data);
@@ -214,7 +216,8 @@ $token = $result;
 								'id_reg_pd' => $id_reg_pd
 						);
 			$temp_data = array(
-								'nilai_huruf' => $value->nilai_huruf,
+									'nilai_angka' => $value->nilai_angka,
+	'nilai_huruf' => $value->nilai_huruf,
 								'nilai_indeks' => $value->nilai_indek
 						);
 			$array_nilai = array('key'=>$temp_key,'data'=>$temp_data);
@@ -288,7 +291,8 @@ $token = $result;
 								'id_reg_pd' => $id_reg_pd
 						);
 			$temp_data = array(
-								'nilai_huruf' => $value->nilai_huruf,
+									'nilai_angka' => $value->nilai_angka,
+	'nilai_huruf' => $value->nilai_huruf,
 								'nilai_indeks' => $value->nilai_indek
 						);
 			$array_nilai = array('key'=>$temp_key,'data'=>$temp_data);
@@ -385,8 +389,6 @@ $token = $result;
 		$temp_pd = $proxy->GetRecord($token,'mahasiswa_pt',$filter_pd);
 		$tot_regpd = count($temp_pd['result']);
 
-	
-
 
 		if ($tot_regpd!=0 && $tot_kls!=0) {
 			$id_reg_pd = $temp_pd['result']['id_reg_pd'];
@@ -397,7 +399,8 @@ $token = $result;
 								'id_reg_pd' => $id_reg_pd
 						);
 			$temp_data = array(
-								'nilai_huruf' => $value->nilai_huruf,
+									'nilai_angka' => $value->nilai_angka,
+									'nilai_huruf' => $value->nilai_huruf,
 								'nilai_indeks' => $value->nilai_indek
 						);
 			$array_nilai = array('key'=>$temp_key,'data'=>$temp_data);

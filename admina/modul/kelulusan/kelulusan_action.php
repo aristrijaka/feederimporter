@@ -42,7 +42,7 @@ foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
 
   }
 if ($val[1]!='') {
-  $check = $db->check_exist('kelulusan',array('nim'=>$val[1]));
+  $check = $db->check_exist('kelulusan',array('nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)));
   if ($check==true) {
     $error_count++;
     $error[] = $val[1]." Sudah Ada";
@@ -50,13 +50,13 @@ if ($val[1]!='') {
     $sukses++;
 
     $date1 = date_create('30-12-1899');
-        date_add($date1, date_interval_create_from_date_string($val[4].' days'));
+        date_add($date1, date_interval_create_from_date_string(filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH).' days'));
         $tgl_keluar = date_format($date1, 'Y-m-d');
 
 
         if ($val[6]!='') {
           $date = date_create('30-12-1899');
-          date_add($date, date_interval_create_from_date_string($val[6].' days'));
+          date_add($date, date_interval_create_from_date_string(filter_var($val[6], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH).' days'));
           $tanggal_yudisium = date_format($date, 'Y-m-d');
         } else {
           $tanggal_yudisium = $val[6];
@@ -64,7 +64,7 @@ if ($val[1]!='') {
 
         if ($val[10]!='') {
           $date2 = date_create('30-12-1899');
-          date_add($date2, date_interval_create_from_date_string($val[10].' days'));
+          date_add($date2, date_interval_create_from_date_string(filter_var($val[10], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH).' days'));
           $tgl_awal = date_format($date2, 'Y-m-d');
         } else {
           $tgl_awal = $val[10];
@@ -73,7 +73,7 @@ if ($val[1]!='') {
 
         if ($val[11]!='') {
           $date3 = date_create('30-12-1899');
-          date_add($date3, date_interval_create_from_date_string($val[11].' days'));
+          date_add($date3, date_interval_create_from_date_string(filter_var($val[11], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH).' days'));
           $tgl_akhir = date_format($date3, 'Y-m-d');
         } else {
           $tgl_akhir = $val[11];
@@ -83,15 +83,15 @@ if ($val[1]!='') {
 
 
     $data = array(
-            'nim'=>$val[1],
-            'nama'=>$val[2],
+            'nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+            'nama'=>filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
             'id_jenis_keluar'=>$val[3],
             'tanggal_keluar' => $tgl_keluar,
-            'sk_yudisium'=>$val[5],
+            'sk_yudisium'=>filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
             'tgl_sk_yudisium'=>$tanggal_yudisium,
-            'ipk' => str_replace(",", ".", $val[7]),
-            'no_seri_ijasah'=>$val[8],
-            'judul_skripsi'=>$val[9],
+            'ipk' => str_replace(",", ".", filter_var($val[7], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)),
+            'no_seri_ijasah'=>filter_var($val[8], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+            'judul_skripsi'=>filter_var($val[9], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
             'bulan_awal_bimbingan' => $tgl_awal,
             'bulan_akhir_bimbingan' => $tgl_akhir,
             'kode_jurusan' => $_POST['jurusan']
