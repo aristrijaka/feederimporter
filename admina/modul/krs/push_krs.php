@@ -116,7 +116,15 @@ $token = $result;
 		$kelas = $value->nama_kelas;
 		$semester = $value->semester;
 
-		$filter_mk = "kode_mk='".$kode_mk."'";
+				$kode_prodi = $value->kode_jurusan;
+
+		$filter_ptk = "p.id_sp='".$id_sp."' and p.kode_prodi='".$kode_prodi."'";
+		$temp_ptk = $proxy->GetRecord($token,'sms',$filter_ptk);
+		if ($temp_ptk['result']) {
+			$id_sms = $temp_ptk['result']['id_sms'];
+		}
+
+		$filter_mk = "kode_mk='".$kode_mk."' and id_sms='".$id_sms."' and soft_delete='0'";
 		$temp_mk = $proxy->GetRecord($token,'mata_kuliah',$filter_mk);
 		if ($temp_mk['result']) {
 			$id_mk = $temp_mk['result']['id_mk'];
@@ -192,7 +200,15 @@ $token = $result;
 		$kelas = $value->nama_kelas;
 		$semester = $value->semester;
 
-		$filter_mk = "kode_mk='".$kode_mk."'";
+				$kode_prodi = $value->kode_jurusan;
+
+		$filter_ptk = "p.id_sp='".$id_sp."' and p.kode_prodi='".$kode_prodi."'";
+		$temp_ptk = $proxy->GetRecord($token,'sms',$filter_ptk);
+		if ($temp_ptk['result']) {
+			$id_sms = $temp_ptk['result']['id_sms'];
+		}
+
+		$filter_mk = "kode_mk='".$kode_mk."' and id_sms='".$id_sms."' and soft_delete='0'";
 		$temp_mk = $proxy->GetRecord($token,'mata_kuliah',$filter_mk);
 		
 
@@ -278,7 +294,15 @@ $token = $result;
 		$kelas = $value->nama_kelas;
 		$semester = $value->semester;
 
-		$filter_mk = "kode_mk='".$kode_mk."'";
+				$kode_prodi = $value->kode_jurusan;
+
+		$filter_ptk = "p.id_sp='".$id_sp."' and p.kode_prodi='".$kode_prodi."'";
+		$temp_ptk = $proxy->GetRecord($token,'sms',$filter_ptk);
+		if ($temp_ptk['result']) {
+			$id_sms = $temp_ptk['result']['id_sms'];
+		}
+
+		$filter_mk = "kode_mk='".$kode_mk."' and id_sms='".$id_sms."' and soft_delete='0'";
 		$temp_mk = $proxy->GetRecord($token,'mata_kuliah',$filter_mk);
 		
 
@@ -394,7 +418,15 @@ $token = $result;
 		$kelas = $value->nama_kelas;
 		$semester = $value->semester;
 
-		$filter_mk = "kode_mk='".$kode_mk."'";
+				$kode_prodi = $value->kode_jurusan;
+
+		$filter_ptk = "p.id_sp='".$id_sp."' and p.kode_prodi='".$kode_prodi."'";
+		$temp_ptk = $proxy->GetRecord($token,'sms',$filter_ptk);
+		if ($temp_ptk['result']) {
+			$id_sms = $temp_ptk['result']['id_sms'];
+		}
+
+		$filter_mk = "kode_mk='".$kode_mk."' and id_sms='".$id_sms."' and soft_delete='0'";
 		$temp_mk = $proxy->GetRecord($token,'mata_kuliah',$filter_mk);
 
 		//print_r($temp_mk);
