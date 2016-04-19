@@ -98,7 +98,18 @@
                           <input type="text" id="tgl3" name="bulan_akhir_bimbingan" placeholder="Bulan Akhir Bimbingan" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
-                      
+  <div class="form-group">
+                        <label for="No seri Ijazah" class="control-label col-lg-2">NIDN Pembimbing I</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="pembimbing_1" class="form-control" > 
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
+                        <label for="No seri Ijazah" class="control-label col-lg-2">NIDN Pembimbing II</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="pembimbing_2" class="form-control" > 
+                        </div>
+                      </div><!-- /.form-group -->                    
   <input type="hidden" name="jurusan" value="<?=$id_jur;?>">
                       
                       <div class="form-group">

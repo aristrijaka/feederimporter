@@ -125,11 +125,29 @@
                         </div>
                       </div><!-- /.form-group -->
 <div class="form-group">
+                        <label for="Jenis Tinggal" class="control-label col-lg-2">Kecamatan</label>
+                        <div class="col-lg-10">
+                          <select name="id_wil" data-placeholder="Pilih Kecamatan..." class="form-control chzn-select" tabindex="2" >
+               <option value=""></option>
+               <?php foreach ($db->fetch_all("data_wilayah where id_level_wil=3") as $isi) {
+                echo $data_edit->id_wil;
+
+                  if ($data_edit->id_wil==$isi->id_wil) {
+                    echo "<option value='$isi->id_wil' selected>$isi->nm_wil</option>";
+                  } else {
+                  echo "<option value='$isi->id_wil'>$isi->nm_wil</option>";
+                    }
+               } ?>
+              </select>
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
                         <label for="Kodepos" class="control-label col-lg-2">Kodepos</label>
                         <div class="col-lg-10">
                           <input type="text" name="kode_pos" value="<?=$data_edit->kode_pos;?>" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
+
 <div class="form-group">
                         <label for="Jenis Tinggal" class="control-label col-lg-2">Jenis Tinggal</label>
                         <div class="col-lg-10">

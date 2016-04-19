@@ -26,86 +26,53 @@ switch ($_GET["act"]) {
 
 
 $objPHPExcel = PHPExcel_IOFactory::load("../../../upload/kelulusan/".$_FILES['semester']['name']);
+
+$data = $objPHPExcel->getActiveSheet()->toArray();
+
 $error_count = 0;
 $error = array();
 $sukses = 0;
-foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-    $highestRow         = $worksheet->getHighestRow(); // e.g. 10
-    $highestColumn      = $worksheet->getHighestColumn(); // e.g 'F'
-  $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
-
-    for ($row = 2; $row <= $highestRow; ++ $row) {
-    $val=array();
-  for ($col = 0; $col < $highestColumnIndex; ++ $col) {
-   $cell = $worksheet->getCellByColumnAndRow($col, $row);
-   $val[] = $cell->getValue();
-
-  }
-if ($val[1]!='') {
-  $check = $db->check_exist('kelulusan',array('nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)));
-  if ($check==true) {
-    $error_count++;
-    $error[] = $val[1]." Sudah Ada";
-  } else {
-    $sukses++;
-
-    $date1 = date_create('30-12-1899');
-        date_add($date1, date_interval_create_from_date_string(filter_var($val[4], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH).' days'));
-        $tgl_keluar = date_format($date1, 'Y-m-d');
 
 
-        if ($val[6]!='') {
-          $date = date_create('30-12-1899');
-          date_add($date, date_interval_create_from_date_string(filter_var($val[6], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH).' days'));
-          $tanggal_yudisium = date_format($date, 'Y-m-d');
-        } else {
-          $tanggal_yudisium = $val[6];
-        }
+foreach ($data as $key => $val) {
 
-        if ($val[10]!='') {
-          $date2 = date_create('30-12-1899');
-          date_add($date2, date_interval_create_from_date_string(filter_var($val[10], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH).' days'));
-          $tgl_awal = date_format($date2, 'Y-m-d');
-        } else {
-          $tgl_awal = $val[10];
-        }
+    if ($key>0) {
 
+      if ($val[1]!='') {
+          
+    $check = $db->check_exist('kelulusan',array('nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)));
+    if ($check==true) {
+      $error_count++;
+      $error[] = $val[1]." Sudah Ada";
+    } else {
+      $sukses++;
 
-        if ($val[11]!='') {
-          $date3 = date_create('30-12-1899');
-          date_add($date3, date_interval_create_from_date_string(filter_var($val[11], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH).' days'));
-          $tgl_akhir = date_format($date3, 'Y-m-d');
-        } else {
-          $tgl_akhir = $val[11];
-        }
+                    $data = array(
+                      'nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                      'nama'=>filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                      'id_jenis_keluar'=>$val[3],
+                      'tanggal_keluar' => $val[4],
+                      'sk_yudisium'=>filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                      'tgl_sk_yudisium'=>$val[6],
+                      'ipk' => str_replace(",", ".", filter_var($val[7], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)),
+                      'no_seri_ijasah'=>filter_var($val[8], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                      'judul_skripsi'=>filter_var($val[9], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
+                      'bulan_awal_bimbingan' => $val[10],
+                      'bulan_akhir_bimbingan' => $val[11],
+                      'jalur_skripsi' => $val[12],
+                      'pembimbing_1' => $val[13],
+                      'pembimbing_2' => $val[14],
+                      'kode_jurusan' => $_POST['jurusan']
+                    );
+
+                  $in = $db->insert("kelulusan",$data);
+              }
+
+      }
       
-
-
-
-    $data = array(
-            'nim'=>filter_var($val[1], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
-            'nama'=>filter_var($val[2], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
-            'id_jenis_keluar'=>$val[3],
-            'tanggal_keluar' => $tgl_keluar,
-            'sk_yudisium'=>filter_var($val[5], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
-            'tgl_sk_yudisium'=>$tanggal_yudisium,
-            'ipk' => str_replace(",", ".", filter_var($val[7], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH)),
-            'no_seri_ijasah'=>filter_var($val[8], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
-            'judul_skripsi'=>filter_var($val[9], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW|FILTER_FLAG_STRIP_HIGH),
-            'bulan_awal_bimbingan' => $tgl_awal,
-            'bulan_akhir_bimbingan' => $tgl_akhir,
-            'kode_jurusan' => $_POST['jurusan']
-              );
-
-      $in = $db->insert("kelulusan",$data);
-  }
+    }
+   
 }
-
-
-}
-
-}
-
 
     unlink("../../../upload/kelulusan/".$_FILES['semester']['name']);
     $msg = '';
@@ -141,7 +108,10 @@ if (($sukses>0) || ($error_count>0)) {
     "kode_jurusan" => $_POST["jurusan"],
     "id_jenis_keluar"=>$_POST["id_jenis_keluar"],
     "sk_yudisium"=>$_POST["sk_yudisium"],
-    "tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
+    "tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],
+    'pembimbing_1' => $_POST['pembimbing_1'],
+    'pembimbing_2' => $_POST['pembimbing_2']
+    );
   
   
   
@@ -178,7 +148,10 @@ if (($sukses>0) || ($error_count>0)) {
     "id_jenis_keluar"=>$_POST["id_jenis_keluar"],
     "kode_jurusan" => $_POST["jurusan"],
      "tanggal_keluar" => $_POST["tanggal_keluar"],
-     "sk_yudisium"=>$_POST["sk_yudisium"],"tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],);
+     "sk_yudisium"=>$_POST["sk_yudisium"],"tgl_sk_yudisium"=>$_POST["tgl_sk_yudisium"],"ipk"=>$_POST["ipk"],"no_seri_ijasah"=>$_POST["no_seri_ijasah"],"judul_skripsi"=>$_POST["judul_skripsi"],"bulan_awal_bimbingan"=>$_POST["bulan_awal_bimbingan"],"bulan_akhir_bimbingan"=>$_POST["bulan_akhir_bimbingan"],
+         'pembimbing_1' => $_POST['pembimbing_1'],
+    'pembimbing_2' => $_POST['pembimbing_2']
+    );
    
    
    

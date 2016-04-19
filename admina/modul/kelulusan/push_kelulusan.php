@@ -82,13 +82,12 @@ $i=1;
     //var_dump($temp_npm);
     if ($temp_npm['result']) {
       $id_reg_pd = $temp_npm['result']['id_reg_pd'];
-    }
-
-      $array_key = array('id_reg_pd' => $id_reg_pd);
+            $array_key = array('id_reg_pd' => $id_reg_pd);
       $array_data = array(
         'id_jns_keluar' => $value->id_jenis_keluar,
         'tgl_keluar' => $value->tanggal_keluar,
         'judul_skripsi' => $value->judul_skripsi,
+        'jalur_skripsi' =>$value->jalur_skripsi,
         'bln_awal_bimbingan' => $value->bulan_awal_bimbingan,
         'bln_akhir_bimbingan' => $value->bulan_akhir_bimbingan,
         'sk_yudisium' => $value->sk_yudisium,
@@ -102,6 +101,52 @@ $i=1;
 
       if ($up_result['result']['error_desc']==NULL) {
                   ++$sukses_count;
+                    if ($value->pembimbing_1!='') {
+                        
+                        $filter_nidn = "nidn ilike '%".$value->pembimbing_1."%'";
+                        $get_ptk = $proxy->GetRecord($token,'dosen',$filter_nidn);
+                        
+                        if ($get_ptk['result']) {
+                                $id_ptk_1 = $get_ptk['result']['id_ptk'];
+                                $data_pembimbing = array(
+                                  'id_ptk' => $id_ptk_1,
+                                  'id_reg_pd' => $id_reg_pd,
+                                  'urutan_promotor' => 1
+                                  );
+                                //print_r($data_pembimbing);
+                                $insert_pembimbing = $proxy->InsertRecord($token, 'dosen_pembimbing', json_encode($data_pembimbing));
+                                if ($insert_pembimbing['result']['error_desc']) {
+                                    $array_key = array('id_ptk' => $id_ptk_1, 'id_reg_pd' => $id_reg_pd);
+                                    $proxy->RestoreRecord($token, 'dosen_pembimbing', json_encode($array_key));
+                                }
+                        }
+                   
+                    } 
+                      if ($value->pembimbing_2!='') {
+                        $filter_nidn = "nidn='".$value->pembimbing_2."'";
+                        $get_ptk = $proxy->GetRecord($token,'dosen',$filter_nidn);
+                                $get_ptk = $proxy->GetRecord($token,'dosen',$filter_nidn);
+                        
+                        if ($get_ptk['result']) {
+                                $id_ptk_2 = $get_ptk['result']['id_ptk'];
+                                $data_pembimbing = array(
+                                  'id_ptk' => $id_ptk_2,
+                                  'id_reg_pd' => $id_reg_pd,
+                                  'urutan_promotor' => 2
+                                  );
+                                //print_r($data_pembimbing);
+                                $insert_pembimbing = $proxy->InsertRecord($token, 'dosen_pembimbing', json_encode($data_pembimbing));
+                                if ($insert_pembimbing['result']['error_desc']) {
+                                    $array_key = array('id_ptk' => $id_ptk_2, 'id_reg_pd' => $id_reg_pd);
+                                    $proxy->RestoreRecord($token, 'dosen_pembimbing', json_encode($array_key));
+                                }
+                        }
+
+                    } 
+
+                    
+
+    
                 
                   $db->update('kelulusan',array('status_error'=>1,'keterangan'=>''),'id',$value->id);
                 } else {
@@ -109,6 +154,13 @@ $i=1;
                   $error_msg[] = "<h4>Error $nim</h4>".$up_result['result']['error_desc'];
                   $db->update('kelulusan',array('status_error' => 2, 'keterangan'=>$up_result['result']['error_desc']),'id',$value->id);
                 }
+    } else {
+             ++$error_count;
+                  $error_msg[] = "<h4>Error Mahasiswa NIM $nim tidak ditemukan</h4>";
+                  $db->update('kelulusan',array('status_error' => 2, 'keterangan'=>"Error $nim tidak ditemukan"),'id',$value->id);
+    }
+
+
       $i++;
    $pu->incrementStageItems(1, true);
 

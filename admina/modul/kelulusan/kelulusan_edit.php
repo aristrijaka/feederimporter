@@ -103,6 +103,18 @@
                           <input type="text" name="bulan_akhir_bimbingan" id="tgl3" value="<?=$data_edit->bulan_akhir_bimbingan;?>" class="form-control" > 
                         </div>
                       </div><!-- /.form-group -->
+<div class="form-group">
+                        <label for="No seri Ijazah" class="control-label col-lg-2">NIDN Pembimbing I</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="pembimbing_1" value="<?=$data_edit->pembimbing_1;?>" class="form-control" > 
+                        </div>
+                      </div><!-- /.form-group -->
+<div class="form-group">
+                        <label for="No seri Ijazah" class="control-label col-lg-2">NIDN Pembimbing II</label>
+                        <div class="col-lg-10">
+                          <input type="text" name="pembimbing_2" value="<?=$data_edit->pembimbing_2;?>" class="form-control" > 
+                        </div>
+                      </div><!-- /.form-group -->
   <input type="hidden" name="jurusan" value="<?=$id_jur;?>">
                       <input type="hidden" name="id" value="<?=$data_edit->id;?>">
                       <div class="form-group">

@@ -22,6 +22,7 @@ require_once ('Datatable.php');
 require_once ('My_pagination.php');
 require_once ('url.php');
 require_once ('DTable.php');
+require_once ('Table_Clean.php');
 
 $db=new Database("mysql");
 
@@ -33,6 +34,7 @@ $pg=New My_pagination();
 $dtable = new TableData();
 
 $new_table = new DTable("mysql");
+$clean = new Table_Clean("mysql");
 
 function handleException( $exception ) {
   echo  $exception->getMessage();

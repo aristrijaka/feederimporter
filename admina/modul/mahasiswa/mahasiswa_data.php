@@ -51,7 +51,7 @@ foreach ($query	as $value) {
 	} elseif ($value->status_error==0) {
 		$ResultData[] = '<button rel="tooltip" type="button" class="btn btn-xs btn-warning tips" data-toggle="tooltip" data-placement="left" title="Belum diproses" data-original-title="Belum diproses"><i class="fa fa-info-circle"></i></button> '.$value->status_error;
 	} else {
-		$ResultData[] = '<button rel="tooltip" type="button" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="left" title="'.$value->keterangan.'" data-original-title="'.$value->keterangan.'"><i class="fa fa-info-circle"></i></button> '.$value->status_error;
+		$ResultData[] = '<button rel="tooltip" type="button" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="left" title=\''.addslashes($value->keterangan).'\'" data-original-title=\''.addslashes($value->keterangan).'\'"><i class="fa fa-info-circle"></i></button> '.$value->status_error;
 	}
 	$ResultData[] = $value->id_mhs_pt;
 

@@ -20,7 +20,7 @@ switch ($_GET["act"]) {
     break;
 
      case 'import':
-     if (!is_dir("../../../upload/nilai")) {
+  if (!is_dir("../../../upload/nilai")) {
               mkdir("../../../upload/nilai");
             }
 
@@ -38,21 +38,21 @@ switch ($_GET["act"]) {
 
 
 $objPHPExcel = PHPExcel_IOFactory::load("../../../upload/nilai/".$_FILES['semester']['name']);
+
+
+$data = $objPHPExcel->getActiveSheet()->toArray();
+
+
 $error_count = 0;
 $error = array();
 $sukses = 0;
-foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-    $highestRow         = $worksheet->getHighestRow(); // e.g. 10
-    $highestColumn      = $worksheet->getHighestColumn(); // e.g 'F'
-  $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);
 
-    for ($row = 2; $row <= $highestRow; ++ $row) {
-    $val=array();
-  for ($col = 0; $col < $highestColumnIndex; ++ $col) {
-   $cell = $worksheet->getCellByColumnAndRow($col, $row);
-   $val[] = $cell->getValue();
 
-  }
+
+foreach ($data as $key => $val) {
+
+    if ($key>0) {
+
 if ($val[1]!='') {
   
       if ($val[6]=='') {
@@ -85,19 +85,18 @@ if ($val[1]!='') {
     }
 
 }
-
-
-}
-
+      
+    }
+   
 }
 
 
     unlink("../../../upload/nilai/".$_FILES['semester']['name']);
-    $msg = '';
+        $msg = '';
 if (($sukses>0) || ($error_count>0)) {
   $msg =  "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\" >
   <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>
-      <font color=\"#3c763d\">".$sukses." data nilai baru berhasil di import</font><br />
+      <font color=\"#3c763d\">".$sukses." Data Nilai  berhasil di import</font><br />
       <font color=\"#ce4844\" >".$error_count." data tidak bisa ditambahkan </font>";
       if (!$error_count==0) {
         $msg .= "<a data-toggle=\"collapse\" href=\"#collapseExample\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Detail error</a>";

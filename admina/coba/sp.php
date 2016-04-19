@@ -25,7 +25,7 @@ $token = $result;
 
 	$id_sp = $get_id_sp['result']['id_sp'];
 
-
+/*
 $table = 'mahasiswa';
 $result = $proxy->GetDictionary($token, $table);
 
@@ -53,7 +53,7 @@ $get_id_sp = $proxy->GetRecord($token,'kuliah_mahasiswa',$filter_sp);
 
 print_r($get_id_sp);
 
-
+*/
 
 /*	$filter_sms = "id_sp='".$id_sp."' and kode_prodi ilike '%55201%'";
 		$temp_sms = $proxy->GetRecord($token,'sms',$filter_sms);
@@ -178,7 +178,7 @@ print_r($temp_ptk);
 
 */
 
-$limit='10';
+$limit=3000;
 $offset=0;
 $order= "";
 
@@ -198,16 +198,18 @@ foreach ($resultrecordset['result'] as $isi) {*/
 	
 /*	$filter_nim = "";
 
+*/
 
-
-//	$data_kuliah = $proxy->GetRecord($token,'kuliah_mahasiswa',$filter_nim);
-	$data_kuliah = $proxy->GetRecordset($token,'jenis_keluar', $filter_nim,$order,$limit,$offset);
+/*//	$data_kuliah = $proxy->GetRecord($token,'kuliah_mahasiswa',$filter_nim);
+	$data_kuliah = $proxy->GetRecordset($token,'wilayah', "",$order,$limit,$offset);
 
 	foreach ($data_kuliah['result'] as $isi) {
 		$data = array(
-			'id_jns_keluar' => $isi['id_jns_keluar'],
-			'ket_keluar' => $isi['ket_keluar']
+			'id_wil' => $isi['id_wil'],
+			'nm_wil' => $isi['nm_wil'],
+			'id_level_wil' => $isi['id_level_wil'],
+			'id_induk_wilayah' => $isi['id_induk_wilayah']
 			);
-		$db->insert('jenis_keluar',$data);
+		$db->insert('data_wilayah',$data);
 	}*/
 ?>
