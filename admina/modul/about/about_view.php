@@ -40,7 +40,7 @@
                   Terimakasih telah mencoba feeder impoter ini. 
 
                   <p>
-                    <b>Jika kawan - kawan mau menyumbang saya ga nolak :D</b>
+                    <b>Jika kawan - kawan mau menyumbang, Silakan</b>
                     <br>a/n : mohamad wildannudin
                     <br>norek : 7740376386
                     <br>rek : BCA
