@@ -40,10 +40,10 @@
                   Terimakasih telah mencoba feeder impoter ini. 
 
                   <p>
-                    Jika kawan - kawan mau menyumbang saya ga nolak :D
-                    a/n : mohamad wildannudin
-                    norek : 7740376386
-                    rek : BCA
+                    <b>Jika kawan - kawan mau menyumbang saya ga nolak :D</b>
+                    <br>a/n : mohamad wildannudin
+                    <br>norek : 7740376386
+                    <br>rek : BCA
                   </p>
 
                 </div><!-- /.box-body -->
