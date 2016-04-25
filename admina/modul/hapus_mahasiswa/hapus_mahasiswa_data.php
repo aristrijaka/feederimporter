@@ -106,7 +106,7 @@ $id_sms = '';
 			$i=0;
 			foreach ($temp_rec['result'] as $key) {
 				$temps = array();
-
+				$temps[] = ++$i+$temp_offset." <input type='checkbox'  class='deleteRow' value='".$key['id_reg_pd']."'/>";
 				$temps[] = $key['nm_pd'];
 				$temps[] = $key['nipd'];
 				$temps[] = $key['tgl_lahir'];

@@ -48,6 +48,8 @@ if ($config->live=='Y') {
                                     <table id="dtb_hapus_kelas" class="table table-bordered table-striped">
                                    <thead>
                                      <tr>    
+                                        <th><input type="checkbox"  id="bulkDelete"  /> <button id="deleteTriger"><i class="fa fa-trash"></i></button></th>
+     
                              <th>Nama</th>              
                           <th>NIM</th>
                           <th>Tanggal Lahir </th>
@@ -73,19 +75,23 @@ if ($config->live=='Y') {
                     </div>
 <div class="modal modal-danger" id="mass_info" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog"> <div class="modal-content"><div class="modal-header"> <h4 class="modal-title">Hapus Data Massal</h4> </div> <div class="modal-body"> 
 <div class="form-group" style="margin-bottom:32px">
-                        <label style="padding-top:6px" for="Jurusan" class="control-label col-lg-2">Semester</label>
+                        <label style="padding-top:6px" for="Jurusan" class="control-label col-lg-2">Angkatan</label>
                         <div class="col-lg-10">
                           <select  name="sem_delete" id="sem_delete"  class="form-control " tabindex="2" required>
                            <?php 
-                    foreach ($semester['result'] as $isi) {
-                  echo "<option value='".$isi['id_smt']."'>".$isi['nm_smt']."</option>";
-               } ?>
+                   $firstYear = (int)date('Y') - 20;
+$current_year = $firstYear+20;
+for($i=$current_year;$i>=$firstYear;$i--)
+{
+    echo '<option value='.$i.'1>'.$i.'</option>';
+}
+?>
 
               </select>
                         </div>
 <input type="hidden" id="semester_selected">
                       </div><!-- /.form-group -->
- </div> <div class="modal-footer"> <button type="button" id="delete" class="btn btn-danger">Delete</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> </div> </div><!-- /.modal-content --> </div><!-- /.modal-dialog --> </div><!-- /.modal -->
+ </div> <div class="modal-footer"> <button type="button" id="delete_mhs_massal" class="btn btn-danger">Delete</button> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> </div> </div><!-- /.modal-content --> </div><!-- /.modal-dialog --> </div><!-- /.modal -->
         <?php
        foreach ($db->fetch_all("sys_menu") as $isi) {
                       if ($path_url==$isi->url) {
@@ -196,6 +202,7 @@ $('#deleteTriger').on("click", function(event){
               data: {data_ids:ids_string},
                async: true,
               success: function(result) {
+                console.log(result);
                 $("#loadnya").hide();
                 window.location.reload();
               },
@@ -210,6 +217,26 @@ $('#deleteTriger').on("click", function(event){
 
           }
         });
+
+$('#delete_mhs_massal').on("click", function(event){
+  event.preventDefault();
+   $('#mass_info').modal('hide');
+    $("#loadnya").show();
+
+          $.ajax({
+              type: "POST",
+              url: "<?=base_admin();?>modul/hapus_mahasiswa/hapus.php?act=delete_all",
+              data: {data_ids:$("#sem_delete").val(),jurusan: "<?=$id_jur;?>"},
+               async: true,
+              success: function(result) {
+               // console.log(result);
+                $("#loadnya").hide();
+                window.location.reload();
+              },
+              async:true
+            });
+        });
+
 
   $("#sem_filter").change(function(){
     $("#matkul").html('');
