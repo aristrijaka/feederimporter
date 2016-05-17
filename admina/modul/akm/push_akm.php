@@ -13,7 +13,7 @@ $options = array(
 );
 
 $pu = new Manticorp\ProgressUpdater($options);
-$check = $db->fetch_custom("select *,nilai_akm.id as id_akm from nilai_akm inner join jurusan on nilai_akm.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and nilai_akm.semester='".$_GET['sem']."' and valid=0 or valid=2");
+$check = $db->fetch_custom("select *,nilai_akm.id as id_akm from nilai_akm inner join jurusan on nilai_akm.kode_jurusan=jurusan.kode_jurusan where jurusan.kode_jurusan='".$_GET['jurusan']."' and nilai_akm.semester='".$_GET['sem']."' and (valid=0 or valid=2)");
 $jumlah_error = $check->rowCount();
 if ($jumlah_error>0) {
 	$msg = "Pastikan Anda Sudah Melakukan validasi AKM dan semua data valid";
@@ -116,7 +116,7 @@ $insert_data_akm = array();
 
 			if ($up_result['result']['error_desc']==NULL) {
 									++$sukses_count;
-								
+
 									$db->update('nilai_akm',array('status_error'=>1,'keterangan'=>''),'id',$value->id_akm);
 								} else {
 									++$error_count;
@@ -172,7 +172,7 @@ $insert_data_akm = array();
 
 	if ($temp_result['result']['error_desc']==NULL) {
 									++$sukses_count;
-								
+
 									$db->update('nilai_akm',array('status_error'=>1,'keterangan'=>''),'id',$value->id_akm);
 								} else {
 									++$error_count;
@@ -183,7 +183,7 @@ $insert_data_akm = array();
 	 $pu->incrementStageItems(1, true);
 					}
 
-	
+
 
 
 	}
@@ -193,7 +193,7 @@ if ((!$sukses_count==0) || (!$error_count==0)) {
 	$msg =  "<div class=\"alert alert-warning \" role=\"alert\">
 			<font color=\"#3c763d\">".$sukses_count." data Akm baru berhasil di Upload</font><br />
 			<font color=\"#ce4844\" >".$error_count." data tidak bisa diupload </font>";
-			
+
 			if (!$error_count==0) {
 				$msg .= "<a data-toggle=\"collapse\" href=\"#collapseExample\" aria-expanded=\"false\" aria-controls=\"collapseExample\">Detail error</a>";
 			}
