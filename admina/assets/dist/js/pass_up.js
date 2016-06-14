@@ -56,7 +56,7 @@ $(document).ready(function(){
                    $(form).ajaxSubmit({
                           type: "post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("#pass_up").serialize(),
                        //  enctype:  'multipart/form-data'
                         success: function(data){
                           $('#loadnya').hide();

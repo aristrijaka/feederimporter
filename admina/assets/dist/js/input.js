@@ -35,7 +35,7 @@ $("#tgl5").datepicker( {
                    $(form).ajaxSubmit({
                           type: "post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("#input_import").serialize(),
                        //  enctype:  'multipart/form-data'
                         success: function(data){
                           $("#isi_informasi").html(data);
@@ -65,7 +65,7 @@ $("#tgl5").datepicker( {
                    $(form).ajaxSubmit({
                           type: "post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("#input").serialize(),
                        //  enctype:  'multipart/form-data'
                         success: function(data){
                           console.log(data);
@@ -100,7 +100,7 @@ $("#tgl5").datepicker( {
                    $(form).ajaxSubmit({
                           type: "post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("#input_user").serialize(),
                        //  enctype:  'multipart/form-data'
                         success: function(data){
                   $('#loadnya').hide();
@@ -127,7 +127,7 @@ $("#tgl5").datepicker( {
                    $(form).ajaxSubmit({
                           type: "post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("#input_page").serialize(),
                        //  enctype:  'multipart/form-data'
                         success: function(data){
                           $('#loadnya').hide();

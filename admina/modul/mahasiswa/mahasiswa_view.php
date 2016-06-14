@@ -2,12 +2,12 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Manage Kurikulum
+                        Manage Mahasiswa
                     </h1>
                         <ol class="breadcrumb">
                         <li><a href="<?=base_index();?>"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="<?=base_index();?>KRS">Kurikulum</a></li>
-                        <li class="active">Kurikulum List</li>
+                        <li><a href="<?=base_index();?>KRS">Mahasiswa</a></li>
+                        <li class="active">Mahasiswa List</li>
                     </ol>
                 </section>
 
@@ -26,7 +26,7 @@
                           <th>Nama Jurusan</th>
                           <th>Jenjang</th>
 
-                          <th>Jumlah Kurikulum</th>
+                          <th>Jumlah Mahasiswa</th>
 
                         </tr>
                                       </thead>
@@ -36,11 +36,11 @@ $i=1;
 if ($_SESSION['level']==1) {
 $data = $db->fetch_custom("select jurusan.nama_jurusan,count(mhs_pt.id) as jumlah_mhs,jurusan.kode_jurusan,jenjang from jurusan left join mhs_pt
 on jurusan.kode_jurusan=mhs_pt.kode_jurusan
-group by jurusan.kode_jurusan");
+group by jurusan.id");
 } else {
     $data = $db->fetch_custom("select jurusan.nama_jurusan,count(mhs_pt.id) as jumlah_mhs,jurusan.kode_jurusan,jenjang from jurusan left join mhs_pt
 on jurusan.kode_jurusan=mhs_pt.kode_jurusan
- where jurusan.kode_jurusan='".$_SESSION['jurusan']."' group by jurusan.kode_jurusan");
+ where jurusan.kode_jurusan='".$_SESSION['jurusan']."' group by jurusan.id");
 }
                                         foreach ($data as $dt) {
                                           ?>

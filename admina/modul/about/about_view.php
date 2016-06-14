@@ -29,18 +29,18 @@
                  
                     
                   </p>
-                   Perkenalkan nama saya wildan. Saya bisa membantu Bapa - bapa jika sistem akademik mau di integrasikan ke feeder. 
+                   Perkenalkan nama saya wildan. Saya adalah adalah web developer profesional sejak 5 tahun yang lalu. Jika Instansi Bapa  punya sistem akademik yang mau di integrasikan ke feeder bisa menghubingi saya. 
                    Sudah banyak aplikasi yang saya buat mulai dari instansi pemerintah sampai swasta. Khusus untuk feeder, saya telah mengerjakan feeder integrator UIN Bandung untuk mempermudah pengambilan data dari Sistem Akademik. Jika ada teman - teman atau instansi bapa perlu pengadaan atau pembuatan Web Aplikasi, bisa langsung hubungi saya. 
                    <br>Terakhir, Semoga tool ini bermanfaat</br> 
                   <p>Jika Punya pertanyaan Bisa Langsung hubungi saya</p>
                   Email : wildannudin@gmail.com<br>
-                  SMS/WA : 085720081081<br>
+                  SMS/WA : 085720122245<br>
                   Blog : wildantea.com<br>
 
                   Terimakasih telah mencoba feeder impoter ini. 
 
                   <p>
-                    <b>Jika kawan - kawan mau menyumbang, Silakan</b>
+                    <b>Jika kawan - kawan mau donasi, Silakan</b>
                     <br>a/n : mohamad wildannudin
                     <br>norek : 7740376386
                     <br>rek : BCA

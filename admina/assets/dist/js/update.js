@@ -13,7 +13,7 @@ $(document).ready(function(){
                    $(form).ajaxSubmit({
                           type:"post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("form#update").serialize(),
                         success: function(data){
                           console.log(data);
                           $('#loadnya').hide();
@@ -52,7 +52,7 @@ $(document).ready(function(){
                    $(form).ajaxSubmit({
                           type: "post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("#up_feeder_mhs").serialize(),
                        //  enctype:  'multipart/form-data'
                         success: function(data){
                           $("#isi_informasi").html(data);
@@ -81,7 +81,7 @@ $(document).ready(function(){
                    $(form).ajaxSubmit({
                           type:"post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("form#update_mahasiswa").serialize(),
                         success: function(data){
                           console.log(data);
                           $('#loadnya').hide();
@@ -112,7 +112,7 @@ $(document).ready(function(){
                    $(form).ajaxSubmit({
                           type:"post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("form#upfoto").serialize(),
                         success: function(data){
                         
                           $('#loadnya').hide();
@@ -148,7 +148,7 @@ $(document).ready(function(){
                    $(form).ajaxSubmit({
                           type:"post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("form#upalb").serialize(),
                         success: function(data){
                          
                           $('#loadnya').hide();

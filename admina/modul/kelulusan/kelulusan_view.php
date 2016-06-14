@@ -36,11 +36,11 @@ $i=1;
 if ($_SESSION['level']==1) {
 $data = $db->fetch_custom("select jurusan.nama_jurusan,count(kelulusan.id) as jumlah_akm,jurusan.kode_jurusan,jenjang from jurusan left join kelulusan
 on jurusan.kode_jurusan=kelulusan.kode_jurusan
-group by jurusan.kode_jurusan");
+group by jurusan.id");
 } else {
     $data = $db->fetch_custom("select jurusan.nama_jurusan,count(kelulusan.id) as jumlah_akm,jurusan.kode_jurusan,jenjang from jurusan left join kelulusan
 on jurusan.kode_jurusan=kelulusan.kode_jurusan
- where jurusan.kode_jurusan='".$_SESSION['jurusan']."' group by jurusan.kode_jurusan");
+ where jurusan.kode_jurusan='".$_SESSION['jurusan']."' group by jurusan.id");
 }
                                         foreach ($data as $dt) {
                                           ?>

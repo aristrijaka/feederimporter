@@ -7,7 +7,7 @@ define( "DB_USERNAME", "root" );
 
 define( "PORT", 3306);
 //password mysql
-define( "DB_PASSWORD", "" );
+define( "DB_PASSWORD", "mypatrick" );
 //dir admin
 define( "DIR_ADMIN", "feederimporter/admina/");
 //main directory

@@ -255,6 +255,7 @@ class Database {
         $im=implode(', ', $mark);
         $ins = $this->pdo->prepare("INSERT INTO $table ($col) values ($im)");
         $ins->execute( $data );
+        
 
     }
 

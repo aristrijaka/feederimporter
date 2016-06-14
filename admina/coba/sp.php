@@ -1,7 +1,7 @@
 <?php
 //include "inc/config.php";
 include "../lib/nusoap/nusoap.php";
-
+/*
 include "../inc/config.php";
 $config = $db->fetch_single_row('config_user','id',1);
 
@@ -12,6 +12,7 @@ $url = 'http://'.$config->url.':8082/ws/live.php?wsdl'; // gunakan sandbox
 $client = new nusoap_client($url, true);
 $proxy = $client->getProxy();
 
+echo "<pre>";
 
 # MENDAPATKAN TOKEN
 $username = $config->username;
@@ -24,6 +25,61 @@ $token = $result;
 	$get_id_sp = $proxy->GetRecord($token,'satuan_pendidikan',$filter_sp);
 
 	$id_sp = $get_id_sp['result']['id_sp'];
+
+//print_r($proxy->GetDictionary($token,'mahasiswa_pt'));
+
+$filter_kelas = "nm_pd='eceng gonok' and soft_delete='1'";
+$filter_sp = "p.id_reg_pd='09dc905b-bcc3-48ed-b0b6-8b289def8d59' and p.soft_delete='1'";
+$temp_npm = $proxy->GetRecordset($token,'mahasiswa_pt',$filter_sp,'','','');
+
+print_r($temp_npm);
+
+exit();
+$restore = array('nipd' => '12097050222' );
+$restore_db = $proxy->restoreRecord($token,'mahasiswa_pt',json_encode($restore));
+
+print_r($restore_db);
+
+
+	   $hapus = array(     
+									      'id_reg_pd'=> '642c139b-1e92-4408-a4c5-a562cae442ad'
+									      );
+									  $temp_result = $proxy->DeleteRecord($token, 'mahasiswa_pt', json_encode($hapus));
+
+
+
+print_r($temp_npm);
+
+            [id_reg_pd] => 642c139b-1e92-4408-a4c5-a562cae442ad
+            [nipd] => 12097050222
+            [id_pd] => 4e461adc-5ac6-40cc-bc10-4e6ed61700cd
+            [nm_pd] => eceng gonok
+            [tgl_lahir] => 1990-07-22
+            [id_sms] => 09dc905b-bcc3-48ed-b0b6-8b289def8d59
+
+	$data_insert_mhs_pt = array(
+	  'id_sms' => '09dc905b-bcc3-48ed-b0b6-8b289def8d59',
+      'id_pd' => '78537d6b-2bea-4a21-8134-3dbf7aad4039',
+      'id_sp' => '1a7732db-e0b5-47c9-aa8a-cdc9a392bf49',
+      'id_jns_daftar' => 1,
+      'nipd' => '12097050222',
+      'tgl_masuk_sp' => '2015-03-02',
+      'a_pernah_paud' => '1',
+      'a_pernah_tk' => '1',
+      'mulai_smt' => '20151'
+    );
+
+
+	   $hapus = array(     
+									      'id_pd'=> '642c139b-1e92-4408-a4c5-a562cae442ad'
+									      );
+									  $temp_result = $proxy->DeleteRecord($token, 'mahasiswa', json_encode($hapus));
+print_r($temp_result);*/
+
+/* $insert_mhs_pt =  $proxy->InsertRecord($token, 'mahasiswa_pt', json_encode($data_insert_mhs_pt));
+
+print_r($insert_mhs_pt);*/
+
 
 /*
 $table = 'mahasiswa';

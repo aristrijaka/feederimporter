@@ -38,7 +38,7 @@ $(".seePass").mouseout(function(){
                    $(form).ajaxSubmit({
                           type:"post",
                           url: $(this).attr('action'),
-                          data: $(this).serialize(),
+                          data: $("#form").serialize(),
                         success: function(data){
                           console.log(data);
                           $('.load').hide();
