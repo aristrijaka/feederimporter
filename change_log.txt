@@ -12,3 +12,5 @@ version 1.1
 1.0.6
 - fix ajax input, update, import
 - fix handling error all module
+1.0.7
+-fix push matakuliah kurikulum

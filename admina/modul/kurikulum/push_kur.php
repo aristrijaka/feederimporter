@@ -72,13 +72,13 @@ $i=1;
 
 	foreach ($arr_data as $value) {
 
-		
+
 
 	//	print_r($value);
 		$nama_kurikulum = $value->nama_kur;
 		$jml_sks_wajib = $value->jml_sks_wajib;
 		$jml_sks_pilihan = $value->jml_sks_pilihan;
-	
+
 		$mulai_berlaku = $value->mulai_berlaku;
 		$kode_prodi = $value->kode_jurusan;
 
@@ -116,7 +116,7 @@ $i=1;
 		}
 
 		$wajib = '';
-		$mats = $db->fetch_custom("select * from mat_kurikulum where tahun='".$_GET['tahun']."' and status_error!=1");
+		$mats = $db->fetch_custom("select * from mat_kurikulum where id_kurikulum='$value->id' and status_error!=1");
 		$options = array(
 	    'filename' => $_GET['jurusan'].'_progress.json',
 	    'autoCalc' => true,
@@ -127,7 +127,7 @@ $i=1;
 
 
 
-		
+
 		$stageOptions = array(
 		    'name' => 'This AJAX process takes a long time',
 		    'message' => 'But this will keep the user updated on it\'s actual progress!',
@@ -139,7 +139,7 @@ $i=1;
 
 		foreach ($mats as $mat) {
 
-		
+
 		$filter_check = "id_sms='".$id_sms."' and id_jenj_didik='".$id_jenj_didik."' and kode_mk='".$mat->kode_mk."' and soft_delete='0'";
 		$temp_check = $proxy->GetRecord($token,'mata_kuliah',$filter_check);
 		if ($temp_check['result']) {
@@ -169,19 +169,25 @@ $i=1;
         'a_bahan_ajar' => $mat->a_bahan_ajar,
         );
 
-	//insert matakuliah
-	$in_mat = $proxy->InsertRecord($token, "mata_kuliah", json_encode($data));
+		//insert matakuliah
+		$in_mat = $proxy->InsertRecord($token, "mata_kuliah", json_encode($data));
+		if ($in_mat['result']['error_desc']==NULL) {
+			$id_mk = $in_mat['result']['id_mk'];
+			++$sukses_count;
+			$db->update('mat_kurikulum',array('status_error'=>1,'keterangan'=>''),'id',$mat->id);
+		} else {
+			++$error_count_mat;
+			$error_msg_mat[] = "<h4>Error,</h4>".$in_mat['result']['error_desc'];
+		}
 
-		$id_mk = $in_mat['result']['id_mk'];
 
-		++$sukses_count;
-		$db->update('mat_kurikulum',array('status_error'=>1,'keterangan'=>''),'id',$mat->id);
-		
+
+
 	}
 
-		
 
-	//check if wajib 
+
+	//check if wajib
 	if ($wajib=='A') {
 		$wajib = 1;
 	} else {
